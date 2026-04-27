@@ -13,7 +13,6 @@ use Filament\Tables\Table;
 use Illuminate\Support\Str;
 
 use App\Filament\Traits\FormShortcuts;
-use Saade\FilamentAdjacencyList\Forms\Components\AdjacencyList;
 
 class MenuResource extends Resource
 {
@@ -44,17 +43,31 @@ class MenuResource extends Resource
                     ->unique(ignoreRecord: true)
                     ->disabledOn('edit')
                     ->maxLength(255),
-                AdjacencyList::make('items')
+                Forms\Components\Repeater::make('items')
+                    ->label('Ítems')
                     ->columnSpanFull()
-                    ->maxDepth(1)
-                    // ->rulers()
-                    ->reorderable(true)
-                    ->form([
+                    ->reorderableWithButtons()
+                    ->schema([
+                        Forms\Components\Hidden::make('_token')
+                            ->default(fn (): string => (string) Str::ulid()),
                         Forms\Components\TextInput::make('label')
                             ->label('Nombre')
                             ->required(),
 
                         FormShortcuts::RoutePicker(name: 'route', required: true, allowAnchor: true),
+                        Forms\Components\Repeater::make('children')
+                            ->label('Subítems')
+                            ->reorderableWithButtons()
+                            ->schema([
+                                Forms\Components\Hidden::make('_token')
+                                    ->default(fn (): string => (string) Str::ulid()),
+                                Forms\Components\TextInput::make('label')
+                                    ->label('Nombre')
+                                    ->required(),
+                                FormShortcuts::RoutePicker(name: 'route', required: true, allowAnchor: true),
+                            ])
+                            ->default([])
+                            ->collapsed(),
                     ]),
             ]);
     }
