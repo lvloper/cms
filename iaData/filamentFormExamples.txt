@@ -1,0 +1,68 @@
+Input 1:
+    <h1>{{ $title }}</h1>
+    <p>{{ $description }}</p>
+
+Output 1:
+    $schema = [
+        Form\TextInput::make('title')
+            ->label('Title')
+            ->required()
+            ->maxLength(255),
+
+        Form\Textarea::make('description')
+            ->label('Description')
+            ->rows(3)
+            ->maxLength(1000)
+    ];
+--
+Input 2:
+    <img src="{{ $src }}">
+
+Output 2:
+    $schema = [
+        Form\FileUpload::make('src')
+            ->label('Main Image')
+            ->image()
+            ->imageResizeTargetWidth('1920')
+            ->imageResizeTargetHeight('1080')
+            ->directory(blocks/'.$name)
+            ->required(),
+    ];
+--
+Input 3:
+    @foreach ($items as $item) :
+        <p>{{ $item['name'] }}</p>
+        <p>{{ $item['description'] }}</p>
+        <img src="{{ $item['src'] }}">
+    @endforeach
+--
+Output 3:
+    $schema = [
+        Form\Repeater::make('items')
+            ->schema([
+                Form\TextInput::make('name')
+                    ->label('Item Name')
+                    ->required()
+                    ->maxLength(255),
+
+                Form\Textarea::make('description')
+                    ->label('Item Description')
+                    ->rows(2)
+                    ->maxLength(500),
+
+                Form\FileUpload::make('src')
+                    ->label('Item Image')
+                    ->image()
+                    ->imageResizeTargetWidth('800')
+                    ->imageResizeTargetHeight('600')
+                    ->directory('item-images')
+                    ->required(),
+            ])
+            ->label('Items')
+            ->addActionLabel('Add Item')
+            ->itemLabel(fn (array $state): ?string => $state['name'] ?? null)
+            ->collapsible()
+            ->cloneable()
+            ->columns(2)
+    ];
+--

@@ -1,0 +1,12 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(cp:*)",
+      "Bash(mkdir:*)",
+      "Bash(find:*)",
+      "WebFetch(domain:github.com)",
+      "Bash(php artisan make:migration:*)"
+    ],
+    "deny": []
+  }
+}

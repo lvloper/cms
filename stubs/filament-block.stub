@@ -1,0 +1,28 @@
+<?php
+
+namespace App\Filament\Blocks;
+
+use App\Filament\Traits\BlockComposer;
+use Filament\Forms\Components as Form;
+
+class {{ class }}Block
+{
+    use BlockComposer;
+
+    public static function compose(): array
+    {
+        // Define the name of the block
+        $name = '{{ class }}';
+
+        // Define the label of the block
+        $label = 'This is a block label for {{ class }}';
+
+        // Define the fields for the block
+        $schema = [
+            /* //! Use https://filamentphp.com/docs/3.x/forms/installation 
+             to see all available fields and layout */
+        ];
+
+        return compact('name', 'label', 'schema');
+    }
+}

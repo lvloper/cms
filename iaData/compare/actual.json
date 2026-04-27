@@ -1,0 +1,2260 @@
+[
+    {
+        "data": {
+            "mb": "mb-0",
+            "mdMb": "md:mb-0",
+            "title": "Quiénes\nsomos",
+            "clases": [],
+            "hidden": false,
+            "styles": [],
+            "estilos": "2",
+            "stylesMd": [],
+            "blockTitle": null,
+            "blockAnchor": null,
+            "description": "<p>&nbsp;</p>",
+            "description2": null
+        },
+        "type": "Hero"
+    },
+    {
+        "data": {
+            "mb": "mb-0",
+            "mdMb": "md:mb-0",
+            "items": [
+                {
+                    "title": "Consejo de Administración",
+                    "blocks": [
+                        {
+                            "data": {
+                                "mb": "mb-0",
+                                "mdMb": "md:mb-0",
+                                "text": {
+                                    "type": "doc",
+                                    "content": [
+                                        {
+                                            "type": "paragraph",
+                                            "attrs": {
+                                                "class": null,
+                                                "style": null
+                                            },
+                                            "content": [
+                                                {
+                                                    "text": "Licenciado en Administración de Empresas y Máster en Salud Pública (Universidad de Buenos Aires). Es co fundador de Fundación Huésped. Fue miembro del Mecanismo Coordinador de País (CCM) para el Fondo Mundial de Lucha Contra el SIDA, la Tuberculosis (TBC) y la Malaria en representación de la Sociedad Argentina de Sida (SAS), Presidente de la Red Argentina de Cooperación Internacional (RACI), y miembro asesor del Mecanismo de Control de la Sociedad Civil (CSEM) para la Cobertura Sanitaria Universal UHC2030. Actualmente, es miembro del Comité Directivo de la Comisión de la Sociedad Civil de la OMS.",
+                                                    "type": "text"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                },
+                                "work": "Presidente",
+                                "image": null,
+                                "items": [
+                                    {
+                                        "icon": "fab-linkedin",
+                                        "route": {
+                                            "new_window": false,
+                                            "external_url": "https://www.linkedin.com/in/kurt-frieder-b8514615/"
+                                        }
+                                    }
+                                ],
+                                "title": "Kurt Frieder",
+                                "clases": [],
+                                "hidden": false,
+                                "styles": [],
+                                "stylesMd": [],
+                                "blockTitle": null,
+                                "blockAnchor": null,
+                                "button_route": {
+                                    "route_id": null,
+                                    "new_window": false
+                                }
+                            },
+                            "type": "CardPerson2"
+                        },
+                        {
+                            "data": {
+                                "mb": "mb-0",
+                                "mdMb": "md:mb-0",
+                                "text": {
+                                    "type": "doc",
+                                    "content": [
+                                        {
+                                            "type": "paragraph",
+                                            "attrs": {
+                                                "class": null,
+                                                "style": null
+                                            },
+                                            "content": [
+                                                {
+                                                    "text": "Bioquímica. En 1986, comenzó una concurrencia en la Academia Nacional de Medicina en el Servicio de Virología, donde inició su formación en retrovirus humanos (HIV y HTLV-I/II), formando parte del grupo que aisló el virus HIV y describió HTLV-I por primera vez en Argentina. Se desempeña en el Hospital de Infecciosas \"F.J. Muñiz\" desde 1995. Desde el año 2000, asesora al Programa de Sida del GCBA. Durante los años 2020-2022, formó parte del comité de expertos para COVID-19 del MSGCABA, donde coordinó el diagnóstico virológico para SARS-CoV-2 en la red pública de CABA. Es secretaria de redacción desde 2007 de la revista ASEI y es miembro activo de la Comisión Directiva de la Sociedad Argentina de Virología.",
+                                                    "type": "text"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                },
+                                "work": "Vicepresidenta",
+                                "image": null,
+                                "items": [
+                                    {
+                                        "icon": "fab-linkedin",
+                                        "route": {
+                                            "new_window": false,
+                                            "external_url": "https://www.linkedin.com/in/maria-belen-bouzas-0bb14731/"
+                                        }
+                                    }
+                                ],
+                                "title": "María Belén Bouzas",
+                                "clases": [],
+                                "hidden": false,
+                                "styles": [],
+                                "stylesMd": [],
+                                "blockTitle": null,
+                                "blockAnchor": null,
+                                "button_route": {
+                                    "route_id": null,
+                                    "new_window": false
+                                }
+                            },
+                            "type": "CardPerson2"
+                        },
+                        {
+                            "data": {
+                                "mb": "mb-0",
+                                "mdMb": "md:mb-0",
+                                "text": {
+                                    "type": "doc",
+                                    "content": [
+                                        {
+                                            "type": "paragraph",
+                                            "attrs": {
+                                                "class": null,
+                                                "style": null
+                                            },
+                                            "content": [
+                                                {
+                                                    "text": "Perito mercantil con una amplia trayectoria en gestión administrativa en el ámbito de la salud. Beatriz (Betty) se desempeñó como secretaria ejecutiva y administradora del Centro Médico de COMI entre 1979 y 1987, bajo la dirección del Dr. Pedro Cahn. Desde 1988 hasta 2010, fue administradora del CMH. Es socia fundadora de Fundación Huésped y forma parte de su Consejo de Administración desde 1989. Actualmente, ocupa el cargo de tesorera de la Fundación e integra su Comité de Bioética.",
+                                                    "type": "text"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                },
+                                "work": "Tesorera",
+                                "image": null,
+                                "items": [],
+                                "title": "Beatriz Agnesse",
+                                "clases": [],
+                                "hidden": false,
+                                "styles": [],
+                                "stylesMd": [],
+                                "blockTitle": null,
+                                "blockAnchor": null,
+                                "button_route": {
+                                    "route_id": null,
+                                    "new_window": false
+                                }
+                            },
+                            "type": "CardPerson2"
+                        },
+                        {
+                            "data": {
+                                "mb": "mb-0",
+                                "mdMb": "md:mb-0",
+                                "text": {
+                                    "type": "doc",
+                                    "content": [
+                                        {
+                                            "type": "paragraph",
+                                            "attrs": {
+                                                "class": null,
+                                                "style": null
+                                            },
+                                            "content": [
+                                                {
+                                                    "text": "Activista por los derechos humanos de la comunidad LGBTQI+ desde 1987. Vincent vive con VIH desde 1992, año en que se unió a AIDES en Francia. Fue su director general de 1998 a 2016 y, en 2008, fundó Coalition PLUS, red internacional que lideró hasta 2022. Francés de origen, actualmente reside en Argentina y se desempeña como coach ontológico y laboral.",
+                                                    "type": "text"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                },
+                                "work": "Secretario",
+                                "image": null,
+                                "items": [
+                                    {
+                                        "icon": "fab-linkedin",
+                                        "route": {
+                                            "new_window": false,
+                                            "external_url": "https://www.linkedin.com/in/vincent-pelletier-9a7247a4/"
+                                        }
+                                    }
+                                ],
+                                "title": "Vincent Pelletier",
+                                "clases": [],
+                                "hidden": false,
+                                "styles": [],
+                                "stylesMd": [],
+                                "blockTitle": null,
+                                "blockAnchor": null,
+                                "button_route": {
+                                    "route_id": null,
+                                    "new_window": false
+                                }
+                            },
+                            "type": "CardPerson2"
+                        },
+                        {
+                            "data": {
+                                "mb": "mb-0",
+                                "mdMb": "md:mb-0",
+                                "text": {
+                                    "type": "doc",
+                                    "content": [
+                                        {
+                                            "type": "paragraph",
+                                            "attrs": {
+                                                "class": null,
+                                                "style": null
+                                            },
+                                            "content": [
+                                                {
+                                                    "text": "Doctor en Medicina (UBA), especialista en Infectología y Profesor Honorífico de la Universidad Nacional Arturo Jauretche (UNAJ), Maestro de la Medicina por el Círculo Médico (Córdoba) y Profesor Honoris Causa de la Universidad Nacional del Sur (UNS). Estuvo al frente de la Sociedad Internacional de Sida (IAS). Fue jefe del Hospital Fernández y Profesor Titular de Infectología en la UBA. Fue asesor de la OMS, OPS, ONUSIDA y Ministerio de Salud de Argentina. Fue distinguido como Ciudadano Ilustre de la Ciudad de Buenos Aires, Premio Konex de Platino 2023, Perl y Legión de Honor otorgada por la República Francesa.",
+                                                    "type": "text"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "paragraph",
+                                            "attrs": {
+                                                "class": null,
+                                                "style": null
+                                            },
+                                            "content": [
+                                                {
+                                                    "text": "Es Director Científico de Fundación Huésped desde 1989. Dirigió las primeras investigaciones que demostraron la eficacia y seguridad de la terapia doble para el tratamiento del VIH, incorporada en las guías internacionales. Fue citado por pares más de 14 mil veces en 11.900 documentos y ha publicado 290 artículos indexados en PubMed. Su trayectoria, compromiso y enseñanzas guían el recorrido histórico de la fundación. ",
+                                                    "type": "text"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                },
+                                "work": "Vocal",
+                                "image": null,
+                                "items": [
+                                    {
+                                        "icon": "fab-linkedin",
+                                        "route": {
+                                            "new_window": false,
+                                            "external_url": "https://www.linkedin.com/in/pedro-cahn-77330117/"
+                                        }
+                                    }
+                                ],
+                                "title": "Pedro Cahn",
+                                "clases": [],
+                                "hidden": false,
+                                "styles": [],
+                                "stylesMd": [],
+                                "blockTitle": null,
+                                "blockAnchor": null,
+                                "button_route": {
+                                    "route_id": null,
+                                    "new_window": false
+                                }
+                            },
+                            "type": "CardPerson2"
+                        },
+                        {
+                            "data": {
+                                "mb": "mb-0",
+                                "mdMb": "md:mb-0",
+                                "text": {
+                                    "type": "doc",
+                                    "content": [
+                                        {
+                                            "type": "paragraph",
+                                            "attrs": {
+                                                "class": null,
+                                                "style": null
+                                            },
+                                            "content": [
+                                                {
+                                                    "text": "Licenciada en Ciencias de la Educación y especialista en Recursos Humanos. Desde 1990, se desempeña en el Estudio Gelman, Alfiz y Asociados S.A., brindando asesoramiento en gerenciamiento de RRHH, capacitación, liderazgo y reingeniería organizacional. Trabajó para diversos organismos nacionales e internacionales, como el Ministerio de Relaciones Exteriores, el Banco Credicoop y el Instituto de Previsión Social de Paraguay. Además, fue docente en universidades y programas de formación ejecutiva, especializándose en estrategias de gestión y desarrollo de talento.",
+                                                    "type": "text"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                },
+                                "work": "Vocal",
+                                "image": null,
+                                "items": [],
+                                "title": "Silvia Marta Gelman",
+                                "clases": [],
+                                "hidden": false,
+                                "styles": [],
+                                "stylesMd": [],
+                                "blockTitle": null,
+                                "blockAnchor": null,
+                                "button_route": {
+                                    "route_id": null,
+                                    "new_window": false
+                                }
+                            },
+                            "type": "CardPerson2"
+                        }
+                    ]
+                },
+                {
+                    "title": "Dirección Ejecutiva",
+                    "blocks": [
+                        {
+                            "data": {
+                                "mb": "mb-0",
+                                "mdMb": "md:mb-0",
+                                "text": {
+                                    "type": "doc",
+                                    "content": [
+                                        {
+                                            "type": "paragraph",
+                                            "attrs": {
+                                                "class": null,
+                                                "style": null
+                                            },
+                                            "content": [
+                                                {
+                                                    "text": "Director Ejecutivo de Fundación Huésped desde 2018, donde anteriormente fue Director de Comunicación y Desarrollo Institucional. Es Magister en Administración y Políticas Públicas (UDESA) y Lic. en Ciencia Política (UBA). Fue Director de Comunicación de la 1era. Conferencia de la Sociedad Internacional de Sida (IAS) en Patogénesis y Tratamiento del HIV (2001). Posteriormente realizó distintos trabajos como consultor para la IAS y para la firma Amgott-Mitchell, por entonces a cargo de la comunicación del Fondo Mundial de Lucha contra el SIDA, la Tuberculosis y la Malaria. Es co-autor de “ESl: Guía básica para la escuela y la familia”, de la editorial Siglo XXI.",
+                                                    "type": "text"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                },
+                                "work": "Director Ejecutivo",
+                                "image": null,
+                                "items": [
+                                    {
+                                        "icon": "fab-linkedin",
+                                        "route": {
+                                            "new_window": false,
+                                            "external_url": "https://www.linkedin.com/in/leandrocahn/"
+                                        }
+                                    }
+                                ],
+                                "title": "Leandro Cahn",
+                                "clases": [],
+                                "hidden": false,
+                                "styles": [],
+                                "stylesMd": [],
+                                "blockTitle": null,
+                                "blockAnchor": null,
+                                "button_route": {
+                                    "route_id": null,
+                                    "new_window": false
+                                }
+                            },
+                            "type": "CardPerson2"
+                        }
+                    ]
+                },
+                {
+                    "title": "Dirección de Gestión Institucional",
+                    "blocks": [
+                        {
+                            "data": {
+                                "mb": "mb-0",
+                                "mdMb": "md:mb-0",
+                                "text": {
+                                    "type": "doc",
+                                    "content": [
+                                        {
+                                            "type": "paragraph",
+                                            "attrs": {
+                                                "class": null,
+                                                "style": null
+                                            },
+                                            "content": [
+                                                {
+                                                    "text": "Licenciada en Psicología (Universidad Autónoma de Madrid) y Magíster en Mediación Familiar y Comunitaria (FUE–UNED, España). Cuenta con más de 30 años de experiencia trabajando en  organizaciones no gubernamentales en España, Bolivia y Argentina, así como  en organismos públicos de la Ciudad de Buenos Aires, las Municipalidades de San Isidro y de Morón con foco en infancias y adolescencias en situación de calle, víctimas de violencia y abuso de poder y personas con VIH. ",
+                                                    "type": "text"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                },
+                                "work": "Directora de gestión institucional",
+                                "image": null,
+                                "items": [],
+                                "title": "Maria del Mar Lucas ",
+                                "clases": [],
+                                "hidden": false,
+                                "styles": [],
+                                "stylesMd": [],
+                                "blockTitle": null,
+                                "blockAnchor": null,
+                                "button_route": {
+                                    "route_id": null,
+                                    "new_window": false
+                                }
+                            },
+                            "type": "CardPerson2"
+                        },
+                        {
+                            "data": {
+                                "mb": "mb-0",
+                                "mdMb": "md:mb-0",
+                                "text": {
+                                    "type": "doc",
+                                    "content": [
+                                        {
+                                            "type": "paragraph",
+                                            "attrs": {
+                                                "class": null,
+                                                "style": null
+                                            },
+                                            "content": [
+                                                {
+                                                    "text": "Licenciada en Administración de Empresas (UADE). Trabajó en distintas organizaciones no gubernamentales enfocadas en infancia, adolescencia, género y salud desde el año 1993. Se  especializó en los aspectos contables, impositivos y presupuestarios de las organizaciones sin fines de lucro. En 2007 se  incorporó a Fundación Huésped a cargo de la administración financiera del Programa Plan Familia para la Inclusión Social en el distrito de Florencio Varela. Luego continuó como directora de administración y finanzas de la fundación. ",
+                                                    "type": "text"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                },
+                                "work": "Directora de División de Administración y Finanzas",
+                                "image": null,
+                                "items": [
+                                    {
+                                        "icon": "fab-linkedin",
+                                        "route": {
+                                            "new_window": false,
+                                            "external_url": "https://www.linkedin.com/in/adriana-silvia-corera-1b391093/"
+                                        }
+                                    }
+                                ],
+                                "title": "Adriana Silvia Corera",
+                                "clases": [],
+                                "hidden": false,
+                                "styles": [],
+                                "stylesMd": [],
+                                "blockTitle": null,
+                                "blockAnchor": null,
+                                "button_route": {
+                                    "route_id": null,
+                                    "new_window": false
+                                }
+                            },
+                            "type": "CardPerson2"
+                        },
+                        {
+                            "data": {
+                                "mb": "mb-0",
+                                "mdMb": "md:mb-0",
+                                "text": {
+                                    "type": "doc",
+                                    "content": [
+                                        {
+                                            "type": "paragraph",
+                                            "attrs": {
+                                                "class": null,
+                                                "style": null
+                                            },
+                                            "content": [
+                                                {
+                                                    "text": "Licenciada en Psicología (Universidad de Palermo), con Diplomatura Superior en Organizaciones de la Sociedad Civil (FLACSO). Su trayectoria en Fundación Huésped comenzó en 2007 como pasante en proyectos con adolescentes y jóvenes. Luego se incorporó como  asistente técnica en proyectos de intervención territorial dirigidos a jóvenes y fue coordinadora del Programa de Jóvenes. ",
+                                                    "type": "text"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                },
+                                "work": "Directora de División del Laboratorio de Innovación",
+                                "image": null,
+                                "items": [
+                                    {
+                                        "icon": "fab-linkedin",
+                                        "route": {
+                                            "new_window": false,
+                                            "external_url": "https://www.linkedin.com/in/betianacaceres/"
+                                        }
+                                    }
+                                ],
+                                "title": "Betiana Caceres",
+                                "clases": [],
+                                "hidden": false,
+                                "styles": [],
+                                "stylesMd": [],
+                                "blockTitle": null,
+                                "blockAnchor": null,
+                                "button_route": {
+                                    "route_id": null,
+                                    "new_window": false
+                                }
+                            },
+                            "type": "CardPerson2"
+                        },
+                        {
+                            "data": {
+                                "mb": "mb-0",
+                                "mdMb": "md:mb-0",
+                                "text": {
+                                    "type": "doc",
+                                    "content": [
+                                        {
+                                            "type": "paragraph",
+                                            "attrs": {
+                                                "class": null,
+                                                "style": null
+                                            },
+                                            "content": [
+                                                {
+                                                    "text": "Contadora Pública (UCA), Lic. en educación (UnaHur) y Maestranda de Economía social (UNGS). Desde hace 11 años trabaja para distintas cooperativas, organizaciones del campo de la Economía Social y Popular y entidades sin fines de lucro en el asesoramiento contable, impositivo y financiero. En el 2020 trabajó en el área de economía social del Ministerio de Desarrollo Humano y Hábitat de CABA fortaleciendo a las organizaciones de la Economía Social y Popular en el ámbito público. ",
+                                                    "type": "text"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                },
+                                "work": "Coordinadora de Presupuesto y Control de Gestión",
+                                "image": null,
+                                "items": [
+                                    {
+                                        "icon": "fab-linkedin",
+                                        "route": {
+                                            "new_window": false,
+                                            "external_url": "https://www.linkedin.com/in/vanesa-a-359aa5255/"
+                                        }
+                                    }
+                                ],
+                                "title": "Vanesa Acosta",
+                                "clases": [],
+                                "hidden": false,
+                                "styles": [],
+                                "stylesMd": [],
+                                "blockTitle": null,
+                                "blockAnchor": null,
+                                "button_route": {
+                                    "route_id": null,
+                                    "new_window": false
+                                }
+                            },
+                            "type": "CardPerson2"
+                        },
+                        {
+                            "data": {
+                                "mb": "mb-0",
+                                "mdMb": "md:mb-0",
+                                "text": {
+                                    "type": "doc",
+                                    "content": [
+                                        {
+                                            "type": "paragraph",
+                                            "attrs": {
+                                                "class": null,
+                                                "style": null
+                                            },
+                                            "content": [
+                                                {
+                                                    "text": "Ingresó a la institución en el año 2012 como asistente en la Dirección de Administración. Su crecimiento profesional dentro de la fundación le permitió llegar a desempeñarse como Líder del área de Tesorería. Sus conocimientos contables y operativos adquiridos a los largo de su trayectoria le han permitido adoptar el desafío de desempeñarse como coordinadora a partir del 2024.",
+                                                    "type": "text"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                },
+                                "work": "Coordinadora de Tesorería y Compras",
+                                "image": null,
+                                "items": [],
+                                "title": "Lilian Castagnaro",
+                                "clases": [],
+                                "hidden": false,
+                                "styles": [],
+                                "stylesMd": [],
+                                "blockTitle": null,
+                                "blockAnchor": null,
+                                "button_route": {
+                                    "route_id": null,
+                                    "new_window": false
+                                }
+                            },
+                            "type": "CardPerson2"
+                        },
+                        {
+                            "data": {
+                                "mb": "mb-0",
+                                "mdMb": "md:mb-0",
+                                "text": {
+                                    "type": "doc",
+                                    "content": [
+                                        {
+                                            "type": "paragraph",
+                                            "attrs": {
+                                                "class": null,
+                                                "style": null
+                                            },
+                                            "content": [
+                                                {
+                                                    "text": "Diplomada en Energía y Desarrollo Sostenible (Universidad de la Matanza). Se especializó en la gestión de proyectos sociales y en el co-diseño centrado en la  comunidad. Trabajó en el ámbito público evaluando la factibilidad técnica y económica de proyectos, además de brindar asesoramiento y capacitaciones para la implementación de sistemas de gestión. ",
+                                                    "type": "text"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                },
+                                "work": "Coordinadora de Gestión Administrativa de Proyectos",
+                                "image": null,
+                                "items": [
+                                    {
+                                        "icon": "fab-linkedin",
+                                        "route": {
+                                            "new_window": false,
+                                            "external_url": "https://www.linkedin.com/in/gabriela-paz-raffo-31598717/"
+                                        }
+                                    }
+                                ],
+                                "title": "Gabriela Raffo",
+                                "clases": [],
+                                "hidden": false,
+                                "styles": [],
+                                "stylesMd": [],
+                                "blockTitle": null,
+                                "blockAnchor": null,
+                                "button_route": {
+                                    "route_id": null,
+                                    "new_window": false
+                                }
+                            },
+                            "type": "CardPerson2"
+                        }
+                    ]
+                },
+                {
+                    "title": "Dirección de Comunicación y movilización de Recursos",
+                    "blocks": [
+                        {
+                            "data": {
+                                "mb": "mb-0",
+                                "mdMb": "md:mb-0",
+                                "text": {
+                                    "type": "doc",
+                                    "content": [
+                                        {
+                                            "type": "paragraph",
+                                            "attrs": {
+                                                "class": null,
+                                                "style": null
+                                            },
+                                            "content": [
+                                                {
+                                                    "text": "Licenciada en Ciencias de la Comunicación, con especialización en Políticas y Planificación de la Comunicación (Universidad de Buenos Aires), Mágister en Dirección de Comunicación Empresarial e Institucional (Universidad de Barcelona).  Desde hace más de 20 años se desempeña en el desarrollo de estrategias y acciones de comunicación para el tercer sector, tanto en Argentina como en América Latina. ",
+                                                    "type": "text"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                },
+                                "work": "Directora de Comunicación y Movilización de Recursos ",
+                                "image": null,
+                                "items": [
+                                    {
+                                        "icon": "fab-linkedin",
+                                        "route": {
+                                            "new_window": false,
+                                            "external_url": "https://www.linkedin.com/in/d%C3%A9borafiore/"
+                                        }
+                                    }
+                                ],
+                                "title": "Débora Fiore ",
+                                "clases": [],
+                                "hidden": false,
+                                "styles": [],
+                                "stylesMd": [],
+                                "blockTitle": null,
+                                "blockAnchor": null,
+                                "button_route": {
+                                    "route_id": null,
+                                    "new_window": false
+                                }
+                            },
+                            "type": "CardPerson2"
+                        },
+                        {
+                            "data": {
+                                "mb": "mb-0",
+                                "mdMb": "md:mb-0",
+                                "text": {
+                                    "type": "doc",
+                                    "content": [
+                                        {
+                                            "type": "paragraph",
+                                            "attrs": {
+                                                "class": null,
+                                                "style": null
+                                            },
+                                            "content": [
+                                                {
+                                                    "text": "Licenciada en Artes (Universidad de Buenos Aires). Se desempeñó en el desarrollo de campañas de prensa, producción audiovisual y en el diseño e implementación de campañas de comunicación en el ámbito público. Desde 2014 se desempeña en la fundación dentro del área de comunicación y, posteriormente, como Coordinadora de Comunicación Institucional. Su especialización en comunicación y crecimiento en la institución son fundamentales para su desempeño en la dirección. ",
+                                                    "type": "text"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                },
+                                "work": "Directora de División de Comunicación",
+                                "image": null,
+                                "items": [
+                                    {
+                                        "icon": "fab-linkedin",
+                                        "route": {
+                                            "new_window": false,
+                                            "external_url": "https://www.linkedin.com/in/florencia-gadea/"
+                                        }
+                                    }
+                                ],
+                                "title": "Florencia Gadea ",
+                                "clases": [],
+                                "hidden": false,
+                                "styles": [],
+                                "stylesMd": [],
+                                "blockTitle": null,
+                                "blockAnchor": null,
+                                "button_route": {
+                                    "route_id": null,
+                                    "new_window": false
+                                }
+                            },
+                            "type": "CardPerson2"
+                        },
+                        {
+                            "data": {
+                                "mb": "mb-0",
+                                "mdMb": "md:mb-0",
+                                "text": {
+                                    "type": "doc",
+                                    "content": [
+                                        {
+                                            "type": "paragraph",
+                                            "attrs": {
+                                                "class": null,
+                                                "style": null
+                                            },
+                                            "content": [
+                                                {
+                                                    "text": "Licenciada en Letras (Universidad de Buenos Aires). Se especializó en proyectos de Investigación social y de mercados. Ingresó a Fundación Huésped en el año 2016 para llevar adelante la gestión de donantes individuales, área que coordina en la actualidad. Su dedicación y calidad humana son rasgos distintivos de su labor.",
+                                                    "type": "text"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                },
+                                "work": "Coordinadora de Donantes Individuales",
+                                "image": null,
+                                "items": [],
+                                "title": "Julia Sagulo ",
+                                "clases": [],
+                                "hidden": false,
+                                "styles": [],
+                                "stylesMd": [],
+                                "blockTitle": null,
+                                "blockAnchor": null,
+                                "button_route": {
+                                    "route_id": null,
+                                    "new_window": false
+                                }
+                            },
+                            "type": "CardPerson2"
+                        }
+                    ]
+                },
+                {
+                    "title": "Dirección de programas",
+                    "blocks": [
+                        {
+                            "data": {
+                                "mb": "mb-0",
+                                "mdMb": "md:mb-0",
+                                "text": {
+                                    "type": "doc",
+                                    "content": [
+                                        {
+                                            "type": "paragraph",
+                                            "attrs": {
+                                                "class": null,
+                                                "style": null
+                                            },
+                                            "content": [
+                                                {
+                                                    "text": "Técnica en Recreación, Diplomada en Educación y Nuevas Tecnologías (FLACSO) y en Tratamiento Comunitario (Universidad del Museo). Participó de proyectos e investigaciones en la temática de VIH, SSR, juventud, comunicación y educación no formal. Desde hace diez años trabaja en la planificación y desarrollo de proyectos relacionados con la promoción de la SSR con distintas poblaciones. En el año 2005 empezó su recorrido dentro de la institución como tallerista hasta convertirse en Directora de Programas. ",
+                                                    "type": "text"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                },
+                                "work": "Directora de Programas",
+                                "image": null,
+                                "items": [
+                                    {
+                                        "icon": "fab-linkedin",
+                                        "route": {
+                                            "new_window": false,
+                                            "external_url": "https://www.linkedin.com/in/cecilia-valeriano-87081a15/"
+                                        }
+                                    }
+                                ],
+                                "title": "Cecilia Valeriano ",
+                                "clases": [],
+                                "hidden": false,
+                                "styles": [],
+                                "stylesMd": [],
+                                "blockTitle": null,
+                                "blockAnchor": null,
+                                "button_route": {
+                                    "route_id": null,
+                                    "new_window": false
+                                }
+                            },
+                            "type": "CardPerson2"
+                        },
+                        {
+                            "data": {
+                                "mb": "mb-0",
+                                "mdMb": "md:mb-0",
+                                "text": {
+                                    "type": "doc",
+                                    "content": [
+                                        {
+                                            "type": "paragraph",
+                                            "attrs": {
+                                                "class": null,
+                                                "style": null
+                                            },
+                                            "content": [
+                                                {
+                                                    "text": "Licenciada en Ciencias de la Comunicación (Universidad de Buenos Aires) Doctoranda en Ciencias Sociales (Universidad de Buenos Aires). Fue Becaria (UBA) por sus estudios de posgrado y participó en numerosos proyectos de investigación UBACYT sobre temáticas de géneros y movimientos sociales. Desde el año 2010 trabaja en Fundación Huésped con proyectos relacionados con los derechos sexuales y reproductivos y género.",
+                                                    "type": "text"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                },
+                                "work": "Coordinadora de Salud Colectiva",
+                                "image": null,
+                                "items": [
+                                    {
+                                        "icon": "fab-linkedin",
+                                        "route": {
+                                            "new_window": false,
+                                            "external_url": "https://www.linkedin.com/in/constanza-lupi-b51a1a18/"
+                                        }
+                                    }
+                                ],
+                                "title": "Constanza Lupi",
+                                "clases": [],
+                                "hidden": false,
+                                "styles": [],
+                                "stylesMd": [],
+                                "blockTitle": null,
+                                "blockAnchor": null,
+                                "button_route": {
+                                    "route_id": null,
+                                    "new_window": false
+                                }
+                            },
+                            "type": "CardPerson2"
+                        },
+                        {
+                            "data": {
+                                "mb": "mb-0",
+                                "mdMb": "md:mb-0",
+                                "text": {
+                                    "type": "doc",
+                                    "content": [
+                                        {
+                                            "type": "paragraph",
+                                            "attrs": {
+                                                "class": null,
+                                                "style": null
+                                            },
+                                            "content": [
+                                                {
+                                                    "text": "Antropóloga (Universidad de Buenos Aires), especialista en educación y promoción de la salud (GCBA) y maestranda en estudios y políticas de género (UNTREF). Desde el 2015 trabaja en temáticas de salud pública, derechos sexuales y (no)reproductivos. Forma parte de Fundación Huésped desde el año 2019.",
+                                                    "type": "text"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                },
+                                "work": "Coordinadora de atención",
+                                "image": null,
+                                "items": [],
+                                "title": "Amelia González",
+                                "clases": [],
+                                "hidden": false,
+                                "styles": [],
+                                "stylesMd": [],
+                                "blockTitle": null,
+                                "blockAnchor": null,
+                                "button_route": {
+                                    "route_id": null,
+                                    "new_window": false
+                                }
+                            },
+                            "type": "CardPerson2"
+                        }
+                    ]
+                },
+                {
+                    "title": " Dirección de Investigaciones",
+                    "blocks": [
+                        {
+                            "data": {
+                                "mb": "mb-0",
+                                "mdMb": "md:mb-0",
+                                "text": {
+                                    "type": "doc",
+                                    "content": [
+                                        {
+                                            "type": "paragraph",
+                                            "attrs": {
+                                                "class": null,
+                                                "style": null
+                                            },
+                                            "content": [
+                                                {
+                                                    "text": "Doctor en Medicina (UBA), especialista en Infectología y Profesor Honorífico de la Universidad Nacional Arturo Jauretche (UNAJ), Maestro de la Medicina por el Círculo Médico (Córdoba) y Profesor Honoris Causa de la Universidad Nacional del Sur (UNS). Estuvo al frente de la Sociedad Internacional de Sida (IAS). Fue jefe del Hospital Fernández y Profesor Titular de Infectología en la UBA. Fue asesor de la OMS, OPS, ONUSIDA y Ministerio de Salud de Argentina. Fue distinguido como Ciudadano Ilustre de la Ciudad de Buenos Aires, Premio Konex de Platino 2023, Perl y Legión de Honor otorgada por la República Francesa.",
+                                                    "type": "text"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "paragraph",
+                                            "attrs": {
+                                                "class": null,
+                                                "style": null
+                                            },
+                                            "content": [
+                                                {
+                                                    "text": "Es Director Científico de Fundación Huésped desde 1989. Dirigió las primeras investigaciones que demostraron la eficacia y seguridad de la terapia doble para el tratamiento del VIH, incorporada en las guías internacionales. Fue citado por pares más de 14 mil veces en 11.900 documentos y ha publicado 290 artículos indexados en PubMed. Su trayectoria, compromiso y enseñanzas guían el recorrido histórico de la fundación. ",
+                                                    "type": "text"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                },
+                                "work": "Director cientifico",
+                                "image": null,
+                                "items": [
+                                    {
+                                        "icon": "fab-linkedin",
+                                        "route": {
+                                            "new_window": false,
+                                            "external_url": "https://www.linkedin.com/in/pedro-cahn-77330117/"
+                                        }
+                                    }
+                                ],
+                                "title": "Pedro Cahn",
+                                "clases": [],
+                                "hidden": false,
+                                "styles": [],
+                                "stylesMd": [],
+                                "blockTitle": null,
+                                "blockAnchor": null,
+                                "button_route": {
+                                    "route_id": null,
+                                    "new_window": false
+                                }
+                            },
+                            "type": "CardPerson2"
+                        },
+                        {
+                            "data": {
+                                "mb": "mb-0",
+                                "mdMb": "md:mb-0",
+                                "text": {
+                                    "type": "doc",
+                                    "content": [
+                                        {
+                                            "type": "paragraph",
+                                            "attrs": {
+                                                "class": null,
+                                                "style": null
+                                            },
+                                            "content": [
+                                                {
+                                                    "text": "Médica especialista en Enfermedades Infecciosas (Universidad de Buenos Aires). Durante 2009-2010 realizó un Fellowship en el Servicio de Infectología del Hospital Paul-Brousse (París) y un entrenamiento en Monitoreo Clínico de la Agence Nationale de Recherche sure le Sida et les hépatites virales (ARNS). ",
+                                                    "type": "text"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                },
+                                "work": "Directora de Investigación",
+                                "image": null,
+                                "items": [
+                                    {
+                                        "icon": "fab-linkedin",
+                                        "route": {
+                                            "new_window": false,
+                                            "external_url": "https://www.linkedin.com/in/maria-ines-figueroa-45909a4a/"
+                                        }
+                                    }
+                                ],
+                                "title": "María Ines Figueroa ",
+                                "clases": [],
+                                "hidden": false,
+                                "styles": [],
+                                "stylesMd": [],
+                                "blockTitle": null,
+                                "blockAnchor": null,
+                                "button_route": {
+                                    "route_id": null,
+                                    "new_window": false
+                                }
+                            },
+                            "type": "CardPerson2"
+                        },
+                        {
+                            "data": {
+                                "mb": "mb-0",
+                                "mdMb": "md:mb-0",
+                                "text": {
+                                    "type": "doc",
+                                    "content": [
+                                        {
+                                            "type": "paragraph",
+                                            "attrs": {
+                                                "class": null,
+                                                "style": null
+                                            },
+                                            "content": [
+                                                {
+                                                    "text": "Licenciada en Psicología (Universidad de Palermo) Doctora en Psicología por la Universidad de Groningen (Países Bajos). Se dedica al trabajo con personas del colectivo LGBTIQ y personas con VIH, tanto en la práctica clínica como en investigación. Desde el año 2012 coordina el área de Investigación Social en Fundación Huésped, donde se destaca por su compromiso por garantizar el acceso a la salud sexual y reproductiva del colectivo LGBT+ y las personas que viven con VIH.",
+                                                    "type": "text"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                },
+                                "work": "Directora de División de Equipo Interdisciplinario",
+                                "image": null,
+                                "items": [
+                                    {
+                                        "icon": "fab-linkedin",
+                                        "route": {
+                                            "new_window": false,
+                                            "external_url": "https://www.linkedin.com/in/ines-aristegui-147539233/"
+                                        }
+                                    }
+                                ],
+                                "title": "Ines Aristegui",
+                                "clases": [],
+                                "hidden": false,
+                                "styles": [],
+                                "stylesMd": [],
+                                "blockTitle": null,
+                                "blockAnchor": null,
+                                "button_route": {
+                                    "route_id": null,
+                                    "new_window": false
+                                }
+                            },
+                            "type": "CardPerson2"
+                        },
+                        {
+                            "data": {
+                                "mb": "mb-0",
+                                "mdMb": "md:mb-0",
+                                "text": {
+                                    "type": "doc",
+                                    "content": [
+                                        {
+                                            "type": "paragraph",
+                                            "attrs": {
+                                                "class": null,
+                                                "style": null
+                                            },
+                                            "content": [
+                                                {
+                                                    "text": "Médica infectóloga (Universidad de Buenos Aires). Es especialista en clínica médica (Ministerio de Salud de la Nación) y Especialista en infectología de la UBA (Hospital Italiano).",
+                                                    "type": "text"
+                                                },
+                                                {
+                                                    "type": "hardBreak"
+                                                },
+                                                {
+                                                    "text": "Es presidenta de la Sociedad Argentina de Vacunología y Epidemiología (SAVE) y Miembro de la Comisión de vacunas de la SADI. Se incorporó a Fundación Huésped en 2023, donde dirige la unidad de Vacunas. ",
+                                                    "type": "text"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                },
+                                "work": "Directora de División de Equipo Interdisciplinario",
+                                "image": null,
+                                "items": [
+                                    {
+                                        "icon": "fab-linkedin",
+                                        "route": {
+                                            "new_window": false,
+                                            "external_url": "https://www.linkedin.com/in/florenciacahn/"
+                                        }
+                                    }
+                                ],
+                                "title": "Florencia Cahn",
+                                "clases": [],
+                                "hidden": false,
+                                "styles": [],
+                                "stylesMd": [],
+                                "blockTitle": null,
+                                "blockAnchor": null,
+                                "button_route": {
+                                    "route_id": null,
+                                    "new_window": false
+                                }
+                            },
+                            "type": "CardPerson2"
+                        },
+                        {
+                            "data": {
+                                "mb": "mb-0",
+                                "mdMb": "md:mb-0",
+                                "text": {
+                                    "type": "doc",
+                                    "content": [
+                                        {
+                                            "type": "paragraph",
+                                            "attrs": {
+                                                "class": null,
+                                                "style": null
+                                            },
+                                            "content": [
+                                                {
+                                                    "text": "Médica especialista en Enfermedades Infecciosas (Universidad de Buenos Aires). Es miembro de la Sociedad Argentina de Infectología, participando de la Comisión de Sida y ETS, y Presidenta Asociada de América Latina del AIDS Malignancy Consortium. Desde el año 2007 se desempeña como Médica del Área de Investigaciones Clínicas de la Fundación Huésped. Su foco de trabajo es la investigación en HPV y cáncer en pacientes infectados con HIV en estudios nacionales e internacionales.",
+                                                    "type": "text"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                },
+                                "work": "Directora de División de Equipo Interdisciplinario",
+                                "image": null,
+                                "items": [
+                                    {
+                                        "icon": "fab-linkedin",
+                                        "route": {
+                                            "new_window": false,
+                                            "external_url": "https://www.linkedin.com/in/valeria-fink-aba14531/"
+                                        }
+                                    }
+                                ],
+                                "title": "Valeria Fink",
+                                "clases": [],
+                                "hidden": false,
+                                "styles": [],
+                                "stylesMd": [],
+                                "blockTitle": null,
+                                "blockAnchor": null,
+                                "button_route": {
+                                    "route_id": null,
+                                    "new_window": false
+                                }
+                            },
+                            "type": "CardPerson2"
+                        },
+                        {
+                            "data": {
+                                "mb": "mb-0",
+                                "mdMb": "md:mb-0",
+                                "text": {
+                                    "type": "doc",
+                                    "content": [
+                                        {
+                                            "type": "paragraph",
+                                            "attrs": {
+                                                "class": null,
+                                                "style": null
+                                            },
+                                            "content": [
+                                                {
+                                                    "text": "Diplomada en Investigación Clínica (Universidad Nacional Jauretche). Cuenta con casi 20 años de experiencia y múltiples capacitaciones en asuntos regulatorios e investigación clínica (IBYME, FEFYM, ANMAT, DAIDS, entre otros). Su trayectoria dentro de la Fundación Huésped incluye haber ejercido como  coordinadora de Asuntos Regulatorios. Además participó de la creación de la Unidad de Estudios Multicéntricos. ",
+                                                    "type": "text"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                },
+                                "work": "Directora de División de Gestión Operativa y Soporte a la Investigación",
+                                "image": null,
+                                "items": [
+                                    {
+                                        "icon": "fab-linkedin",
+                                        "route": {
+                                            "new_window": false,
+                                            "external_url": "https://www.linkedin.com/in/valeria-alvarez-9410504a/"
+                                        }
+                                    }
+                                ],
+                                "title": "Valeria Alvarez",
+                                "clases": [],
+                                "hidden": false,
+                                "styles": [],
+                                "stylesMd": [],
+                                "blockTitle": null,
+                                "blockAnchor": null,
+                                "button_route": {
+                                    "route_id": null,
+                                    "new_window": false
+                                }
+                            },
+                            "type": "CardPerson2"
+                        },
+                        {
+                            "data": {
+                                "mb": "mb-0",
+                                "mdMb": "md:mb-0",
+                                "text": {
+                                    "type": "doc",
+                                    "content": [
+                                        {
+                                            "type": "paragraph",
+                                            "attrs": {
+                                                "class": null,
+                                                "style": null
+                                            },
+                                            "content": [
+                                                {
+                                                    "text": "Médica especialista en Clínica Médica y Enfermedades Infecciosas (Universidad de Buenos Aires), Master en Epidemiología Clínica (Universidad de Sidney).Desde el año 2006 trabaja en Fundación Huésped como Médica del Área de Investigaciones Clínicas.",
+                                                    "type": "text"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "paragraph",
+                                            "attrs": {
+                                                "class": null,
+                                                "style": null
+                                            },
+                                            "content": [
+                                                {
+                                                    "text": "Participa en el diseño y desarrollo de estudios observacionales participando en la Red para epidemiología de HIV del Caribe, América Central y Sudamérica (CCASAnet por sus siglas en inglés) financiada por los Institutos de Salud de los Estados Unidos (NIH). Sus líneas de investigación incluyen tratamiento antirretroviral, pérdida de seguimiento y cascada de atención.",
+                                                    "type": "text"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                },
+                                "work": "Coordinadora de Unidad de Atención y Seguimiento",
+                                "image": null,
+                                "items": [
+                                    {
+                                        "icon": "fab-linkedin",
+                                        "route": {
+                                            "new_window": false,
+                                            "external_url": "https://www.linkedin.com/in/carina-cesar-27981010/"
+                                        }
+                                    }
+                                ],
+                                "title": "Carina Cesar ",
+                                "clases": [],
+                                "hidden": false,
+                                "styles": [],
+                                "stylesMd": [],
+                                "blockTitle": null,
+                                "blockAnchor": null,
+                                "button_route": {
+                                    "route_id": null,
+                                    "new_window": false
+                                }
+                            },
+                            "type": "CardPerson2"
+                        },
+                        {
+                            "data": {
+                                "mb": "mb-0",
+                                "mdMb": "md:mb-0",
+                                "text": {
+                                    "type": "doc",
+                                    "content": [
+                                        {
+                                            "type": "paragraph",
+                                            "attrs": {
+                                                "class": null,
+                                                "style": null
+                                            },
+                                            "content": [
+                                                {
+                                                    "text": "Médico (Universidad Católica de Córdoba), especialista en Cardiología (UBA) y en Estadísticas para ciencias de la Salud (Facultad de Ciencias Exactas y Naturales). Jefe del Servicio de cardiología del Hospital El Cruce (Florencio Varela, Buenos Aires). Es docente de la Carrera de Especialización en Estadísticas para Ciencias de la Salud (Universidad de Buenos Aires) y  director del curso de Bioestadística Aplicada a Datos en Salud (Asociación Médica Argentina). Su interés en la metodología de la investigación y el análisis de datos, la epidemiología de las enfermedades crónicas no transmisibles, las inequidades en salud, los ensayos clínicos son fundamentales en su desempeño como coordinador. ",
+                                                    "type": "text"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                },
+                                "work": "Coordinador de Datos y Sistemas de Información",
+                                "image": null,
+                                "items": [
+                                    {
+                                        "icon": "fab-linkedin",
+                                        "route": {
+                                            "new_window": false,
+                                            "external_url": "https://www.linkedin.com/in/javier-mariani-98081471/"
+                                        }
+                                    }
+                                ],
+                                "title": "Javier Mariani",
+                                "clases": [],
+                                "hidden": false,
+                                "styles": [],
+                                "stylesMd": [],
+                                "blockTitle": null,
+                                "blockAnchor": null,
+                                "button_route": {
+                                    "route_id": null,
+                                    "new_window": false
+                                }
+                            },
+                            "type": "CardPerson2"
+                        },
+                        {
+                            "data": {
+                                "mb": "mb-0",
+                                "mdMb": "md:mb-0",
+                                "text": {
+                                    "type": "doc",
+                                    "content": [
+                                        {
+                                            "type": "paragraph",
+                                            "attrs": {
+                                                "class": null,
+                                                "style": null
+                                            },
+                                            "content": [
+                                                {
+                                                    "text": "Licenciado en Enfermería (UNLAM). Especialización en Enfermería Comunitaria (PRIM). Magister en Gerenciamiento Integral de Servicios de Enfermería (UMAI). Se desempeña como enfermero en el Hospital Dr Pedro de Elizalde en la Unidad de Terapia Intensiva Pediátrica con vasto conocimiento de Infectología. Empezó su recorrido dentro de",
+                                                    "type": "text"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "paragraph",
+                                            "attrs": {
+                                                "class": null,
+                                                "style": null
+                                            },
+                                            "content": [
+                                                {
+                                                    "text": "Fundación Huésped como Enfermero en Investigaciones Clínicas.",
+                                                    "type": "text"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                },
+                                "work": "Coordinador de Enfermería y Centro de Testeo",
+                                "image": null,
+                                "items": [
+                                    {
+                                        "icon": "fab-linkedin",
+                                        "route": {
+                                            "new_window": false,
+                                            "external_url": "https://www.linkedin.com/in/jonathan-garc%C3%ADa-259011201/"
+                                        }
+                                    }
+                                ],
+                                "title": "Jonathan Garcia",
+                                "clases": [],
+                                "hidden": false,
+                                "styles": [],
+                                "stylesMd": [],
+                                "blockTitle": null,
+                                "blockAnchor": null,
+                                "button_route": {
+                                    "route_id": null,
+                                    "new_window": false
+                                }
+                            },
+                            "type": "CardPerson2"
+                        },
+                        {
+                            "data": {
+                                "mb": "mb-0",
+                                "mdMb": "md:mb-0",
+                                "text": {
+                                    "type": "doc",
+                                    "content": [
+                                        {
+                                            "type": "paragraph",
+                                            "attrs": {
+                                                "class": null,
+                                                "style": null
+                                            },
+                                            "content": [
+                                                {
+                                                    "text": "Médica especialista en Infectología (Universidad Nacional de Córdoba). Especialista en Enfermedades Infecciosas en el Hospital Fernández (Universidad de Buenos Aires). Diplomada en Investigación en Salud (Universidad Arturo Jauretche). Se desempeñó como médica infectóloga en el ámbito público y privado.  Es integrante de la Sociedad Argentina de Infectología y la International AIDS Society. Ingresó a la organización como sub-investigadora en el año 2019. ",
+                                                    "type": "text"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                },
+                                "work": "Coordinadora Unidad de Estudios Clínicos",
+                                "image": null,
+                                "items": [],
+                                "title": "Carolina Perez ",
+                                "clases": [],
+                                "hidden": false,
+                                "styles": [],
+                                "stylesMd": [],
+                                "blockTitle": null,
+                                "blockAnchor": null,
+                                "button_route": {
+                                    "route_id": null,
+                                    "new_window": false
+                                }
+                            },
+                            "type": "CardPerson2"
+                        },
+                        {
+                            "data": {
+                                "mb": "mb-0",
+                                "mdMb": "md:mb-0",
+                                "text": {
+                                    "type": "doc",
+                                    "content": [
+                                        {
+                                            "type": "paragraph",
+                                            "attrs": {
+                                                "class": null,
+                                                "style": null
+                                            },
+                                            "content": [
+                                                {
+                                                    "text": "Farmacéutica (Universidad de Buenos Aires). Magíster en Epidemiología y Gestión en políticas de salud (Universidad Nacional de Lanús). Se desempeñó en hospitales públicos y en el ámbito privado. Además trabajó en el ámbito regulatorio en la Dirección de asuntos biológicos en el Instituto Nacional de Medicamentos dependiente de la ANMAT, Ministerio de Salud de la Nación. Su experiencia y formación son fundamentales para su coordinación. ",
+                                                    "type": "text"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                },
+                                "work": "Coordinadora de Farmacia",
+                                "image": null,
+                                "items": [
+                                    {
+                                        "icon": "fab-linkedin",
+                                        "route": {
+                                            "new_window": false,
+                                            "external_url": "https://www.linkedin.com/in/daniela-parera-5274022a1/"
+                                        }
+                                    }
+                                ],
+                                "title": "Daniela Parera ",
+                                "clases": [],
+                                "hidden": false,
+                                "styles": [],
+                                "stylesMd": [],
+                                "blockTitle": null,
+                                "blockAnchor": null,
+                                "button_route": {
+                                    "route_id": null,
+                                    "new_window": false
+                                }
+                            },
+                            "type": "CardPerson2"
+                        },
+                        {
+                            "data": {
+                                "mb": "mb-0",
+                                "mdMb": "md:mb-0",
+                                "text": {
+                                    "type": "doc",
+                                    "content": [
+                                        {
+                                            "type": "paragraph",
+                                            "attrs": {
+                                                "class": null,
+                                                "style": null
+                                            },
+                                            "content": [
+                                                {
+                                                    "text": "Licenciada en Cs Biológicas (Universidad de Buenos Aires). Doctorado en Química Biológica (UBA). Tiene una larga experiencia en el ámbito público como investigadora y docente de la UBA y en el ámbito privado, en industria farmacéutica cubriendo distintos roles. En el año 2021 se sumó a Fundación Huésped para aportar sus conocimientos a la gestión de proyectos.",
+                                                    "type": "text"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                },
+                                "work": "Coordinadora de Gestión Operativa de Proyectos ",
+                                "image": null,
+                                "items": [
+                                    {
+                                        "icon": "fab-linkedin",
+                                        "route": {
+                                            "new_window": false,
+                                            "external_url": "https://www.linkedin.com/in/danielaconverso/"
+                                        }
+                                    }
+                                ],
+                                "title": "Daniela Converso",
+                                "clases": [],
+                                "hidden": false,
+                                "styles": [],
+                                "stylesMd": [],
+                                "blockTitle": null,
+                                "blockAnchor": null,
+                                "button_route": {
+                                    "route_id": null,
+                                    "new_window": false
+                                }
+                            },
+                            "type": "CardPerson2"
+                        },
+                        {
+                            "data": {
+                                "mb": "mb-0",
+                                "mdMb": "md:mb-0",
+                                "text": {
+                                    "type": "doc",
+                                    "content": [
+                                        {
+                                            "type": "paragraph",
+                                            "attrs": {
+                                                "class": null,
+                                                "style": null
+                                            },
+                                            "content": [
+                                                {
+                                                    "text": "Licenciada en Psicología (Universidad de Palermo).Magister en Psicoinmunoneuroendrocrinología en la (Universidad Favaloro). Desde el 2007 trabaja en el diseño y desarrollo de investigaciones sociales. En Fundación Huésped, se dedica a la atención de personas con VIH y parejas serodiscordantes en psicoterapia individual y coordina talleres y grupos. Su compromiso y trabajo con  investigaciones en VIH, estudios de conocimiento, actitudes y prácticas en prevención, aceptabilidad de microbicidas y PreP, salud mental y atención de personas transgénero son invaluables en su labor en la coordinación.",
+                                                    "type": "text"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                },
+                                "work": "Coordinadora de Investigación Social",
+                                "image": null,
+                                "items": [
+                                    {
+                                        "icon": "fab-linkedin",
+                                        "route": {
+                                            "new_window": false,
+                                            "external_url": "https://www.linkedin.com/in/virginia-zalazar-6a085441/"
+                                        }
+                                    }
+                                ],
+                                "title": "Maria Virginia Zalazar",
+                                "clases": [],
+                                "hidden": false,
+                                "styles": [],
+                                "stylesMd": [],
+                                "blockTitle": null,
+                                "blockAnchor": null,
+                                "button_route": {
+                                    "route_id": null,
+                                    "new_window": false
+                                }
+                            },
+                            "type": "CardPerson2"
+                        },
+                        {
+                            "data": {
+                                "mb": "mb-0",
+                                "mdMb": "md:mb-0",
+                                "text": {
+                                    "type": "doc",
+                                    "content": [
+                                        {
+                                            "type": "paragraph",
+                                            "attrs": {
+                                                "class": null,
+                                                "style": null
+                                            },
+                                            "content": [
+                                                {
+                                                    "text": "Bioquímica (Universidad de Buenos Aires). Cuenta con formación en  GCLP y normas IATA. Desde hace muchos años es parte de la institución aportando sus conocimientos y compromiso con la atención a los beneficiarios que recurren a nuestros servicios. ",
+                                                    "type": "text"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                },
+                                "work": "Coordinadora de Laboratorio",
+                                "image": null,
+                                "items": [
+                                    {
+                                        "icon": "fab-linkedin",
+                                        "route": {
+                                            "new_window": false,
+                                            "external_url": "https://www.linkedin.com/in/ana-gun-8a33a211/"
+                                        }
+                                    }
+                                ],
+                                "title": "Ana Gun ",
+                                "clases": [],
+                                "hidden": false,
+                                "styles": [],
+                                "stylesMd": [],
+                                "blockTitle": null,
+                                "blockAnchor": null,
+                                "button_route": {
+                                    "route_id": null,
+                                    "new_window": false
+                                }
+                            },
+                            "type": "CardPerson2"
+                        },
+                        {
+                            "data": {
+                                "mb": "mb-0",
+                                "mdMb": "md:mb-0",
+                                "text": {
+                                    "type": "doc",
+                                    "content": [
+                                        {
+                                            "type": "paragraph",
+                                            "attrs": {
+                                                "class": null,
+                                                "style": null
+                                            },
+                                            "content": [
+                                                {
+                                                    "text": "Se incorporó a Fundación Huésped en el año 2016 como analista regulatoria, dando soporte regulatorio a los estudios desarrollados desde el rol de Sponsor y soporte transversal a las diferentes Divisiones dentro de la estructura de Investigaciones. Actualmente coordina la gestión regulatoria de todos los proyectos de investigación desarrollados por la Fundación.",
+                                                    "type": "text"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                },
+                                "work": "Coordinadora de Asuntos Regulatorios",
+                                "image": null,
+                                "items": [
+                                    {
+                                        "icon": "fab-linkedin",
+                                        "route": {
+                                            "new_window": false,
+                                            "external_url": "https://www.linkedin.com/in/ver%C3%B3nica-hebe-viggiano-77a24323b/"
+                                        }
+                                    }
+                                ],
+                                "title": "Veronica Viggiano ",
+                                "clases": [],
+                                "hidden": false,
+                                "styles": [],
+                                "stylesMd": [],
+                                "blockTitle": null,
+                                "blockAnchor": null,
+                                "button_route": {
+                                    "route_id": null,
+                                    "new_window": false
+                                }
+                            },
+                            "type": "CardPerson2"
+                        },
+                        {
+                            "data": {
+                                "mb": "mb-0",
+                                "mdMb": "md:mb-0",
+                                "text": {
+                                    "type": "doc",
+                                    "content": [
+                                        {
+                                            "type": "paragraph",
+                                            "attrs": {
+                                                "class": null,
+                                                "style": null
+                                            },
+                                            "content": [
+                                                {
+                                                    "text": "Licenciada en Psicología (Universidad de Buenos Aires). Su recorrido académico se vincula con la metodología cuantitativa, psicometría y estadística aplicada a la psicología: Maestría en Generación de Datos y Análisis de Información Estadística, (Universidad de Tres de Febrero); Especialización en Investigación de Mercado Digital (UCLM, España). Fue becaria doctoral UBACyT e investigadora, desde el año 2011, en distintas programaciones UBACYT y PIUBACC. Tiene experiencia en docencia universitaria de grado y posgrado y en extensión universitaria. Ingresó en el año 2021 a la Unidad de Investigación Social.",
+                                                    "type": "text"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                },
+                                "work": "Investigadora Social",
+                                "image": null,
+                                "items": [],
+                                "title": "Romina Caballero",
+                                "clases": [],
+                                "hidden": false,
+                                "styles": [],
+                                "stylesMd": [],
+                                "blockTitle": null,
+                                "blockAnchor": null,
+                                "button_route": {
+                                    "route_id": null,
+                                    "new_window": false
+                                }
+                            },
+                            "type": "CardPerson2"
+                        },
+                        {
+                            "data": {
+                                "mb": "mb-0",
+                                "mdMb": "md:mb-0",
+                                "text": {
+                                    "type": "doc",
+                                    "content": [
+                                        {
+                                            "type": "paragraph",
+                                            "attrs": {
+                                                "class": null,
+                                                "style": null
+                                            },
+                                            "content": [
+                                                {
+                                                    "text": "Licenciado y Profesor de Enseñanza Media y Superior en Psicología (Universidad de Buenos Aires). Ha realizado una estancia de investigación en la Miller School of Medicine, Universidad de Miami, Estados Unidos. Desde 2016, integra como investigador el Equipo de Investigación Social con foco estigma y discriminación (relacionados con el VIH, la identidad de género y la orientación sexual) y su impacto en la salud mental y el continuo de atención de VIH en poblaciones en contexto de vulnerabilidad.",
+                                                    "type": "text"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                },
+                                "work": "Investigador Social de base comunitaria (Hub Coalition Plus)",
+                                "image": null,
+                                "items": [],
+                                "title": "Pablo Radusky ",
+                                "clases": [],
+                                "hidden": false,
+                                "styles": [],
+                                "stylesMd": [],
+                                "blockTitle": null,
+                                "blockAnchor": null,
+                                "button_route": {
+                                    "route_id": null,
+                                    "new_window": false
+                                }
+                            },
+                            "type": "CardPerson2"
+                        },
+                        {
+                            "data": {
+                                "mb": "mb-0",
+                                "mdMb": "md:mb-0",
+                                "text": {
+                                    "type": "doc",
+                                    "content": [
+                                        {
+                                            "type": "paragraph",
+                                            "attrs": {
+                                                "class": null,
+                                                "style": null
+                                            },
+                                            "content": [
+                                                {
+                                                    "text": "Licenciada en Psicología (Universidad de Palermo). Se encuentra cursando la Diplomatura Superior en Investigación Clínica (Universidad Nacional Arturo Jauretche). Forma parte del equipo de la Unidad de Investigación Social en la División de Investigación en Implementación de la Dirección de Investigaciones de Fundación Huésped. Sus líneas de investigación se centran en trabajo con población transgénero e identidades no binarias y mujeres cisgénero trabajadoras sexuales. ",
+                                                    "type": "text"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                },
+                                "work": "Investigadora Social Jr",
+                                "image": null,
+                                "items": [],
+                                "title": "Emilia Frontini",
+                                "clases": [],
+                                "hidden": false,
+                                "styles": [],
+                                "stylesMd": [],
+                                "blockTitle": null,
+                                "blockAnchor": null,
+                                "button_route": {
+                                    "route_id": null,
+                                    "new_window": false
+                                }
+                            },
+                            "type": "CardPerson2"
+                        },
+                        {
+                            "data": {
+                                "mb": "mb-0",
+                                "mdMb": "md:mb-0",
+                                "text": {
+                                    "type": "doc",
+                                    "content": [
+                                        {
+                                            "type": "paragraph",
+                                            "attrs": {
+                                                "class": null,
+                                                "style": null
+                                            },
+                                            "content": [
+                                                {
+                                                    "text": "Licenciada en Letras con orientación en psico y neurolingüística (Universidad de Buenos Aires). Se desempeña como Investigadora Social dentro de la Unidad de Investigación Social (UIS). Participó en investigaciones relacionadas con adherencia al tratamiento para VIH, cohortes de personas transgénero y trabajadoras sexuales, e investigaciones sobre el proceso de toma de consentimiento informado en feminidades transgénero. ",
+                                                    "type": "text"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                },
+                                "work": "Investigadora Social Jr",
+                                "image": null,
+                                "items": [],
+                                "title": "Ana Zeltman",
+                                "clases": [],
+                                "hidden": false,
+                                "styles": [],
+                                "stylesMd": [],
+                                "blockTitle": null,
+                                "blockAnchor": null,
+                                "button_route": {
+                                    "route_id": null,
+                                    "new_window": false
+                                }
+                            },
+                            "type": "CardPerson2"
+                        },
+                        {
+                            "data": {
+                                "mb": "mb-0",
+                                "mdMb": "md:mb-0",
+                                "text": {
+                                    "type": "doc",
+                                    "content": [
+                                        {
+                                            "type": "paragraph",
+                                            "attrs": {
+                                                "class": null,
+                                                "style": null
+                                            },
+                                            "content": [
+                                                {
+                                                    "text": "Licenciada en Sociología en la Universidad de Buenos Aires. Trabaja en temáticas de participación comunitaria en salud y prevención de enfermedades, trabajando con poblaciones clave como personas que viven con VIH, personas trans y trabajadoras sexuales. ",
+                                                    "type": "text"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                },
+                                "work": "Investigadora Social Jr",
+                                "image": null,
+                                "items": [],
+                                "title": "Camila Serrao",
+                                "clases": [],
+                                "hidden": false,
+                                "styles": [],
+                                "stylesMd": [],
+                                "blockTitle": null,
+                                "blockAnchor": null,
+                                "button_route": {
+                                    "route_id": null,
+                                    "new_window": false
+                                }
+                            },
+                            "type": "CardPerson2"
+                        },
+                        {
+                            "data": {
+                                "mb": "mb-0",
+                                "mdMb": "md:mb-0",
+                                "text": {
+                                    "type": "doc",
+                                    "content": [
+                                        {
+                                            "type": "paragraph",
+                                            "attrs": {
+                                                "class": null,
+                                                "style": null
+                                            },
+                                            "content": [
+                                                {
+                                                    "text": "Médico especialista en Pediatría (Universidad de Buenos Aires). Becario de clínica pediátrica en el hospital Juan P. Garrahan. Se desempeñó como gerente médico en las áreas de Oftalmología, Oncología y Nutrición Infantil en Novartis, Pfizer, Johnson & Johnson y Nestlé. Trabajó como sub-investigador en los ensayos clínicos de vacunas Covid-19 de Pfizer y Medicago. Desde el año 2020 integra Fundación Huésped como sub-investigador del área de Investigación Clínica. ",
+                                                    "type": "text"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                },
+                                "work": "Sub - Investigador",
+                                "image": null,
+                                "items": [],
+                                "title": "Felipe Bilbao",
+                                "clases": [],
+                                "hidden": false,
+                                "styles": [],
+                                "stylesMd": [],
+                                "blockTitle": null,
+                                "blockAnchor": null,
+                                "button_route": {
+                                    "route_id": null,
+                                    "new_window": false
+                                }
+                            },
+                            "type": "CardPerson2"
+                        },
+                        {
+                            "data": {
+                                "mb": "mb-0",
+                                "mdMb": "md:mb-0",
+                                "text": {
+                                    "type": "doc",
+                                    "content": [
+                                        {
+                                            "type": "paragraph",
+                                            "attrs": {
+                                                "class": null,
+                                                "style": null
+                                            },
+                                            "content": [
+                                                {
+                                                    "text": "Médico especialista en Infectología (Universidad de Buenos Aires). Maestrando en Maestría en Educación para Profesionales de la Salud del Instituto Universitario del Hospital Italiano de Buenos Aires. Médico de planta de Htal. F. J. Muñiz, y coordinador de la Residencia de Infectología. Miembro de la Comisión de Educación Médica de la Sociedad Argentina de Infectología. Desde el año 2022 se desempeña en la institución como Sub-investigador.",
+                                                    "type": "text"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                },
+                                "work": "Sub - Investigador",
+                                "image": null,
+                                "items": [],
+                                "title": "Julian Garcia",
+                                "clases": [],
+                                "hidden": false,
+                                "styles": [],
+                                "stylesMd": [],
+                                "blockTitle": null,
+                                "blockAnchor": null,
+                                "button_route": {
+                                    "route_id": null,
+                                    "new_window": false
+                                }
+                            },
+                            "type": "CardPerson2"
+                        },
+                        {
+                            "data": {
+                                "mb": "mb-0",
+                                "mdMb": "md:mb-0",
+                                "text": {
+                                    "type": "doc",
+                                    "content": [
+                                        {
+                                            "type": "paragraph",
+                                            "attrs": {
+                                                "class": null,
+                                                "style": null
+                                            },
+                                            "content": [
+                                                {
+                                                    "text": "Médico especialista en Enfermedades Infecciosas. Médico infectólogo de la División de Infectología del Hospital Juan A. Fernández. Desde el año 2016 es miembro de la Sociedad Argentina de Infectología desde 2016. A partir del 2020 se desempeña como sub-investigador del área de investigaciones clínicas de la Fundación Huésped. ",
+                                                    "type": "text"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                },
+                                "work": "Sub - Investigador",
+                                "image": null,
+                                "items": [],
+                                "title": "Herman Kurt Ludvik ",
+                                "clases": [],
+                                "hidden": false,
+                                "styles": [],
+                                "stylesMd": [],
+                                "blockTitle": null,
+                                "blockAnchor": null,
+                                "button_route": {
+                                    "route_id": null,
+                                    "new_window": false
+                                }
+                            },
+                            "type": "CardPerson2"
+                        },
+                        {
+                            "data": {
+                                "mb": "mb-0",
+                                "mdMb": "md:mb-0",
+                                "text": null,
+                                "work": "Sub - Investigadora",
+                                "image": null,
+                                "items": [],
+                                "title": "Noelia Fernanda Cabrera ",
+                                "clases": [],
+                                "hidden": false,
+                                "styles": [],
+                                "stylesMd": [],
+                                "blockTitle": null,
+                                "blockAnchor": null,
+                                "button_route": {
+                                    "route_id": null,
+                                    "new_window": false
+                                }
+                            },
+                            "type": "CardPerson2"
+                        },
+                        {
+                            "data": {
+                                "mb": "mb-0",
+                                "mdMb": "md:mb-0",
+                                "text": null,
+                                "work": "Sub - Investigadora",
+                                "image": null,
+                                "items": [],
+                                "title": "Yanina Duran",
+                                "clases": [],
+                                "hidden": false,
+                                "styles": [],
+                                "stylesMd": [],
+                                "blockTitle": null,
+                                "blockAnchor": null,
+                                "button_route": {
+                                    "route_id": null,
+                                    "new_window": false
+                                }
+                            },
+                            "type": "CardPerson2"
+                        },
+                        {
+                            "data": {
+                                "mb": "mb-0",
+                                "mdMb": "md:mb-0",
+                                "text": null,
+                                "work": "Sub - Investigadora",
+                                "image": null,
+                                "items": [],
+                                "title": "Luciana La Rosa",
+                                "clases": [],
+                                "hidden": false,
+                                "styles": [],
+                                "stylesMd": [],
+                                "blockTitle": null,
+                                "blockAnchor": null,
+                                "button_route": {
+                                    "route_id": null,
+                                    "new_window": false
+                                }
+                            },
+                            "type": "CardPerson2"
+                        },
+                        {
+                            "data": {
+                                "mb": "mb-0",
+                                "mdMb": "md:mb-0",
+                                "text": null,
+                                "work": "Sub - Investigadora",
+                                "image": null,
+                                "items": [],
+                                "title": "Carla Petriglieri",
+                                "clases": [],
+                                "hidden": false,
+                                "styles": [],
+                                "stylesMd": [],
+                                "blockTitle": null,
+                                "blockAnchor": null,
+                                "button_route": {
+                                    "route_id": null,
+                                    "new_window": false
+                                }
+                            },
+                            "type": "CardPerson2"
+                        },
+                        {
+                            "data": {
+                                "mb": "mb-0",
+                                "mdMb": "md:mb-0",
+                                "text": {
+                                    "type": "doc",
+                                    "content": [
+                                        {
+                                            "type": "paragraph",
+                                            "attrs": {
+                                                "class": null,
+                                                "style": null
+                                            },
+                                            "content": [
+                                                {
+                                                    "text": "Médica cirujana coloproctóloga (Universidad de Buenos Aires). Miembro titular de la Sociedad Argentina de coloproctologia y de la Asociación argentina de cirugía. En Fundación Huésped participa en investigaciones sobre la detección de lesiones preneoplásicas de cáncer anal relacionadas con VPH en poblaciones clave.",
+                                                    "type": "text"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                },
+                                "work": "Sub - Investigadora",
+                                "image": null,
+                                "items": [],
+                                "title": "Gisela Jimena Presencia ",
+                                "clases": [],
+                                "hidden": false,
+                                "styles": [],
+                                "stylesMd": [],
+                                "blockTitle": null,
+                                "blockAnchor": null,
+                                "button_route": {
+                                    "route_id": null,
+                                    "new_window": false
+                                }
+                            },
+                            "type": "CardPerson2"
+                        },
+                        {
+                            "data": {
+                                "mb": "mb-0",
+                                "mdMb": "md:mb-0",
+                                "text": {
+                                    "type": "doc",
+                                    "content": [
+                                        {
+                                            "type": "paragraph",
+                                            "attrs": {
+                                                "class": null,
+                                                "style": null
+                                            },
+                                            "content": [
+                                                {
+                                                    "text": "Médica infectóloga (Universidad de Buenos Aires)  Miembro de la Sociedad Argentina de Infectología desde 2013. Becaria de post-grado sobre “Entrenamiento en asistencia e investigación clínica en HIV/SIDA e infecciones emergentes” en un hospital público de CABA. Realiza atención ambulatoria de personas VIH positivas.",
+                                                    "type": "text"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                },
+                                "work": "Sub - Investigadora",
+                                "image": null,
+                                "items": [],
+                                "title": "Macarena Sandoval",
+                                "clases": [],
+                                "hidden": false,
+                                "styles": [],
+                                "stylesMd": [],
+                                "blockTitle": null,
+                                "blockAnchor": null,
+                                "button_route": {
+                                    "route_id": null,
+                                    "new_window": false
+                                }
+                            },
+                            "type": "CardPerson2"
+                        },
+                        {
+                            "data": {
+                                "mb": "mb-0",
+                                "mdMb": "md:mb-0",
+                                "text": {
+                                    "type": "doc",
+                                    "content": [
+                                        {
+                                            "type": "paragraph",
+                                            "attrs": {
+                                                "class": null,
+                                                "style": null
+                                            },
+                                            "content": [
+                                                {
+                                                    "text": "Médica infectóloga  (Universidad de Buenos Aires). Miembro de la Comisión de SIDA e Infecciones de transmisión sexual de la Sociedad Argentina de Infectología y miembro de la Sociedad Internacional de Sida. Profesora de Microbiología de la Facultad de Medicina de la UBA. Trabaja en VIH, infecciones de transmisión sexual y docencia médica. En Fundación Huésped es sub-investigadora del Área de Investigaciones Clínicas desde el año 2018. ",
+                                                    "type": "text"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                },
+                                "work": "Sub - Investigadora",
+                                "image": null,
+                                "items": [],
+                                "title": "Luciana Spadaccini ",
+                                "clases": [],
+                                "hidden": false,
+                                "styles": [],
+                                "stylesMd": [],
+                                "blockTitle": null,
+                                "blockAnchor": null,
+                                "button_route": {
+                                    "route_id": null,
+                                    "new_window": false
+                                }
+                            },
+                            "type": "CardPerson2"
+                        },
+                        {
+                            "data": {
+                                "mb": "mb-0",
+                                "mdMb": "md:mb-0",
+                                "text": {
+                                    "type": "doc",
+                                    "content": [
+                                        {
+                                            "type": "paragraph",
+                                            "attrs": {
+                                                "class": null,
+                                                "style": null
+                                            },
+                                            "content": [
+                                                {
+                                                    "text": "Médica cirujana coloproctóloga (Universidad de Buenos Aires). Docente de la Facultad de Medicina en pregrado y subdirectora de la Carrera de especialista en coloproctología de la Universidad de Buenos Aires. Ha participado en diferentes proyectos de investigación relacionados con las infecciones de transmisión sexual con varias publicaciones sobre este tema. En Fundación Huésped participa en otras investigaciones sobre detección de lesiones preneoplásicas de cáncer anal relacionadas con VPH en poblaciones de alta prevalencia: personas con VIH, los hombres cisgénero que tienen sexo con hombres y las mujeres transgénero. ",
+                                                    "type": "text"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                },
+                                "work": "Sub - Investigadora",
+                                "image": null,
+                                "items": [],
+                                "title": "Laura Svidler Lopez ",
+                                "clases": [],
+                                "hidden": false,
+                                "styles": [],
+                                "stylesMd": [],
+                                "blockTitle": null,
+                                "blockAnchor": null,
+                                "button_route": {
+                                    "route_id": null,
+                                    "new_window": false
+                                }
+                            },
+                            "type": "CardPerson2"
+                        },
+                        {
+                            "data": {
+                                "mb": "mb-0",
+                                "mdMb": "md:mb-0",
+                                "text": {
+                                    "type": "doc",
+                                    "content": [
+                                        {
+                                            "type": "paragraph",
+                                            "attrs": {
+                                                "class": null,
+                                                "style": null
+                                            },
+                                            "content": [
+                                                {
+                                                    "text": "Médica especialista en Medicina Interna y en Enfermedades Infecciosas (Universidad de Buenos Aires). Miembro de la Sociedad Argentina de Infectología desde 2014. Se desempeña como infectóloga e interconsultora en áreas de internación y realiza atención ambulatoria de personas VIH positivas. Sub-investigadora del Área de Investigaciones Clínicas de la Fundación Huésped desde 2020.",
+                                                    "type": "text"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                },
+                                "work": "Sub - Investigadora",
+                                "image": null,
+                                "items": [],
+                                "title": "Maria Victoria Iannatuono ",
+                                "clases": [],
+                                "hidden": false,
+                                "styles": [],
+                                "stylesMd": [],
+                                "blockTitle": null,
+                                "blockAnchor": null,
+                                "button_route": {
+                                    "route_id": null,
+                                    "new_window": false
+                                }
+                            },
+                            "type": "CardPerson2"
+                        }
+                    ]
+                }
+            ],
+            "clases": [],
+            "hidden": false,
+            "styles": [],
+            "stylesMd": [],
+            "blockTitle": null,
+            "blockAnchor": null
+        },
+        "type": "accordeon_workers"
+    }
+]

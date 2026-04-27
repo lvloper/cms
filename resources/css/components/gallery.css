@@ -1,0 +1,61 @@
+@layer components {
+    .gallery-container {
+        @apply w-full 2xl:container mx-auto ;
+
+        @media (min-width: 1280px) {
+            max-width: calc(100vw - 120px);
+        }
+        @media (min-width: 1640px) {
+            max-width: 1480px;
+        }
+        
+    }
+
+    .gallery-carousel {
+        @apply relative;
+
+        .swiper-container {
+            @apply relative w-full;
+        }
+
+        .navigation-button {
+            @apply z-10 absolute top-0 bottom-0 w-16 flex items-center justify-center ;
+
+            &-prev {
+                @apply -left-0 2xl:-left-16 4xl:-left-24;
+                @apply bg-gradient-to-r from-[rgba(0,0,0,0.5)] to-transparent 2xl:bg-none;
+            }
+
+            &-next {
+                @apply -right-0 2xl:-right-16 4xl:-right-24;
+                @apply bg-gradient-to-l from-[rgba(0,0,0,0.5)] to-transparent 2xl:bg-none;
+            }
+
+            .icon {
+                @apply w-8 h-8 text-white stroke-2;
+                @apply lg:w-16 lg:h-16 2xl:text-primary;
+            }
+        }
+
+        .pagination {
+            @apply absolute bottom-4 left-1/2 transform -translate-x-1/2 flex gap-2;
+        }
+    }
+}
+
+/* Clases personalizadas de Swiper */
+.swiper-carrousel-gallery {
+    @apply w-full;
+}
+
+.swiper-carrousel-wide-pagination {
+    @apply w-full;
+}
+
+.swiper-custom-buttons {
+    @apply cursor-pointer;
+}
+
+.swiper-cool-bullets {
+    @apply flex gap-2;
+} 

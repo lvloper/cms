@@ -1,0 +1,65 @@
+{
+  "public/fonts/FuturaStd/FuturaStd-Bold.woff": {
+    "file": "assets/FuturaStd-Bold-cpCxj6tM.woff",
+    "src": "public/fonts/FuturaStd/FuturaStd-Bold.woff"
+  },
+  "public/fonts/FuturaStd/FuturaStd-Bold.woff2": {
+    "file": "assets/FuturaStd-Bold-Dkhs5Jom.woff2",
+    "src": "public/fonts/FuturaStd/FuturaStd-Bold.woff2"
+  },
+  "public/fonts/FuturaStd/FuturaStd-Heavy.woff": {
+    "file": "assets/FuturaStd-Heavy-g_eb-p_u.woff",
+    "src": "public/fonts/FuturaStd/FuturaStd-Heavy.woff"
+  },
+  "public/fonts/FuturaStd/FuturaStd-Heavy.woff2": {
+    "file": "assets/FuturaStd-Heavy-CWd-UHkw.woff2",
+    "src": "public/fonts/FuturaStd/FuturaStd-Heavy.woff2"
+  },
+  "public/fonts/FuturaStd/FuturaStd-Light.woff": {
+    "file": "assets/FuturaStd-Light-DPdgeAzF.woff",
+    "src": "public/fonts/FuturaStd/FuturaStd-Light.woff"
+  },
+  "public/fonts/FuturaStd/FuturaStd-Light.woff2": {
+    "file": "assets/FuturaStd-Light-CKN9E_wg.woff2",
+    "src": "public/fonts/FuturaStd/FuturaStd-Light.woff2"
+  },
+  "public/fonts/FuturaStd/FuturaStd-Medium.woff": {
+    "file": "assets/FuturaStd-Medium-Bb0X0zKW.woff",
+    "src": "public/fonts/FuturaStd/FuturaStd-Medium.woff"
+  },
+  "public/fonts/FuturaStd/FuturaStd-Medium.woff2": {
+    "file": "assets/FuturaStd-Medium-CTtvQZIS.woff2",
+    "src": "public/fonts/FuturaStd/FuturaStd-Medium.woff2"
+  },
+  "resources/css/app.css": {
+    "file": "assets/app-D_M4jbHC.css",
+    "src": "resources/css/app.css",
+    "isEntry": true
+  },
+  "resources/css/filament/admin/theme.css": {
+    "file": "assets/theme-VwEY4wpD.css",
+    "src": "resources/css/filament/admin/theme.css",
+    "isEntry": true
+  },
+  "resources/js/app.js": {
+    "file": "assets/app-CFN_H8YE.js",
+    "name": "app",
+    "src": "resources/js/app.js",
+    "isEntry": true,
+    "css": [
+      "assets/app-BV36PEYz.css"
+    ]
+  },
+  "resources/js/hot-reload.js": {
+    "file": "assets/hot-reload-taXXq4rK.js",
+    "name": "hot-reload",
+    "src": "resources/js/hot-reload.js",
+    "isEntry": true
+  },
+  "resources/js/tiptap/extensions.js": {
+    "file": "assets/extensions-ZmV5Jhi0.js",
+    "name": "extensions",
+    "src": "resources/js/tiptap/extensions.js",
+    "isEntry": true
+  }
+}

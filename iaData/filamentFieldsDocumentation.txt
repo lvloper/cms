@@ -1,0 +1,120 @@
+Form\TextInput::make('field_name')
+->label(__('Label')) // Define the label of the field
+->placeholder('Placeholder text') // Set placeholder text
+->helperText('Helper text') // Add helper text below the field
+->hint('Hint text') // Add hint text
+->hintIcon('heroicon-m-question-mark-circle') // Add an icon to the hint
+->prefix('Prefix') // Add text before the input
+->suffix('Suffix') // Add text after the input
+->autocomplete('off') // Set autocomplete attribute
+->autofocus() // Autofocus the field on page load
+->disabled() // Disable the field
+->required() // Make the field required
+->readOnly() // Make the field read-only
+->email() // Validate as email
+->tel() // Format for telephone numbers
+->url() // Validate as URL
+->numeric() // Allow only numeric input
+->minLength(5) // Set minimum length
+->maxLength(255) // Set maximum length
+->length(10) // Set exact length
+->minValue(1) // Set minimum value for numeric input
+->maxValue(100) // Set maximum value for numeric input
+->step(0.01) // Set step value for numeric input
+->password() // Create a password field
+->autocapitalize('words') // Set autocapitalize attribute
+->datalist([]) // Add a datalist to the field
+
+Form\Select::make('field_name')
+->options([]) // Define select options
+->multiple() // Allow multiple selections
+->searchable() // Make options searchable
+->preload() // Preload options for searching
+->optionsLimit(10) // Limit the number of options displayed
+->allowHtml() // Allow HTML in option labels
+->selectablePlaceholder() // Make placeholder selectable
+->native() // Use native select element on mobile
+
+Form\Checkbox::make('field_name')
+->inline() // Display checkbox inline
+->onIcon('heroicon-s-check') // Set custom icon for checked state
+->offIcon('heroicon-s-x-mark') // Set custom icon for unchecked state
+
+Form\Radio::make('field_name')
+->options([]) // Define radio options
+->inline() // Display options inline
+->boolean() // Use for boolean values
+
+Form\DatePicker::make('field_name')
+->displayFormat('d/m/Y') // Set display format
+->format('Y-m-d') // Set value format
+->minDate('2023-01-01') // Set minimum selectable date
+->maxDate('2023-12-31') // Set maximum selectable date
+->weekStartsOnMonday() // Start week on Monday
+->native() // Use native date picker on mobile
+
+Form\TimePicker::make('field_name')
+->hoursStep(2) // Set step for hours
+->minutesStep(15) // Set step for minutes
+->secondsStep(10) // Set step for seconds
+->withoutSeconds() // Hide seconds
+->native() // Use native time picker on mobile
+
+Form\FileUpload::make('field_name')
+->disk('public') // Set storage disk
+->directory('uploads') // Set upload directory
+->visibility('private') // Set file visibility
+->acceptedFileTypes(['image/*']) // Set accepted file types
+->maxSize(1024) // Set maximum file size in KB
+->minFiles(1) // Set minimum number of files
+->maxFiles(5) // Set maximum number of files
+->image() // Accept only image files
+->imageCropAspectRatio('16:9') // Set image crop aspect ratio
+->imageResizeTargetWidth('1920') // Set image resize target width
+->imageResizeTargetHeight('1080') // Set image resize target height
+
+Form\RichEditor::make('field_name')
+->toolbarButtons([]) // Customize toolbar buttons
+->fileAttachmentsDirectory('attachments') // Set directory for file attachments
+
+Form\Textarea::make('field_name')
+->rows(5) // Set number of visible rows
+->cols(20) // Set number of visible columns
+->autosize() // Enable autosize
+
+Form\KeyValue::make('field_name')
+->addActionLabel('Add Item') // Customize add action label
+->keyLabel('Key') // Customize key label
+->valueLabel('Value') // Customize value label
+->keyPlaceholder('Enter key') // Set key placeholder
+->valuePlaceholder('Enter value') // Set value placeholder
+->reorderable() // Allow reordering of items
+
+Form\Repeater::make('field_name')
+->schema([]) // Define schema for repeater items
+->columns(2) // Set number of columns
+->collapsible() // Make items collapsible
+->cloneable() // Allow cloning of items
+->addActionLabel(__('Add Item')) // Customize add action label
+->minItems(1) // Set minimum number of items
+->maxItems(10) // Set maximum number of items
+->grid(2) // Set grid layout
+
+Form\Toggle::make('field_name')
+->onColor('success') // Set color for "on" state
+->offColor('danger') // Set color for "off" state
+->onIcon('heroicon-s-check') // Set icon for "on" state
+->offIcon('heroicon-s-x-mark') // Set icon for "off" state
+
+Form\ColorPicker::make('field_name')
+->rgba() // Allow RGBA color selection
+->alphaChannel() // Show alpha channel control
+->format('hex') // Set color format
+
+Form\Hidden::make('field_name')
+
+Form\Placeholder::make('field_name')
+->content('Placeholder content') // Set placeholder content
+
+Form\View::make('field_name')
+->view('path.to.view') // Specify custom view";

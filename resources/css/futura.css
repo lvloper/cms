@@ -1,0 +1,59 @@
+@import "https://use.typekit.net/hvy4owc.css";
+
+@font-face {
+    font-family: 'Futura Std';
+    src: url('/public/fonts/FuturaStd/FuturaStd-Medium.woff2') format('woff2'),
+        url('/public/fonts/FuturaStd/FuturaStd-Medium.woff') format('woff');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Futura Std';
+    src: url('/public/fonts/FuturaStd/FuturaStd-Heavy.woff2') format('woff2'),
+        url('/public/fonts/FuturaStd/FuturaStd-Heavy.woff') format('woff');
+    font-weight: 900;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Futura Std';
+    src: url('/public/fonts/FuturaStd/FuturaStd-Light.woff2') format('woff2'),
+        url('/public/fonts/FuturaStd/FuturaStd-Light.woff') format('woff');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Futura Std';
+    src: url('/public/fonts/FuturaStd/FuturaStd-Bold.woff2') format('woff2'),
+        url('/public/fonts/FuturaStd/FuturaStd-Bold.woff') format('woff');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+.futura-bold {
+    font-family: "Futura Std", sans-serif;
+    font-weight: bold;
+    font-style: normal;
+}
+
+.futura-light {
+    font-family: "Futura Std", sans-serif;
+    font-weight: 300 ;
+    font-style: normal ;
+
+    strong {
+        font-weight: 900;
+    }
+}
+
+.font-heavy {
+    font-family: "Futura Std", sans-serif;
+    font-weight: 900;
+    font-style: normal;
+}

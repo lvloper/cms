@@ -1,0 +1,6 @@
+[
+  {
+    "type": "sqlite",
+    "path": "d:\\dev\\core\\database\\database.sqlite"
+  }
+]

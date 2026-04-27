@@ -1,0 +1,256 @@
+@php
+$images = $images ?? [];
+@endphp
+<x-block class="marquee-block">
+    <div class="pb-4">
+        @if ($title)
+        <x-common.line-title title="{{ $title }}" />
+
+        @endif
+        @if ($description && strlen($description) >= 30)
+        <div class="container">
+            <div class="normal-text py-4 font-poppins  xl:w-[80%] 2xl:w-[70%]">
+                {!! $description ?? '' !!}
+            </div>
+        </div>
+
+        @endif
+        <div x-data x-init="$nextTick(() => {
+            const content1 = $refs.content1;
+            const content2 = $refs.content2;
+            const item1 = $refs.item1;
+            const item2 = $refs.item2;
+            const clone1 = item1.cloneNode(true);
+            const clone2 = item2.cloneNode(true);
+            content1.appendChild(clone1);
+            content2.appendChild(clone2);
+            
+            // Mobile additional strips
+            if (window.innerWidth < 768) {
+                const content3 = $refs.content3;
+                const content4 = $refs.content4;
+                const item3 = $refs.item3;
+                const item4 = $refs.item4;
+                
+                // Clone multiple times to ensure enough width
+                for(let i = 0; i < 3; i++) {
+                    const clone3 = item3.cloneNode(true);
+                    const clone4 = item4.cloneNode(true);
+                    content3.appendChild(clone3);
+                    content4.appendChild(clone4);
+                }
+            }
+        });" class="relative w-full bg-white container-block marquee-block">
+            <!-- First strip -->
+            <div
+                class="overflow-hidden relative mx-auto mt-6 mb-6 w-full text-lg italic tracking-wide text-white uppercase sm:text-xs md:text-sm lg:text-base xl:text-xl 2xl:text-2xl">
+                <div x-ref="content1" class="flex animate-marquee">
+                    <div x-ref="item1"
+                        class="flex flex-shrink-0 gap-6 justify-around items-center mr-6 w-max text-white">
+                        @foreach ($images as $key => $item)
+                        @php
+                        $totalImages = count($images);
+                        $isMobile = true; // This will be handled by CSS classes
+                        @endphp
+                        {{-- Desktop: First half of images --}}
+                        @if ($loop->iteration <= ceil($loop->count / 2))
+                            <div class="py-2 flex-shrink-0 hidden md:block">
+                                <div class="overflow-hidden">
+                                    <x-image class="h-24 w-fit" :image="$item" />
+                                </div>
+                            </div>
+                            @endif
+                            {{-- Mobile: First quarter of images --}}
+                            @if ($loop->iteration <= ceil($loop->count / 4))
+                                <div class="py-2 flex-shrink-0 block md:hidden">
+                                    <div class="overflow-hidden">
+                                        <x-image class="h-16 w-fit" :image="$item" />
+                                    </div>
+                                </div>
+                                @endif
+                                @endforeach
+                    </div>
+                </div>
+            </div>
+
+            <!-- Second strip -->
+            <div
+                class="overflow-hidden relative mx-auto w-full text-lg italic tracking-wide text-white uppercase sm:text-xs md:text-sm lg:text-base xl:text-xl 2xl:text-2xl mb-6 md:mb-0">
+                <div x-ref="content2" class="flex animate-marquee-reverse">
+                    <div x-ref="item2"
+                        class="w-max flex flex-shrink-0 gap-6 justify-around items-center mr-6 text-white">
+                        @foreach ($images as $key => $item)
+                        {{-- Desktop: Second half of images --}}
+                        @if ($loop->iteration > ceil($loop->count / 2))
+                        <div class="py-2 flex-shrink-0 hidden md:block">
+                            <div class="overflow-hidden">
+                                <x-image class="h-24 w-fit" :image="$item" />
+                            </div>
+                        </div>
+                        @endif
+                        {{-- Mobile: Second quarter of images --}}
+                        @if ($loop->iteration > ceil($loop->count / 4) && $loop->iteration <= ceil($loop->count / 2))
+                            <div class="py-2 flex-shrink-0 block md:hidden">
+                                <div class="overflow-hidden">
+                                    <x-image class="h-16 w-fit" :image="$item" />
+                                </div>
+                            </div>
+                            @endif
+                            @endforeach
+                    </div>
+                </div>
+            </div>
+
+            <!-- Third strip - Mobile only -->
+            <div
+                class="overflow-hidden relative mx-auto w-full text-lg italic tracking-wide text-white uppercase sm:text-xs md:text-sm lg:text-base xl:text-xl 2xl:text-2xl mb-6 md:hidden">
+                <div x-ref="content3" class="flex animate-marquee">
+                    <div x-ref="item3" class="flex flex-shrink-0 justify-start items-center w-full text-white">
+                        @foreach ($images as $key => $item)
+                        {{-- Mobile: Third quarter of images --}}
+                        @if ($loop->iteration > ceil($loop->count / 2) && $loop->iteration <= ceil($loop->count * 3 /
+                            4))
+                            <div class="py-2 flex-shrink-0">
+                                <div class="overflow-hidden">
+                                    <x-image class="h-16 w-fit" :image="$item" />
+                                </div>
+                            </div>
+                            @endif
+                            @endforeach
+                    </div>
+                </div>
+            </div>
+
+            <!-- Fourth strip - Mobile only -->
+            <div
+                class="overflow-hidden relative mx-auto w-full text-lg italic tracking-wide text-white uppercase sm:text-xs md:text-sm lg:text-base xl:text-xl 2xl:text-2xl md:hidden">
+                <div x-ref="content4" class="flex animate-marquee-reverse">
+                    <div x-ref="item4" class="flex flex-shrink-0 justify-start items-center w-full text-white">
+                        @foreach ($images as $key => $item)
+                        {{-- Mobile: Fourth quarter of images --}}
+                        @if ($loop->iteration > ceil($loop->count * 3 / 4))
+                        <div class="py-2 flex-shrink-0">
+                            <div class="overflow-hidden">
+                                <x-image class="h-16 w-fit" :image="$item" />
+                            </div>
+                        </div>
+                        @endif
+                        @endforeach
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    @pushOnce('styles','marquee-style')
+    <style>
+        @keyframes marquee {
+            0% {
+                transform: translateX(0);
+            }
+
+            100% {
+                transform: translateX(-100%);
+            }
+        }
+
+        .marquee-block {
+            --marquee-duration: 45s;
+        }
+
+        @media (min-width: 768px) {
+            .marquee-block {
+                --marquee-duration: 120s;
+            }
+        }
+
+        .animate-marquee {
+            animation: marquee var(--marquee-duration) linear infinite;
+        }
+
+        .animate-marquee-reverse {
+            animation: marquee var(--marquee-duration) linear infinite;
+            animation-direction: reverse;
+        }
+
+        .container-block {
+            container-type: inline-size;
+        }
+
+        @container (max-width: 1100px) {
+
+            .container-block svg:nth-child(3),
+            .container-block svg:nth-child(4) {
+                display: none;
+            }
+        }
+
+        /* Mobile optimizations for 4 strips */
+        @media (max-width: 767px) {
+
+            .marquee-block .animate-marquee>div,
+            .marquee-block .animate-marquee-reverse>div {
+                min-width: 200vw;
+                /* Ensure enough width to prevent overlap */
+                display: flex;
+                gap: 1.5rem;
+            }
+
+            /* Ensure logos don't overlap */
+            .marquee-block .animate-marquee>div>div,
+            .marquee-block .animate-marquee-reverse>div>div {
+                min-width: 100px;
+                flex-shrink: 0;
+            }
+
+            /* Reduce spacing between strips on mobile */
+            .marquee-block .overflow-hidden {
+                margin-bottom: 0.5rem;
+            }
+
+            .marquee-block .overflow-hidden:last-child {
+                margin-bottom: 0;
+            }
+
+            /* Ensure smooth animation without gaps and start more advanced */
+            .marquee-block .animate-marquee,
+            .marquee-block .animate-marquee-reverse {
+                width: 100%;
+                transform: translateX(-25%);
+                /* Start more advanced to reduce white space */
+            }
+
+            /* Override the animation to start from advanced position */
+            .marquee-block .animate-marquee {
+                animation: marquee-mobile var(--marquee-duration) linear infinite;
+            }
+
+            .marquee-block .animate-marquee-reverse {
+                animation: marquee-mobile-reverse var(--marquee-duration) linear infinite;
+            }
+        }
+
+        /* Mobile specific animations that start more advanced */
+        @media (max-width: 767px) {
+            @keyframes marquee-mobile {
+                0% {
+                    transform: translateX(-25%);
+                }
+
+                100% {
+                    transform: translateX(-125%);
+                }
+            }
+
+            @keyframes marquee-mobile-reverse {
+                0% {
+                    transform: translateX(-125%);
+                }
+
+                100% {
+                    transform: translateX(-25%);
+                }
+            }
+        }
+    </style>
+    @endpushOnce
+</x-block>
