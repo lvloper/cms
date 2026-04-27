@@ -2,15 +2,15 @@
 
 namespace App\Filament\TipTapActions;
 
-use Filament\Forms\ComponentContainer;
-use Filament\Forms\Components\Actions\Action;
+use Filament\Actions\Action;
 use Filament\Forms\Components\BaseFileUpload;
 use Filament\Forms\Components\Checkbox;
 use Filament\Forms\Components\FileUpload;
-use Filament\Forms\Components\Group;
 use Filament\Forms\Components\Hidden;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\View;
+use Filament\Schemas\Components\Group;
+use Filament\Schemas\Schema;
 use FilamentTiptapEditor\TiptapEditor;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
@@ -37,7 +37,7 @@ class EditMediaAction extends Action
                 'lazy' => null,
             ])
             ->modalWidth('md')
-            ->mountUsing(function (TiptapEditor $component, ComponentContainer $form, array $arguments) {
+            ->mountUsing(function (TiptapEditor $component, Schema $form, array $arguments) {
                 $source = $arguments['src'] !== ''
                     ? $component->getDirectory() . Str::of($arguments['src'])
                         ->after($component->getDirectory())

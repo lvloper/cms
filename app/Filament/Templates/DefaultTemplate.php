@@ -3,8 +3,8 @@
 namespace App\Filament\Templates;
 
 use App\Filament\TipTapBlocks\LineTitleBlock;
+use Filament\Actions\Action;
 use Filament\Forms\Components\Builder;
-use Filament\Forms\Components\Actions\Action;
 
 class DefaultTemplate
 {
@@ -12,36 +12,13 @@ class DefaultTemplate
     {
         // Copy here the blocks you want to use in the template
         $blocks = [
-            \App\Filament\Blocks\HeroBlock::make(),
-            \App\Filament\Blocks\LineTitleBlock::make(),
-            \App\Filament\Blocks\ImageBlock::make(),
-            \App\Filament\Blocks\VideoBlock::make(),
-            \App\Filament\Blocks\AccordeonBlock::make(),
-            \App\Filament\Blocks\AccordeonModalsColumnsBlock::make(),
-            \App\Filament\Blocks\Features2Block::make(),
-            \App\Filament\Blocks\CarrouselBlock::make(),
-            \App\Filament\Blocks\MarqueeBlock::make(),
-            \App\Filament\Blocks\CarrersBlock::make(),
-            \App\Filament\Blocks\AboutBlock::make(),
-            \App\Filament\Blocks\IgStoriesBlock::make(),
-            \App\Filament\Blocks\accordeon_workersBlock::make(),
-            \App\Filament\Blocks\MasonryBlock::make(),
-            \App\Filament\Blocks\InformationBlock::make(),
-            \App\Filament\Blocks\HowItWorksBlock::make(),
-            \App\Filament\Blocks\CommandBlock::make(),
-            \App\Filament\Blocks\SearchAndBannerBlock::make(),
-            \App\Filament\Blocks\ThreeBannersBlock::make(),
-            \App\Filament\Blocks\GalleryBlock::make(),
-            \App\Filament\Blocks\numbersBlock::make(),
-            \App\Filament\Blocks\ListCardsPersonBlock::make(),
-            \App\Filament\Blocks\JobsofferListBlock::make(),
-            \App\Filament\Blocks\ApplyButtonBlock::make(),
-            \App\Filament\Blocks\ListLinksBlock::make(),
-            \App\Filament\Blocks\MaterialsBlock::make(),
-            \App\Filament\Blocks\RecurserosBlock::make(),
-            \App\Filament\Blocks\CodeBlock::make(),
-
-
+            \App\Filament\Blocks\BaseRichTextBlock::make(),
+            \App\Filament\Blocks\BaseCtaBlock::make(),
+            \App\Filament\Blocks\BaseCardsBlock::make(),
+            \App\Filament\Blocks\BaseStatsBlock::make(),
+            \App\Filament\Blocks\BaseQuoteBlock::make(),
+            \App\Filament\Blocks\BaseLinkListBlock::make(),
+            \App\Filament\Blocks\BaseEmbedBlock::make(),
         ];
 
         // foreach ($blocks as $block) {

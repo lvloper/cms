@@ -12,8 +12,8 @@ $menu = App\Models\Menu::query()->where('slug', 'header')->first();
 
     <div class="flex justify-between px-6 md:px-[7rem] items-center h-[80px] md:h-[60px] bg-white">
         <div class="xl:pl-6">
-            <a href="/">
-                <img class="w-[125px] h-[60px]" src="{{ asset('img/layout/logo-coalition.svg') }}" alt="Logo">
+            <a href="/" class="block text-lg font-bold uppercase tracking-wide text-primary">
+                {{ config_text('site-name', 'CMS Base') }}
             </a>
         </div>
 
@@ -33,8 +33,8 @@ $menu = App\Models\Menu::query()->where('slug', 'header')->first();
 
         <div class="flex justify-between items-center h-[80px] md:h-[60px] mb-20">
             <div class="xl:pl-6">
-                <a href="/">
-                    <img class="xl:w-[80%]" src="{{ asset('img/layout/logo-white.png') }}" alt="Logo">
+                <a href="/" class="block text-lg font-bold uppercase tracking-wide text-white">
+                    {{ config_text('site-name', 'CMS Base') }}
                 </a>
             </div>
 
@@ -117,21 +117,6 @@ $menu = App\Models\Menu::query()->where('slug', 'header')->first();
 
 </header>
 
-
-<div x-cloak x-data class="flex lg:hidden justify-between px-2 bg-secondary-light py-1 md:h-[60px] items-center sticky top-[80px] md:top-[60px] z-20"
-    id="second-menu-mobile">
-    <div
-        class="text-[12px] font-medium text-center uppercase text-white transition-all 
-        duration-200 ">
-        {!! config_rich_text('menu-mobile-text', 'Te necesitamos <br> más que nunca') !!}
-    </div>
-    <a href="{{ config_url_string('donation-link', 'https://asociate.huesped.org.ar/vos2') }}" 
-       target="{{ config_url_target('donation-link') }}"
-        class="flex justify-center items-center uppercase px-2 py-1 !text-[10px] font-black leading-none text-center bg-white rounded-sm"
-        >
-        {{ config_text('menu-mobile-button-text', 'HACE TU DONACIÓN') }}
-    </a>
-</div>
 
 <style>
     .circle-animate {

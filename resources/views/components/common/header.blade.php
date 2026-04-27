@@ -28,10 +28,10 @@ top-0 z-50 w-full bg-white md:sticky" x-data="{
     <div class="flex justify-between px-6 container mx-auto items-center min-h-[80px] bg-white transition-all duration-300"
         :class="{ 'min-h-[46px]': scrolled }">
         <div class="py-2">
-            <a href="/" wire:navigate.hover>
-                <img class="h-[64px] w-[140px] md:-translate-x-4 transition-all duration-300"
-                    :class="{ 'h-[34px]': scrolled }" :style="{ transition: 'all 0.3s ease-in-out' }"
-                    src="{{ asset('img/layout/logo-coalition.svg') }}" alt="Fundación Huésped">
+            <a href="/" wire:navigate.hover
+                class="block text-xl font-bold uppercase tracking-wide text-primary transition-all duration-300"
+                :class="{ 'text-base': scrolled }" :style="{ transition: 'all 0.3s ease-in-out' }">
+                {{ config_text('site-name', 'CMS Base') }}
             </a>
         </div>
 
@@ -115,19 +115,7 @@ top-0 z-50 w-full bg-white md:sticky" x-data="{
     </div>
     {{-- @endpersist --}}
 
-    <div class="banner-header" :class="{ 'md:h-[40px]': scrolled }">
-        <div class="text-md uppercase text-white font-medium transition-all duration-300"
-            :class="{ '!text-base': scrolled }">
-            {!! config_rich_text('menu-desktop-text', 'Te necesitamos más que nunca') !!}
-        </div>
-        <a href="{{ config_url_string('donation-link', 'https://asociate.huesped.org.ar/vos2') }}" 
-           target="{{ config_url_target('donation-link') }}"
-            class="uppercase text-xs font-black text-center text-secondary py-2 px-4 transition-all bg-white duration-200 hover:border-b hover:border-white md:text-sm"
-            :class="{ 'text-xs md:text-xs !py-1': scrolled }">
-            {{ config_text('menu-desktop-button-text', 'Quiero donar') }}
-        </a>
-    </div>
-    <div x-show="menuBarMenu" class=" h-1 bg-gradient-secondary-primary bg-size-125 bg-position-center"></div>
+    <div x-show="menuBarMenu" class="h-1 bg-gradient-secondary-primary bg-size-125 bg-position-center"></div>
 </header>
 <div class="spader-header"></div>
 <x-common.menu-mobile />

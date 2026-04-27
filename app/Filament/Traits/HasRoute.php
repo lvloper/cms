@@ -3,16 +3,16 @@
 namespace App\Filament\Traits;
 
 use App\Models\Route;
+use Filament\Actions\Action;
 use Filament\Forms\Components as Component;
-use Filament\Forms\Components\Section;
-use Filament\Forms\Get;
-use Filament\Forms\Set;
 use Filament\Support\RawJs;
+use Filament\Schemas\Components\Section;
+use Filament\Schemas\Components\Utilities\Get;
+use Filament\Schemas\Components\Utilities\Set;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Str;
 use App\Enums\Status;
-use Filament\Forms\Components\Actions\Action;
 
 trait HasRoute
 {

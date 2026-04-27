@@ -49,7 +49,7 @@
                     $contentHtml = tiptap_converter()->asHTML($blog->content);
 
                     if ($blog->id < 812) {
-                        $pattern = '/<p[^>]*>\s*La entrada .*? se publicó primero en .*?Fundación Huésped.*?<\/p>/si';
+                        $pattern = '/<p[^>]*>\s*La entrada .*? se publicó primero en .*?<\/p>/si';
                         $contentHtml = preg_replace($pattern, '', $contentHtml);
                     }
                 @endphp

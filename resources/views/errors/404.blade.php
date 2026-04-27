@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Página no encontrada - Fundación Huésped</title>
+    <title>Página no encontrada</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     <style>
         .title-animate {
@@ -105,7 +105,7 @@
                             <a href="/servicios" class="group p-6 bg-white border-2 border-gray-200 rounded-lg hover:border-primary transition-all duration-300">
                                 <div class="text-primary text-3xl mb-3">🏥</div>
                                 <h3 class="font-bold text-lg mb-2 group-hover:text-primary transition-colors">Servicios</h3>
-                                <p class="text-sm text-gray-600">En Fundación Huésped todos nuestros servicios son gratuitos. Cada día, cientos de personas se acercan en busca de ayuda y contención. Recibimos a quienes más nos necesitan con calidez y empatía.</p>
+                                <p class="text-sm text-gray-600">Encontrá los servicios disponibles en el sitio y la información relacionada en cada sección.</p>
                             </a>
                         </div>
                     </div>

@@ -1,6 +1,6 @@
 @import "futura.css";
 @import "./components/embla.css";
-@import "https://use.typekit.net/hvy4owc.css";
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&display=swap');
 @import "./components/line-title.css";
 @import "./components/text-wysiwyg.css";
 @import "./components/gallery.css";
@@ -9,11 +9,11 @@
 @import "./view-transition.css";
 
 :root {
-  --color-primary: #F32735;
-  --color-primary-hover: #ff4d00;
-  --color-secondary: #5c0f8b;
-  --color-secondary-hover: #7d44a2;
-  --color-secondary-light: #7d44a2;
+  --color-primary: #334155;
+  --color-primary-hover: #1e293b;
+  --color-secondary: #64748b;
+  --color-secondary-hover: #475569;
+  --color-secondary-light: #94a3b8;
 
   --color-black: #000000;
   --color-white: #FFFFFF;
@@ -165,7 +165,7 @@ html {
 
 .swiper-button-next,
 .swiper-button-prev {
-  color: #F32735 !important;
+  color: var(--color-primary) !important;
 }
 
 
@@ -266,7 +266,7 @@ html {
 }
 
 .swiper-button-next svg {
-  color: red !important;
+  color: var(--color-primary) !important;
 }
 
 .text-normal,
@@ -418,7 +418,7 @@ html {
 
 .sidebar .swiper-button-next,
 .sidebar .swiper-button-prev {
-  color: red !important;
+  color: var(--color-primary) !important;
   font-size: 20px !important;
   width: 30px !important;
   height: 30px !important;
@@ -625,7 +625,7 @@ html {
 
 /* Custom styles for selected items in Filament selects - only for selected badges */
 .choices__item[data-deletable] {
-  background-color: rgb(239 68 68) !important; /* bg-primary (red-500) */
+  background-color: var(--color-primary) !important;
   color: white !important;
 }
 

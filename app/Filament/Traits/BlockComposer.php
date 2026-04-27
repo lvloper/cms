@@ -2,12 +2,12 @@
 
 namespace App\Filament\Traits;
 
-use Filament\Forms\Components\Actions\Action;
+use Filament\Actions\Action;
 use Filament\Forms\Components\Builder\Block;
-use Filament\Forms\Components\Grid;
+use Filament\Schemas\Components\Grid;
 use Filament\Forms\Components\KeyValue;
 use Filament\Forms\Components\Select;
-use Filament\Forms\Components\Tabs;
+use Filament\Schemas\Components\Tabs;
 use Filament\Forms\Components\TagsInput;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Toggle;

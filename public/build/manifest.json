@@ -32,13 +32,8 @@
     "src": "public/fonts/FuturaStd/FuturaStd-Medium.woff2"
   },
   "resources/css/app.css": {
-    "file": "assets/app-Dl4r6f7G.css",
+    "file": "assets/app-DV0BoNCf.css",
     "src": "resources/css/app.css",
-    "isEntry": true
-  },
-  "resources/css/filament/admin/theme.css": {
-    "file": "assets/theme-CXixEJzb.css",
-    "src": "resources/css/filament/admin/theme.css",
     "isEntry": true
   },
   "resources/js/app.js": {

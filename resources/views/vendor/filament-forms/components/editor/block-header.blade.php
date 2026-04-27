@@ -30,13 +30,13 @@
     $isCollapsible || $visibleExtraItemActions)
 <div 
     @if ($isCollapsible) x-on:click.stop="isCollapsed = !isCollapsed" @endif
-    class="flex overflow-hidden absolute z-10 gap-x-3 items-center px-4 py-3 w-full opacity-0 cursor-pointer select-none blockHeader group-hover:opacity-10 fi-fo-builder-item-header"
+    class="fi-visual-editor__item-header fi-fo-builder-item-header"
 >
     @if ($reorderActionIsVisible || $moveUpActionIsVisible || $moveDownActionIsVisible)
-    <ul class="flex gap-x-3 items-center">
+    <ul class="fi-visual-editor__item-header-list">
         @if ($reorderActionIsVisible)
-        <li x-sortable-handle x-on:click.stop>
-            {{ $reorderAction }}
+        <li x-on:click.stop>
+            {{ $reorderAction->extraAttributes(['x-sortable-handle' => true], merge: true) }}
         </li>
         @endif
 
@@ -59,13 +59,13 @@
     @if ($hasBlockIcons && filled($blockIcon))
     <x-filament::icon 
         :icon="$blockIcon"
-        class="w-5 h-5 text-gray-400 fi-fo-builder-item-header-icon dark:text-gray-500" 
+        class="fi-visual-editor__icon fi-fo-builder-item-header-icon" 
     />
     @endif
 
     @if ($hasBlockLabels)
     <h4 @class([
-        'text-sm font-medium text-gray-950 dark:text-white',
+        'fi-visual-editor__item-title',
         'truncate' => $isBlockLabelTruncated,
     ])>
         {{ $item->getParentComponent()->getLabel($item->getRawState(), $uuid) }}
@@ -75,7 +75,7 @@
 
         @if(config('app.env') === 'development' || config('app.env') === 'local')
         <small 
-            style="color: rgb(0, 255, 0);" 
+            class="fi-visual-editor__item-debug"
             x-on:mouseover="$tooltip('Copiar')"
             x-on:click.stop="
                 const text = '{{ $item->getParentComponent()->getName() }}';

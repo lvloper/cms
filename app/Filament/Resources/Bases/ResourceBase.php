@@ -5,9 +5,10 @@ namespace App\Filament\Resources\Bases;
 use Filament\Resources\Resource;
 use App\Filament\Traits\HasRoute;
 use App\Models\Page;
+use Filament\Actions;
 use Filament\Tables;
 use Filament\Tables\Table;
-use Filament\Forms\Components\Tabs;
+use Filament\Schemas\Components\Tabs;
 use Filament\Schemas\Schema;
 use App\Filament\Templates\DefaultTemplate;
 use App\Filament\Templates\ModalTemplate;
@@ -48,7 +49,7 @@ abstract class ResourceBase extends Resource
                         Tabs\Tab::make(__('Configuración de página'))
                             ->icon('heroicon-o-cog')
                             ->schema([
-                                ...HasRoute::formRoute($schema),
+                                ...static::formRoute($schema),
                             ]),
                     ])
                     ->contained(false)
@@ -101,8 +102,8 @@ abstract class ResourceBase extends Resource
                     ])
             ])
             ->actions([
-                Tables\Actions\EditAction::make(),
-                Tables\Actions\Action::make('preview')
+                Actions\EditAction::make(),
+                Actions\Action::make('preview')
                     ->label('Ver')
                     ->url(fn($record) => $record->preview_url)
                     ->icon('heroicon-o-eye')
@@ -110,8 +111,8 @@ abstract class ResourceBase extends Resource
                     ->openUrlInNewTab(),
             ])
             ->bulkActions([
-                Tables\Actions\BulkActionGroup::make([
-                    Tables\Actions\DeleteBulkAction::make(),
+                Actions\BulkActionGroup::make([
+                    Actions\DeleteBulkAction::make(),
                 ]),
             ]);
     }

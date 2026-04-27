@@ -77,136 +77,20 @@ trait FormShortcuts
         string $label = 'Enlace',
         bool $forceExternal = false,
         bool $required = false,
-        \Closure $filter = null,
+        ?\Closure $filter = null,
         bool $allowExternal = true,
         bool $allowAnchor = true,
         bool $btnLabel = false
-    ): \Filament\Forms\Components\Group {
-
-        $options = \App\Models\Route::getSelectOptions(null, $allowExternal, $filter);
-        // Ensure "Enlace externo" and "Subir archivo" appear first
-        $prefixedOptions = [];
-        if ($allowExternal) {
-            $prefixedOptions['0'] = 'Enlace externo';
-            $prefixedOptions['-1'] = 'Subir archivo';
-        }
-        // Prepend while preserving insertion order and avoiding duplicate keys from provider
-        $options = $prefixedOptions + $options;
-
-
-
-
-        if ($forceExternal) {
-            return \Filament\Forms\Components\Group::make([
-                \Filament\Forms\Components\TextInput::make($name . '.external_url')
-                    ->label('URL externa')
-                    ->url(),
-                \Filament\Forms\Components\Checkbox::make($name . '.new_window')
-                    ->label('Abrir en nueva ventana')
-                    ->default(true),
-            ])
-                ->extraAttributes([
-                    'class' => 'bg-dark-500'
-                ]);
-        }
-
-        return \Filament\Forms\Components\Group::make([
-            \Filament\Forms\Components\TextInput::make($name . '.btn_label')
-                ->label('Etiqueta del botón')
-                ->hidden(!$btnLabel)
-                ->required($required),
-
-            \Filament\Forms\Components\Select::make($name . '.route_id')
-                ->label('Seleccionar ' . $label)
-                ->options($options)
-                ->searchable()
-                ->required($required)
-                ->getSearchResultsUsing(fn(string $search): array => \App\Models\Route::getSelectOptions($search, $allowExternal, $filter))
-                ->getOptionLabelUsing(function ($value) {
-                    if ($value === '0') return '🌐 Enlace externo';
-                    if ($value === '-1') return '📎 Subir archivo';
-                    return \App\Models\Route::find($value)?->name;
-                })
-                ->preload()
-                ->reactive()
-                ->afterStateUpdated(function (\Filament\Forms\Set $set, $state) use ($name) {
-                    if ((string)$state === '0') {
-                        $set($name . '.new_window', true);
-                    }
-                }),
-
-            \Filament\Forms\Components\TextInput::make($name . '.external_url')
-                ->label('URL externa')
-                ->required(fn(\Filament\Forms\Get $get) => $get($name . '.route_id') === '0' && $required)
-                ->url()
-                ->visible(fn(\Filament\Forms\Get $get) => $get($name . '.route_id') === '0'),
-
-            // File upload option when selecting "Subir archivo"
-            \Filament\Forms\Components\FileUpload::make($name . '.file')
-                ->label('Archivo')
-                ->helperText('Sube un archivo para enlazarlo como descarga.')
-                ->required(fn(\Filament\Forms\Get $get) => $get($name . '.route_id') === '-1' && $required)
-                ->preserveFilenames()
-                ->directory('files')
-                ->visibility('public')
-                ->acceptedFileTypes([
-                    'application/pdf',
-                    'application/msword',
-                    'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
-                    'application/vnd.ms-excel',
-                    'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
-                    'application/vnd.ms-powerpoint',
-                    'application/vnd.openxmlformats-officedocument.presentationml.presentation',
-                    'text/plain',
-                    'application/zip',
-                    'application/x-zip-compressed',
-                    // common image types just in case
-                    'image/jpeg', 'image/jpg', 'image/png', 'image/webp', 'image/gif',
-                ])
-                ->visible(fn(\Filament\Forms\Get $get) => $get($name . '.route_id') === '-1'),
-
-            // Download name when using file upload
-            \Filament\Forms\Components\TextInput::make($name . '.download_name')
-                ->label('Nombre de la descarga')
-                ->placeholder('Ej: Brochure.pdf')
-                ->helperText('Opcional: será el nombre sugerido del archivo al descargar.')
-                ->maxLength(255)
-                ->visible(fn(\Filament\Forms\Get $get) => $get($name . '.route_id') === '-1'),
-
-            \Filament\Forms\Components\TextInput::make($name . '.anchor')
-                ->label('Ancla')
-                ->visible(fn(\Filament\Forms\Get $get) => 
-                    $allowAnchor && 
-                    $get($name . '.route_id') && 
-                    $get($name . '.route_id') !== '0' && 
-                    $get($name . '.route_id') !== '-1'
-                )
-                ->prefix('#')
-                ->helperText('Ej: seccion-contacto (sin incluir el #)')
-                ->mask(\Filament\Support\RawJs::make(<<<'JS'
-                    function (value) {
-                        return value
-                        .replace(/ /g, '-')
-                        .replace(/[^a-z-\s]+/g, '');
-                    }
-                JS))
-                ->maxLength(100),
-
-            \Filament\Forms\Components\Checkbox::make($name . '.new_window')
-                ->visible(fn(\Filament\Forms\Get $get) => $allowExternal && $get($name . '.route_id') !== '-1')
-                ->label('Abrir en nueva ventana')
-                ->columnSpan($allowAnchor ? 'full' : 'auto')
-                ->default(fn(\Filament\Forms\Get $get) => (string)$get($name . '.route_id') === '0')
-                ->accepted($forceExternal),
-
-
-
-        ])
-            ->columns($allowAnchor ? 2 : 1)
-            ->extraAttributes([
-                'class' => 'rounded-md p-4',
-                'style' => 'background-color: rgba(0,0,0,.1);'
-            ]);
+    ): \App\Filament\Forms\Components\RoutePicker {
+        return \App\Filament\Forms\Components\RoutePicker::make($name)
+            ->pickerLabel($label)
+            ->forceExternal($forceExternal)
+            ->required($required)
+            ->routeFilter($filter)
+            ->allowExternal($allowExternal)
+            ->allowFile($allowExternal)
+            ->allowAnchor($allowAnchor)
+            ->buttonLabel($btnLabel);
     }
 
 
@@ -250,7 +134,7 @@ trait FormShortcuts
         $widthMobile = null,
         $heightMobile = null,
         $required = false
-    ): FileUpload | \Filament\Forms\Components\Tabs {
+    ): FileUpload | \Filament\Schemas\Components\Tabs {
         $image = FileUpload::make($name)
             ->label($label)
             ->image()
@@ -282,12 +166,12 @@ trait FormShortcuts
             ->visibility('public');
 
         if ($hasMobile) {
-            $tab = \Filament\Forms\Components\Tabs::make('image_desktop_mobile')
+            $tab = \Filament\Schemas\Components\Tabs::make('image_desktop_mobile')
                 ->tabs([
-                    \Filament\Forms\Components\Tabs\Tab::make('Escritorio')
+                    \Filament\Schemas\Components\Tabs\Tab::make('Escritorio')
                         ->schema([$image])
                         ->icon('heroicon-o-computer-desktop'),
-                    \Filament\Forms\Components\Tabs\Tab::make('Mobile')
+                    \Filament\Schemas\Components\Tabs\Tab::make('Mobile')
                         ->schema([
                             FileUpload::make($name . '_mobile')
                                 ->label($label)
@@ -344,8 +228,8 @@ trait FormShortcuts
             ->required($required);
     }
 
-    // public static function PersonPicker($name, $label = 'Datos de la persona') : \Filament\Forms\Components\Fieldset {
-    //     return \Filament\Forms\Components\Fieldset::make($label)
+    // public static function PersonPicker($name, $label = 'Datos de la persona') : \Filament\Schemas\Components\Fieldset {
+    //     return \Filament\Schemas\Components\Fieldset::make($label)
     //         ->schema([
     //             \Filament\Forms\Components\TextInput::make($name . '.name')
     //                 ->label('Nombre')

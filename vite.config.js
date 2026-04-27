@@ -7,10 +7,11 @@ import livewire from '@defstudio/vite-livewire-plugin'; // <-- import
 export default defineConfig({
     plugins: [
         laravel({
-            input: ['resources/css/app.css',
-                    'resources/js/app.js',
-                    'resources/js/hot-reload.js',
-                    `resources/css/filament/admin/theme.css`],
+            input: [
+                'resources/css/app.css',
+                'resources/js/app.js',
+                'resources/js/hot-reload.js',
+            ],
             refresh: [
                 'resources/views/**',
                 'resources/views/blocks/**',
@@ -22,7 +23,6 @@ export default defineConfig({
                 'resources/views/**',
                 'routes/**',
                 'admin/**',
-                'resources/css/filament/admin/theme.css',
                 'resources/views/vendor/filament-forms/**',
             ]
         }),

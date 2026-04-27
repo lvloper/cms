@@ -1,61 +1,67 @@
+@php
+    use Filament\Support\Enums\Alignment;
+    use Filament\Support\Enums\GridDirection;
+    use Illuminate\View\ComponentAttributeBag;
+@endphp
+
 @props([
-'action',
-'afterItem' => null,
-'blocks',
-'columns' => null,
-'statePath',
-'trigger',
-'width' => null,
+    'action',
+    'actionAlignment' => null,
+    'afterItem' => null,
+    'blocks',
+    'columns' => null,
+    'key' => null,
+    'trigger',
+    'width' => null,
 ])
 
-<x-filament::modal width="2xl" sticky-header slide-over display-classes="block" x-data="{ search: '' }" class="shadow-xl">
-    <x-slot name="heading">
-        <div class="mt-16">
-            <x-filament::input.wrapper class="w-full">
-                <x-filament::input type="text" placeholder="Buscar bloque" x-model="search" class="px-4 py-2 w-full rounded-md border" />
-            </x-filament::input.wrapper>
-        </div>
-    </x-slot>
-
+<x-filament::dropdown
+    :placement="
+        match ($actionAlignment) {
+            Alignment::Start, Alignment::Left => 'bottom-start',
+            Alignment::End, Alignment::Right => 'bottom-end',
+            default => null,
+        }
+    "
+    shift
+    :width="$width"
+    :attributes="
+        \Filament\Support\prepare_inherited_attributes(
+            $attributes->class([
+                'fi-fo-builder-block-picker',
+                ($actionAlignment instanceof Alignment) ? ('fi-align-' . $actionAlignment->value) : $actionAlignment => $actionAlignment,
+            ]),
+        )
+    "
+>
     <x-slot name="trigger">
-        <div class="mx-auto">
-
-            {{ $trigger }}
-        </div>
+        {{ $trigger }}
     </x-slot>
 
-    <x-filament::dropdown.list class="">
-        <x-filament::grid :default="$columns['default'] ?? 1" :sm="$columns['sm'] ?? null" :md="$columns['md'] ?? null"
-            :lg="$columns['lg'] ?? null" :xl="$columns['xl'] ?? null" :two-xl="$columns['2xl'] ?? null"
-            direction="column" class="gap-2">
+    <x-filament::dropdown.list>
+        <div {{ (new ComponentAttributeBag)->grid($columns, GridDirection::Column) }}>
             @foreach ($blocks as $block)
-            @php
-            $wireClickActionArguments = ['block' => $block->getName()];
+                @php
+                    $blockIcon = $block->getIcon();
+                    $wireClickActionArguments = ['block' => $block->getName()];
 
-            if (filled($afterItem)) {
-            $wireClickActionArguments['afterItem'] = $afterItem;
-            }
+                    if (filled($afterItem)) {
+                        $wireClickActionArguments['afterItem'] = $afterItem;
+                    }
 
-            $wireClickActionArguments = \Illuminate\Support\Js::from($wireClickActionArguments);
+                    $wireClickActionArguments = \Illuminate\Support\Js::from($wireClickActionArguments);
+                    $schemaComponentKey = $key ?? '';
+                    $wireClickAction = "mountAction('{$action->getName()}', {$wireClickActionArguments}, { schemaComponent: '{$schemaComponentKey}' })";
+                @endphp
 
-            $wireClickAction = "mountFormComponentAction('{$statePath}', '{$action->getName()}',
-            {$wireClickActionArguments})";
-            @endphp
-            <div x-show="search === '' || '{{ strtolower($block->getLabel()) }}'.includes(search.toLowerCase())"
-                class="">
-                <x-filament::dropdown.list.item x-on:click="close" :wire:click="$wireClickAction" class="rounded-md hover:bg-gray-100">
-                    @if (file_exists(public_path("img/admin/blocks/{$block->getName()}.jpg")))
-                    <div class="flex relative justify-center items-center h-40 bg-gray-300 opacity-55 hover:opacity-100">
-                        <img class="object-contain mx-auto w-full h-full" src="{{ asset("img/admin/blocks/{$block->getName()}.jpg") }}" alt="{{ $block->getLabel() }}">
-                    </div>
-                    @else
-                    <div class="flex relative justify-center items-center h-40 bg-gray-300 opacity-55 hover:opacity-100">
-                        <span class="text-gray-600">{{ $block->getLabel() }}</span>
-                    </div>
-                    @endif
+                <x-filament::dropdown.list.item
+                    :icon="$blockIcon"
+                    x-on:click="close"
+                    :wire:click="$wireClickAction"
+                >
+                    {{ $block->getLabel() }}
                 </x-filament::dropdown.list.item>
-            </div>
             @endforeach
-        </x-filament::grid>
+        </div>
     </x-filament::dropdown.list>
-</x-filament::modal>
+</x-filament::dropdown>

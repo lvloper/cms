@@ -14,7 +14,7 @@
 ])
 
 @if ($editActionIsVisible || $cloneActionIsVisible || $deleteActionIsVisible || $isCollapsible || $visibleExtraItemActions)
-<ul class="flex gap-x-3 items-center ms-auto">
+<ul class="fi-visual-editor__item-actions">
     @foreach ($visibleExtraItemActions as $extraItemAction)
     <li x-on:click.stop>
         {{ $extraItemAction(['item' => $uuid]) }}
@@ -45,15 +45,15 @@
     @endif
 
     @if ($isCollapsible)
-    <li class="relative transition" 
+    <li class="fi-visual-editor__collapse-action" 
         x-on:click.stop="isCollapsed = !isCollapsed"
-        x-bind:class="{ '-rotate-180': isCollapsed }">
-        <div class="transition" x-bind:class="{ 'opacity-0 pointer-events-none': isCollapsed }">
+        x-bind:style="isCollapsed ? 'transform: rotate(-180deg);' : ''">
+        <div x-bind:style="isCollapsed ? 'opacity: 0; pointer-events: none;' : ''">
             {{ $getAction('collapse') }}
         </div>
 
-        <div class="absolute inset-0 transition rotate-180"
-            x-bind:class="{ 'opacity-0 pointer-events-none': ! isCollapsed }">
+        <div style="position: absolute; inset: 0; transform: rotate(180deg);"
+            x-bind:style="! isCollapsed ? 'position: absolute; inset: 0; transform: rotate(180deg); opacity: 0; pointer-events: none;' : 'position: absolute; inset: 0; transform: rotate(180deg);'">
             {{ $getAction('expand') }}
         </div>
     </li>

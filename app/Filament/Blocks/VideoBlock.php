@@ -4,6 +4,7 @@ namespace App\Filament\Blocks;
 
 use App\Filament\Traits\BlockComposer;
 use Filament\Forms\Components as Form;
+use Filament\Schemas\Components\Utilities\Get;
 
 class VideoBlock
 {
@@ -33,7 +34,7 @@ class VideoBlock
                 ])
                 // ->required()
                 ->inline()
-                ->default(function (\Filament\Forms\Get $get) {
+                ->default(function (Get $get) {
                     // Auto-detectar tipo basándose en campos existentes
                     $videoId = $get('videoId');
                     $videoFile = $get('videoFile');
@@ -50,8 +51,8 @@ class VideoBlock
 
             Form\TextInput::make('videoId')
                 ->label('Código de YouTube')
-                ->required(fn(\Filament\Forms\Get $get): bool => $get('videoType') === 'youtube')
-                ->hidden(fn(\Filament\Forms\Get $get): bool => $get('videoType') !== 'youtube')
+                ->required(fn(Get $get): bool => $get('videoType') === 'youtube')
+                ->hidden(fn(Get $get): bool => $get('videoType') !== 'youtube')
                 ->helperText('Ingresa el ID del video de YouTube (ej. B4NEVeHH3TI)'),
 
             Form\FileUpload::make('videoFile')
@@ -64,7 +65,7 @@ class VideoBlock
                 ->openable()
                 ->multiple(false)
                 ->maxFiles(1)
-                ->hidden(fn(\Filament\Forms\Get $get): bool => $get('videoType') !== 'upload')
+                ->hidden(fn(Get $get): bool => $get('videoType') !== 'upload')
                 ->helperText('Formatos soportados: MP4 (máx. 10MB). Solo se permite un archivo.'),
         ];
 

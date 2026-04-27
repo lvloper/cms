@@ -37,8 +37,6 @@ class AdminPanelProvider extends PanelProvider
       ->id('admin')
       ->path('admin')
       ->login()
-      ->darkMode(true, true)
-      ->viteTheme('resources/css/filament/admin/theme.css')
       ->colors([
         'primary' => Color::Emerald,
         'secondary' => Color::Red,
@@ -96,7 +94,7 @@ class AdminPanelProvider extends PanelProvider
 
         ->databaseNotifications()
         ->databaseNotificationsPolling('5s')
-      ->brandLogo(fn() => new HtmlString('<svg xmlns="http://www.w3.org/2000/svg"  height="26" viewBox="0 0 601 101">
+      ->brandLogo(fn() => new HtmlString('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 601 101">
   <g id="Grupo_73" data-name="Grupo 73" transform="translate(0.5 0.5)">
     <circle id="Elipse_27" data-name="Elipse 27" cx="50" cy="50" r="50" transform="translate(200)" fill="#ffc700" stroke="#707070" stroke-width="1"/>
     <circle id="Elipse_28" data-name="Elipse 28" cx="50" cy="50" r="50" transform="translate(300)" fill="#ff4d61" stroke="#707070" stroke-width="1"/>
@@ -138,7 +136,7 @@ class AdminPanelProvider extends PanelProvider
 </svg>
 
 '))
-      ->viteTheme('resources/css/filament/admin/theme.css')
+      ->brandLogoHeight('1.625rem')
     ;
   }
 }

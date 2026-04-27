@@ -36,9 +36,6 @@
 
 
 
-  <x-modals.banner-popup />
-
-
   @if($isModal ?? false)
   <x-modal size="xl" open ref="page-modal" :backUrl="$parentUrl ?? null">
     {{ $slot }}

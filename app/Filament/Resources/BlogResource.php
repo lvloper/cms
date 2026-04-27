@@ -12,14 +12,16 @@ use Filament\Schemas\Schema;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\SpatieTagsInput;
 
-use Filament\Forms\Get;
-use Filament\Forms\Set;
+use Filament\Schemas\Components\Utilities\Get;
+use Filament\Schemas\Components\Utilities\Set;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
 
 class BlogResource extends ResourceBase
 {
+    use \App\Filament\Traits\FormShortcuts;
+
     protected static ?string $model = Blog::class;
 
     protected static ?string $modelLabel = 'Novedades';
@@ -47,15 +49,15 @@ class BlogResource extends ResourceBase
                     $set('route.slug', Str::slug($state));
                 }),
 
-            \Filament\Forms\Components\Grid::make(2)
+            \Filament\Schemas\Components\Grid::make(2)
                 ->schema([
-                    \App\Filament\Traits\FormShortcuts::Image(
+                    static::Image(
                         name: 'image',
                         label: 'Imagen',
                         width: '1910',
                         height: '1000',
                     ),
-                    \Filament\Forms\Components\Group::make()
+                    \Filament\Schemas\Components\Group::make()
                         ->schema([
                             SpatieTagsInput::make('tags')->label('Nube de tags'),
                         ]),
@@ -64,14 +66,14 @@ class BlogResource extends ResourceBase
 
 
 
-            \App\Filament\Traits\FormShortcuts::TipTap(
+            static::TipTap(
                 name: 'description',
                 label: 'Descripción',
                 profile: 'minimal',
                 required: false
             ),
 
-            \App\Filament\Traits\FormShortcuts::TipTap(
+            static::TipTap(
                 name: 'content',
                 label: 'Contenido',
                 profile: 'avanced',

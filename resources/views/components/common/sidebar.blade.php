@@ -73,9 +73,7 @@ $id = 'sidebar';
                 @endforeach
             </ul>
 
-            <div class="mt-4" :style="{ transform: scrolled ? 'translateY(0px)' : 'translateY(-60px)' }">
-                <x-common.banner gap="1" location="Sidebar" />
-            </div>
+            <div class="mt-4" :style="{ transform: scrolled ? 'translateY(0px)' : 'translateY(-60px)' }"></div>
         </div>
     </div>
 </div>

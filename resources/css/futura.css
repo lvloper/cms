@@ -1,4 +1,4 @@
-@import "https://use.typekit.net/hvy4owc.css";
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&display=swap');
 
 @font-face {
     font-family: 'Futura Std';
@@ -37,13 +37,13 @@
 }
 
 .futura-bold {
-    font-family: "Futura Std", sans-serif;
+    font-family: "Manrope", sans-serif;
     font-weight: bold;
     font-style: normal;
 }
 
 .futura-light {
-    font-family: "Futura Std", sans-serif;
+    font-family: "Manrope", sans-serif;
     font-weight: 300 ;
     font-style: normal ;
 
@@ -53,7 +53,7 @@
 }
 
 .font-heavy {
-    font-family: "Futura Std", sans-serif;
+    font-family: "Manrope", sans-serif;
     font-weight: 900;
     font-style: normal;
 }

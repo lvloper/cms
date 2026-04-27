@@ -5,14 +5,16 @@ namespace App\Filament\Resources;
 use App\Filament\Resources\MenuResource\Pages;
 use App\Filament\Resources\MenuResource\RelationManagers;
 use App\Models\Menu;
+use Filament\Actions;
 use Filament\Forms;
 use Filament\Schemas\Schema;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Support\Str;
+use Filament\Schemas\Components\Utilities\Set;
 
-use App\Filament\Traits\FormShortcuts;
+use App\Filament\Forms\Components\RoutePicker;
 
 class MenuResource extends Resource
 {
@@ -30,7 +32,7 @@ class MenuResource extends Resource
                     ->label('Nombre')
                     ->required()
                     ->live(onBlur: true)
-                    ->afterStateUpdated(function (?string $state, Forms\Set $set) {
+                    ->afterStateUpdated(function (?string $state, Set $set) {
                         if (! $state) {
                             return;
                         }
@@ -54,7 +56,9 @@ class MenuResource extends Resource
                             ->label('Nombre')
                             ->required(),
 
-                        FormShortcuts::RoutePicker(name: 'route', required: true, allowAnchor: true),
+                        RoutePicker::make('route')
+                            ->required()
+                            ->allowAnchor(),
                         Forms\Components\Repeater::make('children')
                             ->label('Subítems')
                             ->reorderableWithButtons()
@@ -64,7 +68,9 @@ class MenuResource extends Resource
                                 Forms\Components\TextInput::make('label')
                                     ->label('Nombre')
                                     ->required(),
-                                FormShortcuts::RoutePicker(name: 'route', required: true, allowAnchor: true),
+                                RoutePicker::make('route')
+                                    ->required()
+                                    ->allowAnchor(),
                             ])
                             ->default([])
                             ->collapsed(),
@@ -86,11 +92,11 @@ class MenuResource extends Resource
                 //
             ])
             ->actions([
-                Tables\Actions\EditAction::make(),
+                Actions\EditAction::make(),
             ])
             ->bulkActions([
-                Tables\Actions\BulkActionGroup::make([
-                    Tables\Actions\DeleteBulkAction::make(),
+                Actions\BulkActionGroup::make([
+                    Actions\DeleteBulkAction::make(),
                 ]),
             ]);
     }

@@ -3,7 +3,7 @@
 namespace App\Filament\Blocks;
 
 use App\Filament\Traits\BlockComposer;
-use App\Filament\Traits\FormShortcuts;
+use App\Filament\Forms\Components\RoutePicker;
 use Filament\Forms\Components as Form;
 
 class ButtonBlock
@@ -20,11 +20,10 @@ class ButtonBlock
 
         // Define the fields for the block
         $schema = [
-            FormShortcuts::RoutePicker(
-                name: 'route',
-                btnLabel: true,
-                required: true
-            )->label('Botón'),
+            RoutePicker::make('route')
+                ->buttonLabel()
+                ->required()
+                ->label('Botón'),
 
             Form\ToggleButtons::make('style')
                 ->options([

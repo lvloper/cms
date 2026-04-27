@@ -5,7 +5,7 @@ namespace App\TiptapBlocks;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\ToggleButtons;
-use Filament\Forms\Get;
+use Filament\Schemas\Components\Utilities\Get;
 use FilamentTiptapEditor\TiptapBlock;
 
 class Video extends TiptapBlock

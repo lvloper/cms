@@ -8,7 +8,7 @@
 @endphp
 
 <div 
-    class="block isolate relative" 
+    style="display: block; isolation: isolate; position: relative;" 
     data-block-uuid="{{ $blockUuid }}"
     x-data="{
         loading: true,
@@ -31,7 +31,7 @@
         }
     }"
 >
-    <div class="block bg-gray-100 pulse-opacity dark:bg-gray-800" 
+    <div class="fi-visual-editor__loading" 
         x-show="loading"
         style="height: 250px">
     </div>
@@ -46,7 +46,7 @@
         style="width: 100%; min-height: 250px; height: 250px; overflow: hidden;">
     </iframe>
 
-    <div class="hidden" id="{{ $contentId }}">
+    <div hidden id="{{ $contentId }}">
         @include('filament-forms::components.editor.block-render-content', ['item' => $item])
     </div>
 </div>

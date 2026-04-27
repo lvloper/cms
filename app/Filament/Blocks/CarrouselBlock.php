@@ -6,6 +6,8 @@ use App\Filament\Traits\BlockComposer;
 use Filament\Forms\Components as Form;
 use Filament\Schemas\Schema as FormsForm;
 use App\Filament\Traits\FormShortcuts;
+use App\Filament\Forms\Components\RoutePicker;
+use Filament\Schemas\Components\Utilities\Get;
 
 class CarrouselBlock
 {
@@ -37,16 +39,15 @@ class CarrouselBlock
             
             Form\Repeater::make('items')
                 ->schema([
-                    FormShortcuts::RoutePicker(
-                        name: 'route',
-                        label: 'Notas',
-                        allowExternal: false,
-                        required: true,
-                        filter: fn($query) => $query->where('routable_type', 'App\Models\Blog')
-                    )
+                    RoutePicker::make('route')
+                        ->pickerLabel('Notas')
+                        ->allowExternal(false)
+                        ->allowFile(false)
+                        ->required()
+                        ->routeFilter(fn($query) => $query->where('routable_type', 'App\Models\Blog'))
                 ])
                 ->helperText('Seleccione notas específicas para mostrar')
-                ->visible(fn(\Filament\Forms\Get $get) => $get('content_type') === 'specific'),
+                ->visible(fn(Get $get) => $get('content_type') === 'specific'),
             
             Form\Select::make('selected_tags')
                 ->label('Tags de Novedades')
@@ -59,7 +60,7 @@ class CarrouselBlock
                 })
                 ->helperText('Seleccione uno o más tags para mostrar las novedades que los contengan')
                 ->placeholder('Buscar y seleccionar tags...')
-                ->visible(fn(\Filament\Forms\Get $get) => $get('content_type') === 'tags'),
+                ->visible(fn(Get $get) => $get('content_type') === 'tags'),
 
             // FormShortcuts::RoutePicker( 'route', btnLabel: true)
         ];

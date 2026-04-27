@@ -5,7 +5,7 @@ namespace App\Filament\Resources\Bases;
 use App\Filament\Resources\PageResource;
 use Filament\Actions;
 use Filament\Resources\Pages\ListRecords;
-use Filament\Resources\Components\Tab;
+use Filament\Schemas\Components\Tabs\Tab;
 use Illuminate\Database\Eloquent\Builder;
 use App\Enums\Status;
 

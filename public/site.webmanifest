@@ -1,6 +1,6 @@
 {
-    "name": "Fundación Huésped",
-    "short_name": "Huésped",
+    "name": "CMS Base",
+    "short_name": "CMS Base",
     "icons": [
         {
             "src": "/android-chrome-192x192.png",

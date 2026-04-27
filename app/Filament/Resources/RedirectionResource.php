@@ -4,14 +4,15 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\RedirectionResource\Pages;
 use App\Models\Redirection;
+use Filament\Actions;
 use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\Toggle;
-use Filament\Forms\Components\Grid;
-use Filament\Forms\Components\Section;
+use Filament\Schemas\Components\Grid;
+use Filament\Schemas\Components\Section;
 use Filament\Tables\Table;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Columns\TextInputColumn;
@@ -20,11 +21,6 @@ use Filament\Tables\Columns\BooleanColumn;
 use Filament\Tables\Columns\BadgeColumn;
 use Filament\Tables\Filters\Filter;
 use Filament\Tables\Filters\SelectFilter;
-use Filament\Tables\Actions\EditAction;
-use Filament\Tables\Actions\DeleteAction;
-use Filament\Tables\Actions\CreateAction;
-use Filament\Tables\Actions\ExportAction;
-use Filament\Tables\Actions\ImportAction;
 use Illuminate\Database\Eloquent\Builder;
 
 class RedirectionResource extends Resource
@@ -56,7 +52,7 @@ class RedirectionResource extends Resource
                                     ->rules(['regex:/^[a-zA-Z0-9\-_\/\?\&\=\.]+$/'])
                                     ->placeholder('vieja-pagina')
                                     ->suffixAction(
-                                        \Filament\Forms\Components\Actions\Action::make('test_redirect')
+                                        Actions\Action::make('test_redirect')
                                             ->icon('heroicon-o-arrow-top-right-on-square')
                                             ->tooltip('Probar redirección')
                                             ->url(function ($get) {
@@ -71,7 +67,7 @@ class RedirectionResource extends Resource
                                     ->maxLength(255)
                                     ->placeholder('nueva-pagina o https://ejemplo.com')
                                     ->suffixAction(
-                                        \Filament\Forms\Components\Actions\Action::make('preview_destination')
+                                        Actions\Action::make('preview_destination')
                                             ->icon('heroicon-o-eye')
                                             ->tooltip('Ver destino')
                                             ->url(function ($get) {
@@ -153,7 +149,7 @@ class RedirectionResource extends Resource
                     ->getStateUsing(fn() => true)
                     ->icon('heroicon-m-magnifying-glass')
                     ->action(
-                        \Filament\Tables\Actions\Action::make('pick-route')
+                        Actions\Action::make('pick-route')
                             ->label('')
                             ->modalHeading('Seleccionar ruta interna')
                             ->modalSubmitActionLabel('Aplicar')
@@ -248,12 +244,12 @@ class RedirectionResource extends Resource
                     ->label('URLs Externas'),
             ])
             ->actions([
-                EditAction::make(),
-                DeleteAction::make(),
+                Actions\EditAction::make(),
+                Actions\DeleteAction::make(),
                 // view_current action removed (now icon column at start)
             ])
             ->headerActions([
-                ExportAction::make()
+                Actions\ExportAction::make()
                     ->label('Exportar')
                     ->icon('heroicon-o-arrow-down-tray')
                     ->exporter(\App\Filament\Exports\RedirectionExporter::class)
@@ -270,8 +266,8 @@ class RedirectionResource extends Resource
                 //     ->modalSubheading('Formato: old_url, new_url (opcional), redirect_code, is_active, description'),
             ])
             ->bulkActions([
-                \Filament\Tables\Actions\DeleteBulkAction::make(),
-                \Filament\Tables\Actions\BulkAction::make('toggle_active')
+                Actions\DeleteBulkAction::make(),
+                Actions\BulkAction::make('toggle_active')
                     ->label('Alternar Estado')
                     ->icon('heroicon-o-arrow-path')
                     ->action(function ($records) {

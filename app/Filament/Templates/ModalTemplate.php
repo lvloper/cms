@@ -2,8 +2,8 @@
 
 namespace App\Filament\Templates;
 
+use Filament\Actions\Action;
 use Filament\Forms\Components\Builder;
-use Filament\Forms\Components\Actions\Action;
 
 class ModalTemplate
 {
@@ -11,14 +11,11 @@ class ModalTemplate
     {
         // Copy here the blocks you want to use in the template
         $blocks = [
-            \App\Filament\Blocks\TextBlock::make(),
-            \App\Filament\Blocks\ItemModalBlock::make(),
-            \App\Filament\Blocks\ImageBlock::make(),
-            \App\Filament\Blocks\VideoBlock::make(),
-            \App\Filament\Blocks\HeaderModalBlock::make(),
-            \App\Filament\Blocks\TitleModalBlock::make(),
-            \App\Filament\Blocks\CardPersonBlock::make(),
-            \App\Filament\Blocks\CardPerson2Block::make(),
+            \App\Filament\Blocks\BaseRichTextBlock::make(),
+            \App\Filament\Blocks\BaseCtaBlock::make(),
+            \App\Filament\Blocks\BaseCardsBlock::make(),
+            \App\Filament\Blocks\BaseQuoteBlock::make(),
+            \App\Filament\Blocks\BaseEmbedBlock::make(),
         ];    
 
         $defaultTemplate = [

@@ -54,8 +54,8 @@ export default {
         }
       },
       fontFamily: {
-        sans: ['Futura Std', 'sans-serif'],
-        pt: ['Futura PT', 'sans-serif'],
+        sans: ['Manrope', 'sans-serif'],
+        pt: ['Manrope', 'sans-serif'],
         poppins: ['Poppins', 'sans-serif'],
       },
       fontSize: {

@@ -6,6 +6,7 @@ use App\Filament\Resources\ConfigurationResource\Pages;
 use App\Filament\Resources\ConfigurationResource\RelationManagers;
 use App\Models\Configuration;
 use App\Filament\Traits\FormShortcuts;
+use Filament\Actions;
 use Filament\Forms;
 use Filament\Schemas\Schema;
 use Filament\Resources\Resource;
@@ -15,12 +16,12 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Filament\Forms\Components\ToggleButtons;
 use Filament\Forms\Components\TextInput;
-use Filament\Forms\Components\Group;
-use Filament\Forms\Components\Section;
+use Filament\Schemas\Components\Group;
+use Filament\Schemas\Components\Section;
 use Filament\Tables\Columns\TextColumn;
-use Filament\Forms\Get;
-use Filament\Forms\Set;
+use Filament\Schemas\Components\Utilities\Get;
 use Illuminate\Support\Facades\Auth;
+use App\Filament\Forms\Components\RoutePicker;
 
 class ConfigurationResource extends Resource
 {
@@ -83,11 +84,9 @@ class ConfigurationResource extends Resource
 
                             // URL/Enlace
                             Group::make([
-                                static::RoutePicker(
-                                    'value.route',
-                                    'URL/Enlace',
-                                    required: true
-                                )
+                                RoutePicker::make('value.route')
+                                    ->pickerLabel('URL/Enlace')
+                                    ->required()
                             ])
                                 ->visible(fn (Get $get): bool => $get('type') === 'url'),
 
@@ -144,12 +143,12 @@ class ConfigurationResource extends Resource
                     ->options(Configuration::getTypes()),
             ])
             ->actions([
-                Tables\Actions\EditAction::make(),
-                Tables\Actions\DeleteAction::make(),
+                Actions\EditAction::make(),
+                Actions\DeleteAction::make(),
             ])
             ->bulkActions([
-                Tables\Actions\BulkActionGroup::make([
-                    Tables\Actions\DeleteBulkAction::make(),
+                Actions\BulkActionGroup::make([
+                    Actions\DeleteBulkAction::make(),
                 ]),
             ])
             ->defaultSort('key');

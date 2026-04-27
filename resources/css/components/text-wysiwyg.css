@@ -14,7 +14,7 @@
 
     h2 {
         @apply font-heavy text-pretty leading-tight text-3xl mb-4 !important;
-        color: #f32735 !important;
+        color: var(--color-primary) !important;
         font-weight: bold !important;
     }
 
@@ -27,7 +27,7 @@
 
         strong {
             font-weight: bold !important;
-            color: #5C0F8B !important;
+            color: var(--color-secondary) !important;
         }
     }
 
@@ -99,7 +99,7 @@
     }
 
     mark {
-        background-color: #F32735;
+        background-color: var(--color-primary);
         color: white;
     }
     .tiptap-block-title {
@@ -146,7 +146,7 @@
 @layer components {
 
     .font-sans {
-        font-family: "Futura Std", sans-serif !important;
+        font-family: 'Manrope', sans-serif !important;
     }
 
     .font-poppins {
@@ -154,10 +154,10 @@
     }
 
     .text-primary {
-        color: #f32735;
+        color: var(--color-primary);
     }
 
     .text-secondary {
-        color: #5C0F8B;
+        color: var(--color-secondary);
     }
 }

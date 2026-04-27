@@ -1,6 +1,6 @@
 {{-- Device Selector Component --}}
-<div class="flex justify-center items-center gap-4">
-    <div class="flex gap-2">
+<div class="fi-visual-editor__devices">
+    <div class="fi-visual-editor__device-actions">
         <x-filament::icon-button 
             color="gray" 
             icon="heroicon-o-device-phone-mobile"

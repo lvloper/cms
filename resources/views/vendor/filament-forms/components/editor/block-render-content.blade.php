@@ -32,10 +32,10 @@ if ($stylesMd) {
 }
 @endphp
 
-<div id="b{{$uid}}" class="block block-preview relative {{ $allClasses }}">
+<div id="b{{$uid}}" class="block block-preview {{ $allClasses }}" style="display: block; position: relative;">
     @if ($hidden)
-    <div class="block-hidden">
-        <span class="block-hidden-text">{{ __('Este bloque se encuentra oculto') }}</span>
+    <div class="fi-visual-editor__hidden-block">
+        <span>{{ __('Este bloque se encuentra oculto') }}</span>
     </div>
     @endif
     

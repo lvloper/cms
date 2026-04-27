@@ -23,10 +23,6 @@
             @endforeach
         </div>
 
-        <div class="my-12">
-            <x-common.banner location="Novedades" />
-        </div>
-
         <div class="grid grid-cols-1 gap-6 items-start md:grid-cols-2 lg:grid-cols-3" x-data="{ 
             init() {
                 Livewire.on('postsLoaded', () => {

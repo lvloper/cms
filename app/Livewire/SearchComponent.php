@@ -231,6 +231,12 @@ class SearchComponent extends Component
 
     private function cleanText($text)
     {
+        if (is_array($text)) {
+            $text = $this->extractPlainTextFromArray($text);
+        }
+
+        $text = (string) ($text ?? '');
+
         // Remover contenido entre llaves
         $text = preg_replace('/\{[^}]*\}/', '', $text);
         // Eliminar todas las etiquetas HTML
@@ -242,6 +248,23 @@ class SearchComponent extends Component
         // Eliminar espacios múltiples
         $text = preg_replace('/\s+/', ' ', $text);
         return trim($text);
+    }
+
+    private function extractPlainTextFromArray(array $value): string
+    {
+        $text = '';
+
+        array_walk_recursive($value, function ($item, $key) use (&$text) {
+            if ($key === 'text' && is_scalar($item)) {
+                $text .= ' ' . $item;
+            }
+        });
+
+        if ($text !== '') {
+            return $text;
+        }
+
+        return json_encode($value, JSON_UNESCAPED_UNICODE) ?: '';
     }
 
     private function extractTextFromBlock($textBlock)

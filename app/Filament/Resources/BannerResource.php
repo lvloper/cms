@@ -5,17 +5,19 @@ namespace App\Filament\Resources;
 use App\Filament\Resources\BannerResource\Pages;
 use App\Filament\Resources\BannerResource\RelationManagers;
 use App\Models\Banner;
+use Filament\Actions;
 use Filament\Forms;
+use Filament\Schemas\Components\Tabs;
 use Filament\Schemas\Schema;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;;
-use App\Filament\Traits\FormShortcuts;
 use App\Enums\BannerLocation;
 use App\Enums\Status;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Columns\ImageColumn;
-use Filament\Forms\Get;
+use Filament\Schemas\Components\Utilities\Get;
+use App\Filament\Forms\Components\RoutePicker;
 
 
 class BannerResource extends Resource
@@ -45,9 +47,9 @@ class BannerResource extends Resource
                     ->columnSpanFull()
                     ->hiddenLabel(),
 
-                Forms\Components\Tabs::make('image_desktop_mobile')
+                Tabs::make('image_desktop_mobile')
                     ->tabs([
-                        Forms\Components\Tabs\Tab::make('Escritorio')
+                        Tabs\Tab::make('Escritorio')
                             ->schema([
                                 Forms\Components\FileUpload::make('image')
                                     ->label('Imagen')
@@ -67,7 +69,7 @@ class BannerResource extends Resource
                                     ->visibility('public')
                             ])
                             ->icon('heroicon-o-computer-desktop'),
-                        Forms\Components\Tabs\Tab::make('Mobile')
+                        Tabs\Tab::make('Mobile')
                             ->schema([
                                 Forms\Components\FileUpload::make('image_mobile')
                                     ->label('Imagen')
@@ -93,10 +95,8 @@ class BannerResource extends Resource
                     ->required(),
 
 
-                FormShortcuts::RoutePicker(
-                    name: 'route',
-                    required: true
-                )
+                RoutePicker::make('route')
+                ->required()
                 ->label('Enlace de destino')
                 ->columnSpanFull(),
 
@@ -122,11 +122,11 @@ class BannerResource extends Resource
                 //
             ])
             ->actions([
-                Tables\Actions\EditAction::make(),
+                Actions\EditAction::make(),
             ])
             ->bulkActions([
-                Tables\Actions\BulkActionGroup::make([
-                    Tables\Actions\DeleteBulkAction::make(),
+                Actions\BulkActionGroup::make([
+                    Actions\DeleteBulkAction::make(),
                 ]),
             ]);
     }

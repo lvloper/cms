@@ -2,7 +2,7 @@
 
 namespace App\Filament\TipTapActions;
 
-use Filament\Forms\Components\Actions\Action;
+use Filament\Actions\Action;
 
 class DisabledEditMediaAction extends Action
 {
