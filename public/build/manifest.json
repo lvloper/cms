@@ -32,44 +32,26 @@
     "src": "public/fonts/FuturaStd/FuturaStd-Medium.woff2"
   },
   "resources/css/app.css": {
-    "file": "assets/app-C5XQUGxb.css",
-    "name": "app",
-    "names": [
-      "app.css"
-    ],
+    "file": "assets/app-Dl4r6f7G.css",
     "src": "resources/css/app.css",
-    "isEntry": true,
-    "assets": [
-      "assets/FuturaStd-Medium-CTtvQZIS.woff2",
-      "assets/FuturaStd-Medium-Bb0X0zKW.woff",
-      "assets/FuturaStd-Heavy-CWd-UHkw.woff2",
-      "assets/FuturaStd-Heavy-g_eb-p_u.woff",
-      "assets/FuturaStd-Light-CKN9E_wg.woff2",
-      "assets/FuturaStd-Light-DPdgeAzF.woff",
-      "assets/FuturaStd-Bold-Dkhs5Jom.woff2",
-      "assets/FuturaStd-Bold-cpCxj6tM.woff"
-    ]
+    "isEntry": true
   },
   "resources/css/filament/admin/theme.css": {
-    "file": "assets/theme-H28UYsMs.css",
-    "name": "theme",
-    "names": [
-      "theme.css"
-    ],
+    "file": "assets/theme-CXixEJzb.css",
     "src": "resources/css/filament/admin/theme.css",
     "isEntry": true
   },
   "resources/js/app.js": {
-    "file": "assets/app-B_ddubmQ.js",
+    "file": "assets/app-pwfPT6_p.js",
     "name": "app",
     "src": "resources/js/app.js",
     "isEntry": true,
     "css": [
-      "assets/app-CSvobdiw.css"
+      "assets/app-BV36PEYz.css"
     ]
   },
   "resources/js/hot-reload.js": {
-    "file": "assets/hot-reload-m--vgylm.js",
+    "file": "assets/hot-reload-taXXq4rK.js",
     "name": "hot-reload",
     "src": "resources/js/hot-reload.js",
     "isEntry": true

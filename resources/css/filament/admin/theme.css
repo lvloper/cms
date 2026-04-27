@@ -1,11 +1,11 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
 @import '/vendor/filament/filament/dist/theme.css';
 
 @import "/resources/css/futura.css";
 @import '/resources/css/components/text-wysiwyg.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 .tiptap-prosemirror-wrapper {
     background-color: white !important;
@@ -69,6 +69,49 @@
 .fi-topbar nav,
 .fi-sidebar-header {
     background-color: black !important;
+}
+
+/* Filament 5 icons can render at the SVG viewport size if the custom theme
+   drops their base sizing rules during compilation. */
+.fi-icon {
+    width: calc(var(--spacing) * 5);
+    height: calc(var(--spacing) * 5);
+}
+
+.fi-icon.fi-size-xs {
+    width: calc(var(--spacing) * 3);
+    height: calc(var(--spacing) * 3);
+}
+
+.fi-icon.fi-size-sm {
+    width: calc(var(--spacing) * 4);
+    height: calc(var(--spacing) * 4);
+}
+
+.fi-icon.fi-size-md {
+    width: calc(var(--spacing) * 5);
+    height: calc(var(--spacing) * 5);
+}
+
+.fi-icon.fi-size-lg {
+    width: calc(var(--spacing) * 6);
+    height: calc(var(--spacing) * 6);
+}
+
+.fi-icon.fi-size-xl {
+    width: calc(var(--spacing) * 7);
+    height: calc(var(--spacing) * 7);
+}
+
+.fi-icon.fi-size-2xl {
+    width: calc(var(--spacing) * 8);
+    height: calc(var(--spacing) * 8);
+}
+
+.fi-logo svg,
+.fi-logo img {
+    height: 1.625rem;
+    width: auto;
 }
 
 
