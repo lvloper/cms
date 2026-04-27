@@ -2,23 +2,20 @@
 
 namespace App\Models;
 
-use App\Models\Traits\HasRoute;
 use App\Models\Traits\HasPublishedDate;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\MorphOne;
-use Illuminate\Database\Eloquent\Relations\HasOne;
-use Spatie\Activitylog\Traits\LogsActivity;
-use Spatie\Activitylog\LogOptions;
-use Spatie\Tags\HasTags;
-use Spatie\Tags\Tag;
+use App\Models\Traits\HasRoute;
 use App\Models\Traits\HasThumb;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Str;
+use Spatie\Tags\HasTags;
+use Spatie\Tags\Tag;
 
 class Blog extends Model
 {
-    use HasFactory, HasRoute, LogsActivity, HasPublishedDate, HasTags, HasThumb;
+    use HasFactory, HasPublishedDate, HasRoute, HasTags, HasThumb;
 
     public function getDefaultRouteParentId(): ?int
     {
@@ -31,7 +28,6 @@ class Blog extends Model
 
     public static bool $editDate = true;
 
-   
     protected $fillable = ['name', 'description', 'content', 'image', 'published_at'];
 
     protected $casts = [
@@ -49,7 +45,7 @@ class Blog extends Model
         if (empty($value) || $value === null) {
             return null;
         }
-        
+
         // If it's already a string (JSON), decode it
         if (is_string($value)) {
             $decoded = json_decode($value, true);
@@ -57,7 +53,7 @@ class Blog extends Model
                 return $decoded;
             }
         }
-        
+
         return $value;
     }
 
@@ -69,7 +65,7 @@ class Blog extends Model
         if (empty($value) || $value === null) {
             return null;
         }
-        
+
         // If it's already a string (JSON), decode it
         if (is_string($value)) {
             $decoded = json_decode($value, true);
@@ -77,7 +73,7 @@ class Blog extends Model
                 return $decoded;
             }
         }
-        
+
         return $value;
     }
 
@@ -101,7 +97,7 @@ class Blog extends Model
 
         static::creating(function ($blog) {
             Cache::forget('highlight_tags');
-            
+
         });
 
         static::deleting(function ($blog) {
@@ -113,11 +109,12 @@ class Blog extends Model
         });
 
     }
- 
 
     public function isOldBlog()
     {
-        if ($this->published_at > '2025-01-01') return false; 
+        if ($this->published_at > '2025-01-01') {
+            return false;
+        }
 
         return $this->getOldBlog() !== null;
     }
@@ -129,10 +126,10 @@ class Blog extends Model
 
     public function getShortDescriptionAttribute()
     {
-        return \Illuminate\Support\Str::limit(strip_tags(tiptap_converter()->asHTML($this->description)), 250);
+        return Str::limit(strip_tags(tiptap_converter()->asHTML($this->description)), 250);
     }
 
-    public function next() : ?Blog
+    public function next(): ?Blog
     {
         return Blog::where('published_at', '>', $this->published_at)->orderBy('published_at', 'asc')->isPublished()->first();
     }
@@ -142,24 +139,18 @@ class Blog extends Model
         return Blog::where('published_at', '<', $this->published_at)->orderBy('published_at', 'desc')->isPublished()->first();
     }
 
-    public function getActivitylogOptions(): LogOptions
-    {
-        return LogOptions::defaults()
-            ->logFillable();
-    }
-
     public static function tagRoute(Tag $tag)
     {
-        return url(config('cms-routes.blog_index') . '?tag=' . $tag->slug);
+        return url(config('cms-routes.blog_index').'?tag='.$tag->slug);
     }
 
-    public function related() : Collection
+    public function related(): Collection
     {
         $tags = $this->tags->pluck('id');
-        
-        $posts = Blog::whereHas('tags', function($query) use ($tags) {
-                $query->whereIn('tags.id', $tags);
-            })
+
+        $posts = Blog::whereHas('tags', function ($query) use ($tags) {
+            $query->whereIn('tags.id', $tags);
+        })
             ->where('id', '!=', $this->id)
             ->isPublished()
             ->orderBy('published_at', 'desc')
@@ -170,7 +161,7 @@ class Blog extends Model
             // Si no hay posts relacionados por tags o son menos de 3,
             // buscar posts del mismo año
             $year = $this->published_at->year;
-            
+
             $posts = Blog::where('id', '!=', $this->id)
                 ->whereYear('published_at', $year)
                 ->isPublished()
@@ -186,7 +177,7 @@ class Blog extends Model
                     ->orderByRaw('ABS(DATEDIFF(published_at, ?))', [$this->published_at])
                     ->limit($remaining)
                     ->get();
-                    
+
                 $posts = $posts->concat($additionalPosts);
             }
         }

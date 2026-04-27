@@ -32,7 +32,7 @@
     "src": "public/fonts/FuturaStd/FuturaStd-Medium.woff2"
   },
   "resources/css/app.css": {
-    "file": "assets/app-CpdgRrJ2.css",
+    "file": "assets/app-C5XQUGxb.css",
     "name": "app",
     "names": [
       "app.css"
@@ -51,26 +51,16 @@
     ]
   },
   "resources/css/filament/admin/theme.css": {
-    "file": "assets/theme-CQacmHcz.css",
+    "file": "assets/theme-H28UYsMs.css",
     "name": "theme",
     "names": [
       "theme.css"
     ],
     "src": "resources/css/filament/admin/theme.css",
-    "isEntry": true,
-    "assets": [
-      "assets/FuturaStd-Medium-CTtvQZIS.woff2",
-      "assets/FuturaStd-Medium-Bb0X0zKW.woff",
-      "assets/FuturaStd-Heavy-CWd-UHkw.woff2",
-      "assets/FuturaStd-Heavy-g_eb-p_u.woff",
-      "assets/FuturaStd-Light-CKN9E_wg.woff2",
-      "assets/FuturaStd-Light-DPdgeAzF.woff",
-      "assets/FuturaStd-Bold-Dkhs5Jom.woff2",
-      "assets/FuturaStd-Bold-cpCxj6tM.woff"
-    ]
+    "isEntry": true
   },
   "resources/js/app.js": {
-    "file": "assets/app-BiPZdQ4-.js",
+    "file": "assets/app-B_ddubmQ.js",
     "name": "app",
     "src": "resources/js/app.js",
     "isEntry": true,
@@ -82,12 +72,6 @@
     "file": "assets/hot-reload-m--vgylm.js",
     "name": "hot-reload",
     "src": "resources/js/hot-reload.js",
-    "isEntry": true
-  },
-  "resources/js/tiptap/extensions.js": {
-    "file": "assets/extensions-B19Mv8FN.js",
-    "name": "extensions",
-    "src": "resources/js/tiptap/extensions.js",
     "isEntry": true
   }
 }

@@ -1,13 +1,9 @@
-import preset from './vendor/filament/support/tailwind.config.preset'
-
 export default {
-  presets: [preset],
     content: [
         './app/Filament/**/*.php',
         './app/Livewire/**/*.php',
         './resources/views/**/*.blade.php',
         './vendor/filament/**/*.blade.php',
-      './vendor/saade/filament-adjacency-list/resources/views/**/*.blade.php',
     ],
   safelist: [
     'mb-0',
@@ -104,4 +100,3 @@ export default {
   },
   plugins: [],
 }
-

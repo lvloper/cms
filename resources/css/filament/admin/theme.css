@@ -1,4 +1,8 @@
-@import '/vendor/filament/filament/resources/css/theme.css';
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import '/vendor/filament/filament/dist/theme.css';
 
 @import "/resources/css/futura.css";
 @import '/resources/css/components/text-wysiwyg.css';
@@ -10,11 +14,6 @@
         color: black !important;
 
     }
-}
-
-/* Apply text-wysiwyg styles to TipTap editor */
-.tiptap-prosemirror-wrapper .ProseMirror {
-    @apply text-wysiwyg;
 }
 
 @config 'tailwind.config.js';
