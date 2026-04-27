@@ -7,7 +7,7 @@ use App\Filament\Resources\ConfigurationResource\RelationManagers;
 use App\Models\Configuration;
 use App\Filament\Traits\FormShortcuts;
 use Filament\Forms;
-use Filament\Forms\Form;
+use Filament\Schemas\Schema;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
@@ -28,7 +28,7 @@ class ConfigurationResource extends Resource
     
     protected static ?string $model = Configuration::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-cog-6-tooth';
+    protected static string|\BackedEnum|null $navigationIcon = 'heroicon-o-cog-6-tooth';
     
     protected static ?string $navigationLabel = 'Configuraciones';
     
@@ -36,11 +36,11 @@ class ConfigurationResource extends Resource
     
     protected static ?string $pluralModelLabel = 'Configuraciones';
     
-    protected static ?string $navigationGroup = 'Configuración';
+    protected static string|\UnitEnum|null $navigationGroup = 'Configuración';
 
-    public static function form(Form $form): Form
+    public static function form(Schema $schema): Schema
     {
-        return $form
+        return $schema
             ->schema([
                 Section::make('Información básica')
                     ->hidden(fn (Get $get, $record) => $record !== null)

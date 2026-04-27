@@ -13,7 +13,7 @@ class PageResource extends ResourceBase
 
     protected static ?string $modelLabel = 'Página';
 
-    protected static ?string $navigationIcon = 'heroicon-o-square-2-stack';
+    protected static string|\BackedEnum|null $navigationIcon = 'heroicon-o-square-2-stack';
 
     public static function getRelations(): array
     {

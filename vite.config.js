@@ -10,7 +10,6 @@ export default defineConfig({
             input: ['resources/css/app.css',
                     'resources/js/app.js',
                     'resources/js/hot-reload.js',
-                    'resources/js/tiptap/extensions.js',
                     `resources/css/filament/admin/theme.css`],
             refresh: [
                 'resources/views/**',

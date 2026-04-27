@@ -4,7 +4,7 @@ namespace App\Filament\Blocks;
 
 use App\Filament\Traits\BlockComposer;
 use Filament\Forms\Components as Form;
-use Filament\Forms\Form as FormsForm;
+use Filament\Schemas\Schema as FormsForm;
 use App\Filament\Traits\FormShortcuts;
 
 class CarrouselBlock

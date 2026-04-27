@@ -5,7 +5,7 @@ namespace App\Filament\Resources;
 use App\Filament\Resources\RedirectionResource\Pages;
 use App\Models\Redirection;
 use Filament\Resources\Resource;
-use Filament\Forms\Form;
+use Filament\Schemas\Schema;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Textarea;
@@ -35,13 +35,13 @@ class RedirectionResource extends Resource
     
     protected static ?string $pluralModelLabel = 'Redirecciones';
 
-    protected static ?string $navigationIcon = 'heroicon-o-arrow-right-circle';
+    protected static string|\BackedEnum|null $navigationIcon = 'heroicon-o-arrow-right-circle';
     
-    protected static ?string $navigationGroup = 'Configuración';
+    protected static string|\UnitEnum|null $navigationGroup = 'Configuración';
 
-    public static function form(Form $form): Form
+    public static function form(Schema $schema): Schema
     {
-        return $form
+        return $schema
             ->schema([
                 Section::make('Configuración de Redirección')
                     ->description('Configure las URLs de origen y destino para la redirección')

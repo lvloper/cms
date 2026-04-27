@@ -59,31 +59,16 @@ trait FormShortcuts
         name: 'icon'
     )
     */
-    public static function IconPicker($name = 'icon'): \Guava\FilamentIconPicker\Forms\IconPicker
+    public static function IconPicker($name = 'icon'): \Guava\IconPicker\Forms\Components\IconPicker
     {
-        return \Guava\FilamentIconPicker\Forms\IconPicker::make($name)
-            ->sets(['lucide'])
-            // ->helperText(new HtmlString('Buscar iconos de <a href="https://lucide.dev/icons/" target="_blank">lucide.dev</a>'))
-            ->columns([
-                'default' => 1,
-                'lg' => 3,
-                '2xl' => 5,
-            ])
-            ->preload();
+        return \Guava\IconPicker\Forms\Components\IconPicker::make($name)
+            ->sets(['lucide']);
     }
 
-    public static function IconSocial($name): \Guava\FilamentIconPicker\Forms\IconPicker
+    public static function IconSocial($name): \Guava\IconPicker\Forms\Components\IconPicker
     {
-        return \Guava\FilamentIconPicker\Forms\IconPicker::make($name)
-            ->allowedIcons(['fab-facebook', 'fab-twitter', 'fab-instagram', 'fab-linkedin', 'fab-youtube', 'fab-whatsapp', 'fab-tiktok', 'fas-link', 'fas-envelope'])
-            ->sets(['fontawesome-brands', 'fontawesome-solid'])
-            ->columns([
-                'default' => 1,
-                'lg' => 3,
-                '2xl' => 5,
-            ])
-            ->cacheable(false)
-            ->preload();
+        return \Guava\IconPicker\Forms\Components\IconPicker::make($name)
+            ->sets(['fontawesome-brands', 'fontawesome-solid']);
     }
 
    

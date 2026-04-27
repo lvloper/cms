@@ -6,7 +6,7 @@ use App\Filament\Traits\BlockComposer;
 use Filament\Forms\Components as Form;
 use App\Filament\Traits\FormShortcuts;
 use Filament\Forms\Components\ToggleButtons;
-use Filament\Forms\Form as FormsForm;
+use Filament\Schemas\Schema as FormsForm;
 
 class AboutBlock
 {

@@ -21,8 +21,6 @@ use Joaopaulolndev\FilamentEditProfile\FilamentEditProfilePlugin;
 use Filament\Navigation\MenuItem;
 use Joaopaulolndev\FilamentEditProfile\Pages\EditProfilePage;
 
-use Illuminate\Support\Facades\Blade;
-
 use Illuminate\Support\HtmlString;
 
 class AdminPanelProvider extends PanelProvider
@@ -85,7 +83,6 @@ class AdminPanelProvider extends PanelProvider
           //   ->slug('logs')
         ]
       )
-      ->renderHook('panels::head.end', fn (): string => Blade::render("@vite('resources/js/tiptap/extensions.js')"))
       ->userMenuItems([
         'profile' => MenuItem::make()
           ->label(fn() => auth()->user()->name)

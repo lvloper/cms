@@ -6,7 +6,7 @@ use Filament\Widgets\Widget;
 
 class BySocies extends Widget
 {
-    protected static string $view = 'filament.admin.widgets.by-socies';
+    protected string $view = 'filament.admin.widgets.by-socies';
 
     public static function getSort(): int
     {

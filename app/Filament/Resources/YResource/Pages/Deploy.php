@@ -9,5 +9,5 @@ class Deploy extends Page
 {
     protected static string $resource = YResource::class;
 
-    protected static string $view = 'filament.resources.y-resource.pages.deploy';
+    protected string $view = 'filament.resources.y-resource.pages.deploy';
 }

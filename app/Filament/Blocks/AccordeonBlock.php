@@ -5,7 +5,7 @@ namespace App\Filament\Blocks;
 use App\Filament\Traits\BlockComposer;
 use Filament\Forms\Components as Form;
 use App\Filament\Traits\FormShortcuts;
-use Filament\Forms\Form as FormsForm;
+use Filament\Schemas\Schema as FormsForm;
 
 class AccordeonBlock
 {

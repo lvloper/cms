@@ -9,7 +9,7 @@ use App\Filament\Traits\HandlesExternalImages;
 class EditBase extends EditRecord
 {
     use HandlesExternalImages;
-    protected static string $view = 'filament.admin.pages.edit-page';
+    protected string $view = 'filament.admin.pages.edit-page';
 
     public function getTitle(): string
     {

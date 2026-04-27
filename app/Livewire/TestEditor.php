@@ -5,7 +5,8 @@ namespace App\Livewire;
 use Livewire\Component;
 use Filament\Forms\Concerns\InteractsWithForms;
 use Filament\Forms\Contracts\HasForms;
-use Filament\Forms\Form;
+use Filament\Forms\Components\RichEditor;
+use Filament\Schemas\Schema;
 use App\Filament\Traits\FormShortcuts;
 
 class TestEditor extends Component implements HasForms
@@ -20,16 +21,12 @@ class TestEditor extends Component implements HasForms
         $this->form->fill();
     }
 
-    public function form(Form $form): Form
+    public function form(Schema $schema): Schema
     {
-        return $form
+        return $schema
             ->schema([
-                \FilamentTiptapEditor\TiptapEditor::make('content')
+                RichEditor::make('content')
                     ->label('Editor de Prueba')
-                    ->profile('default')
-                    ->tools([]) // Force empty tools to avoid null issues
-                    ->bubbleMenuTools([])
-                    ->floatingMenuTools([])
                     ->helperText('Pega contenido de Google Docs o Word aquí para probar la limpieza de formato'),
             ])
             ->statePath('data');

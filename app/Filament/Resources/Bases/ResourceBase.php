@@ -8,7 +8,7 @@ use App\Models\Page;
 use Filament\Tables;
 use Filament\Tables\Table;
 use Filament\Forms\Components\Tabs;
-use Filament\Forms\Form;
+use Filament\Schemas\Schema;
 use App\Filament\Templates\DefaultTemplate;
 use App\Filament\Templates\ModalTemplate;
 
@@ -21,32 +21,34 @@ abstract class ResourceBase extends Resource
     use HasRoute;
 
 
-    protected static function mainTab(Form $form): array
+    protected static function mainTab(Schema $schema): array
     {
-        if ($form->model instanceof \Illuminate\Database\Eloquent\Model && $form->model->route && $form->model->route->layout == 'modal') {
+        $record = $schema->getRecord();
+
+        if ($record instanceof \Illuminate\Database\Eloquent\Model && $record->route && $record->route->layout == 'modal') {
             return [
-                ...ModalTemplate::schema($form)
+                ...ModalTemplate::schema($schema)
             ];
         }
 
         return [
-            ...DefaultTemplate::schema($form)
+            ...DefaultTemplate::schema($schema)
         ];
     }
 
-    public static function form(Form $form): Form
+    public static function form(Schema $schema): Schema
     {
-        return $form
+        return $schema
             ->schema([
                 Tabs::make('pageTabs')
                     ->tabs([
                         Tabs\Tab::make('Contenido')
                             ->icon('heroicon-o-document-text')
-                            ->schema(static::mainTab($form)),
+                            ->schema(static::mainTab($schema)),
                         Tabs\Tab::make(__('Configuración de página'))
                             ->icon('heroicon-o-cog')
                             ->schema([
-                                ...HasRoute::formRoute($form),
+                                ...HasRoute::formRoute($schema),
                             ]),
                     ])
                     ->contained(false)

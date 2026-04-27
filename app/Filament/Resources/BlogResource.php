@@ -7,7 +7,7 @@ use App\Models\Blog;
 use App\Filament\Resources\Bases\ResourceBase;
 use Filament\Forms\Components\Builder;
 use Filament\Forms\Components\Builder\Block;
-use Filament\Forms\Form;
+use Filament\Schemas\Schema;
 
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\SpatieTagsInput;
@@ -24,9 +24,9 @@ class BlogResource extends ResourceBase
 
     protected static ?string $modelLabel = 'Novedades';
 
-    protected static ?string $navigationIcon = 'heroicon-o-newspaper';
+    protected static string|\BackedEnum|null $navigationIcon = 'heroicon-o-newspaper';
 
-    protected static function mainTab(Form $form): array
+    protected static function mainTab(Schema $schema): array
     {
         return [
 
