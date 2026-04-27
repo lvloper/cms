@@ -8,8 +8,6 @@ use Filament\Forms\Components\FileUpload;
 use Illuminate\Support\HtmlString;
 
 
-use FilamentTiptapEditor\TiptapEditor;
-use FilamentTiptapEditor\Enums\TiptapOutput;
 use Filament\Forms\Components\Textarea;
 
 
@@ -270,7 +268,6 @@ trait FormShortcuts
     ): FileUpload | \Filament\Forms\Components\Tabs {
         $image = FileUpload::make($name)
             ->label($label)
-            ->optimize('webp')
             ->image()
             ->required($required)
             ->acceptedFileTypes(['image/jpeg', 'image/jpg', 'image/png', 'image/webp', 'image/gif'])
@@ -309,8 +306,7 @@ trait FormShortcuts
                         ->schema([
                             FileUpload::make($name . '_mobile')
                                 ->label($label)
-                                ->optimize('webp')
-                                ->image()
+                                                    ->image()
                                 ->imageEditor()
                                 ->imageEditorMode(2)
                                 ->preserveFilenames()
@@ -338,7 +334,6 @@ trait FormShortcuts
     {
         return  FileUpload::make($name)
             ->label($label)
-            ->optimize('webp')
             ->image()
             ->imageEditor()
             ->imageEditorMode(2)
@@ -356,15 +351,11 @@ trait FormShortcuts
             ->visibility('public');
     }
 
-    public static function TipTap($name, $label, $profile = 'minimal', $required = false)
+    public static function TipTap($name, $label, $profile = 'minimal', $required = false): RichEditor
     {
-        return TiptapEditor::make($name)
+        return RichEditor::make($name)
             ->label($label)
-            ->profile($profile)
-            ->maxContentWidth('5xl')
-            ->extraInputAttributes(['class' => 'text-wysiwyg'])
-            ->disableFloatingMenus($profile == 'minimal' ? true : false)
-            // ->floatingMenuTools(['block'])
+            ->toolbarButtons(config('admin.richEditor.' . $profile, config('admin.richEditor.basic')))
             ->required($required);
     }
 

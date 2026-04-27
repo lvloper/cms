@@ -4,7 +4,7 @@ namespace App\Filament\Blocks;
 
 use App\Filament\Traits\BlockComposer;
 use App\Filament\Traits\FormShortcuts;
-use Wiebenieuwenhuis\FilamentCodeEditor\Components\CodeEditor;
+use Filament\Forms\Components\Textarea;
 
 class CodeBlock
 {
@@ -18,8 +18,9 @@ class CodeBlock
         $label = 'Bloque de Código';
         
         $schema = [               
-            CodeEditor::make('code')
+            Textarea::make('code')
                 ->label('Código')
+                ->rows(12)
                 ->required()
         ];
 

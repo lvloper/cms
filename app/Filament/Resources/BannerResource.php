@@ -51,8 +51,7 @@ class BannerResource extends Resource
                             ->schema([
                                 Forms\Components\FileUpload::make('image')
                                     ->label('Imagen')
-                                    ->optimize('webp')
-                                    ->image()
+                                                            ->image()
                                     ->imageEditor()
                                     ->imageEditorMode(2)
                                     ->preserveFilenames()
@@ -72,8 +71,7 @@ class BannerResource extends Resource
                             ->schema([
                                 Forms\Components\FileUpload::make('image_mobile')
                                     ->label('Imagen')
-                                    ->optimize('webp')
-                                    ->image()
+                                                            ->image()
                                     ->imageEditor()
                                     ->imageEditorMode(2)
                                     ->preserveFilenames()
