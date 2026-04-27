@@ -26,7 +26,7 @@
         "ralphjsmit/laravel-seo": "^1.7",
         "saade/filament-adjacency-list": "^3.2.2",
         "saade/filament-laravel-log": "^3.2",
-        "wiebenieuwenhuis/filament-code-editor": "*",
+        "wiebenieuwenhuis/filament-code-editor": "^1.2.0",
         "z3d0x/filament-logger": "^0.8"
     },
     "require-dev": {
