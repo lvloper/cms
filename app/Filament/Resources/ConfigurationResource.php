@@ -6,6 +6,10 @@ use App\Filament\Forms\Components\Image;
 use App\Filament\Forms\Components\RoutePicker;
 use App\Filament\Resources\ConfigurationResource\Pages;
 use App\Models\Configuration;
+use Filament\Actions\BulkActionGroup;
+use Filament\Actions\DeleteAction;
+use Filament\Actions\DeleteBulkAction;
+use Filament\Actions\EditAction;
 use Filament\Forms;
 use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Components\TextInput;
@@ -95,7 +99,8 @@ class ConfigurationResource extends Resource
                                 ->visible(fn (Get $get): bool => $get('type') === 'image'),
                         ])
                     ])
-            ]);
+            ])
+            ->columns(1);
     }
 
     public static function table(Table $table): Table
@@ -139,12 +144,12 @@ class ConfigurationResource extends Resource
                     ->options(Configuration::getTypes()),
             ])
             ->actions([
-                Actions\EditAction::make(),
-                Actions\DeleteAction::make(),
+                EditAction::make(),
+                DeleteAction::make(),
             ])
             ->bulkActions([
-                Actions\BulkActionGroup::make([
-                    Actions\DeleteBulkAction::make(),
+                BulkActionGroup::make([
+                    DeleteBulkAction::make(),
                 ]),
             ])
             ->defaultSort('key');
