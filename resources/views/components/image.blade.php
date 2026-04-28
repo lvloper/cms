@@ -1,5 +1,5 @@
 @php
-// @var string|array $image Espera la respuesta de un FormShortcuts::image()
+// @var string|array $image Espera la respuesta de App\Filament\Forms\Components\Image
 // @var string|array $src Espera un string con la ruta de la imagen
 // @var bool $background Si es true, crea un div con la imagen de fondo en lugar de un <img>
 

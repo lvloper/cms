@@ -28,7 +28,7 @@
 
 
                     <div class="text-lg xl:text-xl md:leading-t fade-in2 description-container order-3">
-                        {!! tiptap_converter()->asHTML($blog->description) !!}
+                        {!! $blog->description !!}
                     </div>
                 </div>
             </div>
@@ -46,7 +46,7 @@
 
             <div class="grid pt-16 pb-16 container-notice main-container text-wysiwyg  mx-auto">
                 @php
-                    $contentHtml = tiptap_converter()->asHTML($blog->content);
+                    $contentHtml = $blog->content ?? '';
 
                     if ($blog->id < 812) {
                         $pattern = '/<p[^>]*>\s*La entrada .*? se publicó primero en .*?<\/p>/si';

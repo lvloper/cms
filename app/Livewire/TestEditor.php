@@ -7,12 +7,10 @@ use Filament\Forms\Concerns\InteractsWithForms;
 use Filament\Forms\Contracts\HasForms;
 use Filament\Forms\Components\RichEditor;
 use Filament\Schemas\Schema;
-use App\Filament\Traits\FormShortcuts;
 
 class TestEditor extends Component implements HasForms
 {
     use InteractsWithForms;
-    use FormShortcuts;
 
     public ?array $data = [];
 

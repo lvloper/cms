@@ -1,5 +1,9 @@
 @php
-    $descriptionHtml = is_array($description ?? null) ? tiptap_converter()->asHTML($description) : ($description ?? '');
+    $descriptionHtml = $description ?? '';
+
+    if (! is_string($descriptionHtml) && ! $descriptionHtml instanceof \Stringable) {
+        $descriptionHtml = '';
+    }
 @endphp
 
 <x-block class="py-12 md:py-20">
@@ -22,7 +26,7 @@
                     <div class="p-6">
                         <h3 class="text-xl font-bold text-gray-950">{{ $item['title'] ?? '' }}</h3>
                         @if(!empty($item['description']))
-                            <p class="mt-3 leading-relaxed text-gray-700">{{ $item['description'] }}</p>
+                            <p class="mt-3 leading-relaxed text-gray-700">{{ is_array($item['description']) ? '' : $item['description'] }}</p>
                         @endif
 
                         <x-link :attrs="$item['route'] ?? []" :hideIfNull="true" class="mt-5 inline-flex font-semibold text-primary hover:underline">

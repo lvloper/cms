@@ -2,35 +2,28 @@
 
 namespace App\Filament\Blocks;
 
-use App\Filament\Traits\BlockComposer;
-use App\Filament\Traits\FormShortcuts;
-use Filament\Forms\Components as Form;
+use App\Filament\Forms\Components\Field;
 
-class BaseRichTextBlock
+class BaseRichTextBlock extends PageBlock
 {
-    use BlockComposer;
-    use FormShortcuts;
+    protected const NAME = 'BaseRichText';
 
-    public static function compose(): array
+    protected const LABEL = 'Base: texto enriquecido';
+
+    protected static function fields(): array
     {
-        $name = 'BaseRichText';
-        $label = 'Base: texto enriquecido';
-        $schema = [
-            Form\TextInput::make('eyebrow')->label('Volanta'),
-            Form\TextInput::make('title')->label('Título'),
-            self::TipTap('content', 'Contenido', 'avanced', true),
-            Form\ToggleButtons::make('width')
-                ->label('Ancho')
-                ->options([
-                    'narrow' => 'Angosto',
-                    'container' => 'Contenedor',
-                    'wide' => 'Amplio',
-                ])
+        return [
+            Field::text('eyebrow', 'Volanta'),
+            Field::text('title', 'Título'),
+            Field::rich('content', 'Contenido', 'avanced')->required(),
+            Field::toggleButtons('width', 'Ancho', [
+                'narrow' => 'Angosto',
+                'container' => 'Contenedor',
+                'wide' => 'Amplio',
+            ])
                 ->default('container')
                 ->inline()
                 ->required(),
         ];
-
-        return compact('name', 'label', 'schema');
     }
 }

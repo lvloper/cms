@@ -9,6 +9,7 @@ use Filament\Actions;
 use Filament\Tables;
 use Filament\Tables\Table;
 use Filament\Schemas\Components\Tabs;
+use Filament\Schemas\Components\View;
 use Filament\Schemas\Schema;
 use App\Filament\Templates\DefaultTemplate;
 use App\Filament\Templates\ModalTemplate;
@@ -39,19 +40,29 @@ abstract class ResourceBase extends Resource
 
     public static function form(Schema $schema): Schema
     {
+        $tabs = [
+            Tabs\Tab::make('Contenido')
+                ->icon('heroicon-o-document-text')
+                ->schema(static::mainTab($schema)),
+            Tabs\Tab::make(__('Configuración de página'))
+                ->icon('heroicon-o-cog')
+                ->schema([
+                    ...static::formRoute($schema),
+                ]),
+        ];
+
+        if ($schema->getOperation() === 'edit') {
+            $tabs[] = Tabs\Tab::make('Historial')
+                ->icon('heroicon-o-clock')
+                ->schema([
+                    View::make('filament.admin.pages.history-tab'),
+                ]);
+        }
+
         return $schema
             ->schema([
                 Tabs::make('pageTabs')
-                    ->tabs([
-                        Tabs\Tab::make('Contenido')
-                            ->icon('heroicon-o-document-text')
-                            ->schema(static::mainTab($schema)),
-                        Tabs\Tab::make(__('Configuración de página'))
-                            ->icon('heroicon-o-cog')
-                            ->schema([
-                                ...static::formRoute($schema),
-                            ]),
-                    ])
+                    ->tabs($tabs)
                     ->contained(false)
             ])
 

@@ -1,5 +1,4 @@
 
-.tiptap.ProseMirror,
 .text-wysiwyg {
 
     p, p span, span, ol, ul li {
@@ -102,16 +101,9 @@
         background-color: var(--color-primary);
         color: white;
     }
-    .tiptap-block-title {
-        @apply font-normal text-base !important;
-        text-transform: initial !important;
-        padding-top: 5px !important;
-        padding-bottom: 0 !important;
-    }
 }
 
 @media (min-width: 768px) {
-    .tiptap.ProseMirror,
     .text-wysiwyg {
         h3 {
             font-size: 1.6rem !important;
@@ -133,7 +125,6 @@
 }
 
 @media (max-width: 640px) {
-    .tiptap.ProseMirror,
     .text-wysiwyg {
         blockquote {
             padding: 0.85rem 1rem;

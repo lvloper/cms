@@ -2,44 +2,34 @@
 
 namespace App\Filament\Blocks;
 
-use App\Filament\Forms\Components\RoutePicker;
-use App\Filament\Traits\BlockComposer;
-use App\Filament\Traits\FormShortcuts;
-use Filament\Forms\Components as Form;
+use App\Filament\Forms\Components\Field;
 
-class BaseCtaBlock
+class BaseCtaBlock extends PageBlock
 {
-    use BlockComposer;
-    use FormShortcuts;
+    protected const NAME = 'BaseCta';
 
-    public static function compose(): array
+    protected const LABEL = 'Base: llamada a la acción';
+
+    protected static function fields(): array
     {
-        $name = 'BaseCta';
-        $label = 'Base: llamada a la acción';
-        $schema = [
-            Form\TextInput::make('eyebrow')->label('Volanta'),
-            Form\TextInput::make('title')->label('Título')->required(),
-            self::Rich('description')->label('Descripción'),
-            RoutePicker::make('primary_route')
-                ->label('Botón principal')
+        return [
+            Field::text('eyebrow', 'Volanta'),
+            Field::text('title', 'Título')->required(),
+            Field::rich('description', 'Descripción'),
+            Field::route('primary_route', 'Botón principal')
                 ->buttonLabel()
                 ->allowAnchor(),
-            RoutePicker::make('secondary_route')
-                ->label('Botón secundario')
+            Field::route('secondary_route', 'Botón secundario')
                 ->buttonLabel()
                 ->allowAnchor(),
-            Form\ToggleButtons::make('variant')
-                ->label('Variante')
-                ->options([
-                    'light' => 'Clara',
-                    'dark' => 'Oscura',
-                    'accent' => 'Destacada',
-                ])
+            Field::toggleButtons('variant', 'Variante', [
+                'light' => 'Clara',
+                'dark' => 'Oscura',
+                'accent' => 'Destacada',
+            ])
                 ->default('accent')
                 ->inline()
                 ->required(),
         ];
-
-        return compact('name', 'label', 'schema');
     }
 }

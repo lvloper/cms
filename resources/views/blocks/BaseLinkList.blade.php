@@ -1,5 +1,9 @@
 @php
-    $descriptionHtml = is_array($description ?? null) ? tiptap_converter()->asHTML($description) : ($description ?? '');
+    $descriptionHtml = $description ?? '';
+
+    if (! is_string($descriptionHtml) && ! $descriptionHtml instanceof \Stringable) {
+        $descriptionHtml = '';
+    }
 @endphp
 
 <x-block class="py-12 md:py-20">

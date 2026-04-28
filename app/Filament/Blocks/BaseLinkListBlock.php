@@ -2,36 +2,27 @@
 
 namespace App\Filament\Blocks;
 
-use App\Filament\Forms\Components\RoutePicker;
-use App\Filament\Traits\BlockComposer;
-use App\Filament\Traits\FormShortcuts;
-use Filament\Forms\Components as Form;
+use App\Filament\Forms\Components\Field;
 
-class BaseLinkListBlock
+class BaseLinkListBlock extends PageBlock
 {
-    use BlockComposer;
-    use FormShortcuts;
+    protected const NAME = 'BaseLinkList';
 
-    public static function compose(): array
+    protected const LABEL = 'Base: lista de enlaces';
+
+    protected static function fields(): array
     {
-        $name = 'BaseLinkList';
-        $label = 'Base: lista de enlaces';
-        $schema = [
-            Form\TextInput::make('title')->label('Título'),
-            self::Rich('description')->label('Descripción'),
-            Form\Repeater::make('items')
-                ->label('Enlaces')
+        return [
+            Field::text('title', 'Título'),
+            Field::rich('description', 'Descripción'),
+            Field::repeater('items', 'Enlaces', [
+                Field::route('route')
+                    ->buttonLabel()
+                    ->allowAnchor(),
+                Field::textarea('description', 'Descripción')->rows(2),
+            ])
                 ->addActionLabel('Agregar enlace')
-                ->schema([
-                    RoutePicker::make('route')
-                        ->label('Enlace')
-                        ->buttonLabel()
-                        ->allowAnchor(),
-                    Form\Textarea::make('description')->label('Descripción')->rows(2),
-                ])
                 ->defaultItems(3),
         ];
-
-        return compact('name', 'label', 'schema');
     }
 }

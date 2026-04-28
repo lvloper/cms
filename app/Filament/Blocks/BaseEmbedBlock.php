@@ -2,23 +2,20 @@
 
 namespace App\Filament\Blocks;
 
-use App\Filament\Traits\BlockComposer;
-use Filament\Forms\Components as Form;
+use App\Filament\Forms\Components\Field;
 
-class BaseEmbedBlock
+class BaseEmbedBlock extends PageBlock
 {
-    use BlockComposer;
+    protected const NAME = 'BaseEmbed';
 
-    public static function compose(): array
+    protected const LABEL = 'Base: embed';
+
+    protected static function fields(): array
     {
-        $name = 'BaseEmbed';
-        $label = 'Base: embed';
-        $schema = [
-            Form\TextInput::make('title')->label('Título'),
-            Form\Textarea::make('embed')->label('Iframe o HTML embed')->rows(6)->required(),
-            Form\TextInput::make('caption')->label('Epígrafe'),
+        return [
+            Field::text('title', 'Título'),
+            Field::textarea('embed', 'Iframe o HTML embed')->rows(6)->required(),
+            Field::text('caption', 'Epígrafe'),
         ];
-
-        return compact('name', 'label', 'schema');
     }
 }

@@ -52,7 +52,6 @@ class DatabaseSeeder extends Seeder
             'view_any_redirection', 'view_redirection', 'create_redirection', 'update_redirection', 'delete_redirection', 'delete_any_redirection', 'force_delete_redirection', 'force_delete_any_redirection', 'restore_redirection', 'restore_any_redirection', 'replicate_redirection', 'reorder_redirection',
             'view_any_user', 'view_user', 'create_user', 'update_user', 'delete_user', 'delete_any_user', 'force_delete_user', 'force_delete_any_user', 'restore_user', 'restore_any_user', 'replicate_user', 'reorder_user',
             'view_role', 'view_any_role', 'create_role', 'update_role', 'delete_role',
-            'view_deploy',
         ])->unique();
 
         $permissions = $permissionNames->map(fn (string $name) => Permission::firstOrCreate([
@@ -116,8 +115,8 @@ class DatabaseSeeder extends Seeder
             $blog = Blog::updateOrCreate(
                 ['published_at' => now()->subDays(4 - $index)->startOfDay()],
                 [
-                    'description' => $this->tiptapDoc($post['description']),
-                    'content' => $this->tiptapDoc($post['description'] . ' Este contenido fue creado por el seeder para validar el flujo de crear, editar, publicar y borrar novedades desde Filament.'),
+                    'description' => '<p>'.$post['description'].'</p>',
+                    'content' => '<p>'.$post['description'].' Este contenido fue creado por el seeder para validar el flujo de crear, editar, publicar y borrar novedades desde Filament.</p>',
                     'image' => null,
                 ]
             );
@@ -316,17 +315,4 @@ class DatabaseSeeder extends Seeder
         ];
     }
 
-    private function tiptapDoc(string $text): array
-    {
-        return [
-            'type' => 'doc',
-            'content' => [[
-                'type' => 'paragraph',
-                'content' => [[
-                    'type' => 'text',
-                    'text' => $text,
-                ]],
-            ]],
-        ];
-    }
 }

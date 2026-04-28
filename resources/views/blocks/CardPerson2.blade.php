@@ -9,7 +9,7 @@
                 <div class="text-base mb-2 font-bold text-secondary font-poppins">{{ $work ?? '' }}</div>
             </div>
             <div class="leading-normal text-sm">
-                {!! tiptap_converter()->asHTML($text) !!}
+                {!! $text !!}
             </div>
             <div class="flex gap-4 text-white">
                 @foreach ($items as $item)

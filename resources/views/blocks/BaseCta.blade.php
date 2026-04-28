@@ -8,7 +8,11 @@
     $buttonClass = $variant === 'light'
         ? 'inline-flex rounded-full bg-primary px-6 py-3 font-semibold text-white transition hover:opacity-90'
         : 'inline-flex rounded-full bg-white px-6 py-3 font-semibold text-primary transition hover:opacity-90';
-    $descriptionHtml = is_array($description ?? null) ? tiptap_converter()->asHTML($description) : ($description ?? '');
+    $descriptionHtml = $description ?? '';
+
+    if (! is_string($descriptionHtml) && ! $descriptionHtml instanceof \Stringable) {
+        $descriptionHtml = '';
+    }
 @endphp
 
 <x-block class="py-12 md:py-20">

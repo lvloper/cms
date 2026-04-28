@@ -2,7 +2,6 @@
 
 namespace App\Filament\Templates;
 
-use App\Filament\TipTapBlocks\LineTitleBlock;
 use Filament\Actions\Action;
 use Filament\Forms\Components\Builder;
 

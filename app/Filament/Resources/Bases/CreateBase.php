@@ -23,14 +23,6 @@ class CreateBase extends CreateRecord
             }
         }
         
-        // Convert TipTap editor fields from arrays to JSON strings
-        $tiptapFields = ['description', 'content', 'body'];
-        foreach ($tiptapFields as $field) {
-            if (isset($data[$field]) && is_array($data[$field])) {
-                $data[$field] = json_encode($data[$field]);
-            }
-        }
-        
         $record = static::getModel()::create($data);
         
         $routeData = $data['route'] ?? [];
@@ -48,4 +40,3 @@ class CreateBase extends CreateRecord
         return $record;
     }
 }
-

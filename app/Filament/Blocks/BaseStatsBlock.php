@@ -2,34 +2,27 @@
 
 namespace App\Filament\Blocks;
 
-use App\Filament\Traits\BlockComposer;
-use App\Filament\Traits\FormShortcuts;
-use Filament\Forms\Components as Form;
+use App\Filament\Forms\Components\Field;
 
-class BaseStatsBlock
+class BaseStatsBlock extends PageBlock
 {
-    use BlockComposer;
-    use FormShortcuts;
+    protected const NAME = 'BaseStats';
 
-    public static function compose(): array
+    protected const LABEL = 'Base: métricas';
+
+    protected static function fields(): array
     {
-        $name = 'BaseStats';
-        $label = 'Base: métricas';
-        $schema = [
-            Form\TextInput::make('title')->label('Título'),
-            self::Rich('description')->label('Descripción'),
-            Form\Repeater::make('items')
-                ->label('Métricas')
+        return [
+            Field::text('title', 'Título'),
+            Field::rich('description', 'Descripción'),
+            Field::repeater('items', 'Métricas', [
+                Field::text('value', 'Número')->required(),
+                Field::text('label', 'Etiqueta')->required(),
+                Field::textarea('description', 'Descripción')->rows(2),
+            ])
                 ->addActionLabel('Agregar métrica')
-                ->schema([
-                    Form\TextInput::make('value')->label('Número')->required(),
-                    Form\TextInput::make('label')->label('Etiqueta')->required(),
-                    Form\Textarea::make('description')->label('Descripción')->rows(2),
-                ])
                 ->columns(3)
                 ->defaultItems(3),
         ];
-
-        return compact('name', 'label', 'schema');
     }
 }

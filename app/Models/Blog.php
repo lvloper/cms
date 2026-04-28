@@ -33,8 +33,8 @@ class Blog extends Model
     protected $casts = [
         'blocks' => 'collection',
         'image' => 'string',
-        'description' => 'array',
-        'content' => 'array',
+        'description' => 'string',
+        'content' => 'string',
     ];
 
     /**
@@ -44,14 +44,6 @@ class Blog extends Model
     {
         if (empty($value) || $value === null) {
             return null;
-        }
-
-        // If it's already a string (JSON), decode it
-        if (is_string($value)) {
-            $decoded = json_decode($value, true);
-            if (json_last_error() === JSON_ERROR_NONE) {
-                return $decoded;
-            }
         }
 
         return $value;
@@ -64,14 +56,6 @@ class Blog extends Model
     {
         if (empty($value) || $value === null) {
             return null;
-        }
-
-        // If it's already a string (JSON), decode it
-        if (is_string($value)) {
-            $decoded = json_decode($value, true);
-            if (json_last_error() === JSON_ERROR_NONE) {
-                return $decoded;
-            }
         }
 
         return $value;
@@ -126,7 +110,7 @@ class Blog extends Model
 
     public function getShortDescriptionAttribute()
     {
-        return Str::limit(strip_tags(tiptap_converter()->asHTML($this->description)), 250);
+        return Str::limit(strip_tags($this->description ?? ''), 250);
     }
 
     public function next(): ?Blog

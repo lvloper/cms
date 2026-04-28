@@ -5,7 +5,7 @@
         @endif
         @if ($text)
             <div class="px-0 text-wysiwyg">
-                {!! tiptap_converter()->asHTML($text) !!}
+                {!! $text !!}
             </div>
         @endif
     </div>

@@ -2,26 +2,21 @@
 
 namespace App\Filament\Resources;
 
+use App\Filament\Forms\Components\Image;
 use App\Filament\Resources\BlogResource\Pages;
-use App\Models\Blog;
 use App\Filament\Resources\Bases\ResourceBase;
-use Filament\Forms\Components\Builder;
-use Filament\Forms\Components\Builder\Block;
-use Filament\Schemas\Schema;
-
-use Filament\Forms\Components\TextInput;
+use App\Models\Blog;
+use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Components\SpatieTagsInput;
-
+use Filament\Forms\Components\TextInput;
 use Filament\Schemas\Components\Utilities\Get;
 use Filament\Schemas\Components\Utilities\Set;
-
+use Filament\Schemas\Schema;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
 
 class BlogResource extends ResourceBase
 {
-    use \App\Filament\Traits\FormShortcuts;
-
     protected static ?string $model = Blog::class;
 
     protected static ?string $modelLabel = 'Novedades';
@@ -51,7 +46,7 @@ class BlogResource extends ResourceBase
 
             \Filament\Schemas\Components\Grid::make(2)
                 ->schema([
-                    static::Image(
+                    Image::make(
                         name: 'image',
                         label: 'Imagen',
                         width: '1910',
@@ -62,23 +57,14 @@ class BlogResource extends ResourceBase
                             SpatieTagsInput::make('tags')->label('Nube de tags'),
                         ]),
                 ]),
+            RichEditor::make('description')
+                ->label('Descripción')
+                ->toolbarButtons(config('admin.richEditor.minimal', config('admin.richEditor.basic'))),
 
-
-
-
-            static::TipTap(
-                name: 'description',
-                label: 'Descripción',
-                profile: 'minimal',
-                required: false
-            ),
-
-            static::TipTap(
-                name: 'content',
-                label: 'Contenido',
-                profile: 'avanced',
-                required: true
-            ),
+            RichEditor::make('content')
+                ->label('Contenido')
+                ->toolbarButtons(config('admin.richEditor.avanced', config('admin.richEditor.basic')))
+                ->required(),
         ];
     }
 

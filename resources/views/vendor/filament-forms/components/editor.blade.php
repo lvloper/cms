@@ -533,7 +533,7 @@
                                     class="fi-visual-editor__between-add-inner">
                                     <div class="bg-white rounded-lg fi-fo-builder-block-picker-ctn dark:bg-gray-900">
                                         <x-filament-forms::builder.block-picker :action="$addBetweenAction" :after-item="$uuid"
-                                            :columns="$blockPickerColumns" :blocks="$blockPickerBlocks" :state-path="$statePath" :width="$blockPickerWidth">
+                                            :columns="$blockPickerColumns" :blocks="$blockPickerBlocks" :key="$key" :state-path="$statePath" :width="$blockPickerWidth">
                                             <x-slot name="trigger">
                                                 {{ $addBetweenAction(['afterItem' => $uuid]) }}
                                             </x-slot>
@@ -559,7 +559,7 @@
         <div class="fi-visual-editor__actions">
             @if ($isAddable && $addAction->isVisible())
                 <x-filament-forms::builder.block-picker :action="$addAction" :blocks="$blockPickerBlocks" :columns="['default' => 2, 'sm' => 1]"
-                    :state-path="$statePath" :width="$blockPickerWidth">
+                    :key="$key" :state-path="$statePath" :width="$blockPickerWidth">
                     <x-slot name="trigger">
                         {{ $addAction }}
                     </x-slot>

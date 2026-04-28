@@ -2,31 +2,26 @@
 
 namespace App\Filament\Resources;
 
+use App\Filament\Forms\Components\Image;
+use App\Filament\Forms\Components\RoutePicker;
 use App\Filament\Resources\ConfigurationResource\Pages;
-use App\Filament\Resources\ConfigurationResource\RelationManagers;
 use App\Models\Configuration;
-use App\Filament\Traits\FormShortcuts;
-use Filament\Actions;
 use Filament\Forms;
-use Filament\Schemas\Schema;
-use Filament\Resources\Resource;
-use Filament\Tables;
-use Filament\Tables\Table;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
-use Filament\Forms\Components\ToggleButtons;
+use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Components\TextInput;
+use Filament\Forms\Components\ToggleButtons;
+use Filament\Resources\Resource;
 use Filament\Schemas\Components\Group;
 use Filament\Schemas\Components\Section;
-use Filament\Tables\Columns\TextColumn;
 use Filament\Schemas\Components\Utilities\Get;
+use Filament\Schemas\Schema;
+use Filament\Tables;
+use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Table;
 use Illuminate\Support\Facades\Auth;
-use App\Filament\Forms\Components\RoutePicker;
 
 class ConfigurationResource extends Resource
 {
-    use FormShortcuts;
-    
     protected static ?string $model = Configuration::class;
 
     protected static string|\BackedEnum|null $navigationIcon = 'heroicon-o-cog-6-tooth';
@@ -77,8 +72,9 @@ class ConfigurationResource extends Resource
                                 ->required(fn (Get $get): bool => $get('type') === 'text'),
 
                             // Texto enriquecido
-                            static::Rich('value.rich_content', 'basic')
+                            RichEditor::make('value.rich_content')
                                 ->label('Contenido')
+                                ->toolbarButtons(config('admin.richEditor.basic'))
                                 ->visible(fn (Get $get): bool => $get('type') === 'rich_text')
                                 ->required(fn (Get $get): bool => $get('type') === 'rich_text'),
 
@@ -91,7 +87,7 @@ class ConfigurationResource extends Resource
                                 ->visible(fn (Get $get): bool => $get('type') === 'url'),
 
                             // Imagen
-                            static::Image(
+                            Image::make(
                                 'value.image',
                                 'Imagen',
                                 required: true

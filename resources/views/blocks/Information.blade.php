@@ -22,7 +22,7 @@ default => 'ml-0',
 
                     @endif
 
-                    {!! tiptap_converter()->asHTML($content) !!}
+                    {!! $content !!}
 
                     @if($style == 'border')
                 </div>

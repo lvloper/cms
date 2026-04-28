@@ -4,7 +4,15 @@
         'wide' => 'max-w-7xl',
         default => 'max-w-5xl',
     };
-    $contentHtml = is_array($content ?? null) ? tiptap_converter()->asHTML($content) : ($content ?? '');
+    $contentHtml = $content ?? '';
+
+    if ($contentHtml instanceof \Illuminate\Contracts\Support\Arrayable) {
+        $contentHtml = $contentHtml->toArray();
+    }
+
+    if (! is_string($contentHtml) && ! $contentHtml instanceof \Stringable) {
+        $contentHtml = '';
+    }
 @endphp
 
 <x-block class="py-12 md:py-20">
