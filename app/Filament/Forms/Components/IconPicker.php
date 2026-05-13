@@ -2,19 +2,23 @@
 
 namespace App\Filament\Forms\Components;
 
-use Guava\IconPicker\Forms\Components\IconPicker as GuavaIconPicker;
+use Wallacemartinss\FilamentIconPicker\Forms\Components\IconPickerField;
 
 class IconPicker
 {
-    public static function make(string $name = 'icon'): GuavaIconPicker
+    public static function make(string $name = 'icon'): IconPickerField
     {
-        return GuavaIconPicker::make($name)
-            ->sets(['lucide']);
+        return IconPickerField::make($name)
+            ->allowedSets(['lucide'])
+            ->modalSize('5xl')
+            ->searchable();
     }
 
-    public static function social(string $name = 'icon'): GuavaIconPicker
+    public static function social(string $name = 'icon'): IconPickerField
     {
-        return GuavaIconPicker::make($name)
-            ->sets(['fontawesome-brands', 'fontawesome-solid']);
+        return IconPickerField::make($name)
+            ->allowedSets(['fontawesome-brands', 'fontawesome-solid'])
+            ->modalSize('5xl')
+            ->searchable();
     }
 }

@@ -4,6 +4,7 @@ export default {
         './app/Livewire/**/*.php',
         './resources/views/**/*.blade.php',
         './vendor/filament/**/*.blade.php',
+        './vendor/wallacemartinss/filament-icon-picker/resources/views/**/*.blade.php',
     ],
   safelist: [
     'mb-0',
