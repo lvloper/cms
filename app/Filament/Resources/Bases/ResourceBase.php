@@ -120,10 +120,13 @@ abstract class ResourceBase extends Resource
                     ->icon('heroicon-o-eye')
                     ->color('primary')
                     ->openUrlInNewTab(),
+                Actions\DeleteAction::make()
+                    ->hidden(fn($record) => method_exists($record, 'isProtected') && $record->isProtected()),
             ])
             ->bulkActions([
                 Actions\BulkActionGroup::make([
-                    Actions\DeleteBulkAction::make(),
+                    Actions\DeleteBulkAction::make()
+                        ->hidden(fn($records) => $records && $records->contains(fn($r) => method_exists($r, 'isProtected') && $r->isProtected())),
                 ]),
             ]);
     }

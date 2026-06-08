@@ -39,9 +39,22 @@ class Field
         string $label = 'Imagen',
         string $width = '640',
         string $height = '480',
-        string $directory = 'images'
+        string $directory = 'images',
+        bool $forceRatio = false,
     ) {
-        return Image::make($name, $label, $width, $height, $directory);
+        return Image::make($name, $label, $width, $height, $directory, forceRatio: $forceRatio);
+    }
+
+    public static function video(
+        string $videoType = 'videoType',
+        string $videoId = 'videoId',
+        string $videoFile = 'videoFile',
+        string $directory = 'videos',
+        bool $required = false,
+        string $videoImage = 'videoImage',
+        string $imageDirectory = 'images/videos',
+    ): array {
+        return Video::make($videoType, $videoId, $videoFile, $directory, $required, $videoImage, $imageDirectory);
     }
 
     public static function route(string $name, string $label = 'Enlace'): RoutePicker

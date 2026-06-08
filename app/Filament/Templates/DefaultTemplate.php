@@ -11,13 +11,11 @@ class DefaultTemplate
     {
         // Copy here the blocks you want to use in the template
         $blocks = [
-            \App\Filament\Blocks\BaseRichTextBlock::make(),
-            \App\Filament\Blocks\BaseCtaBlock::make(),
-            \App\Filament\Blocks\BaseCardsBlock::make(),
-            \App\Filament\Blocks\BaseStatsBlock::make(),
-            \App\Filament\Blocks\BaseQuoteBlock::make(),
-            \App\Filament\Blocks\BaseLinkListBlock::make(),
-            \App\Filament\Blocks\BaseEmbedBlock::make(),
+            \App\Filament\Blocks\TextBlock::make(),
+            \App\Filament\Blocks\MediaBlock::make(),
+            \App\Filament\Blocks\MediaTextBlock::make(),
+            \App\Filament\Blocks\CardsBlock::make(),
+            \App\Filament\Blocks\SearchBlock::make(),
         ];
 
         // foreach ($blocks as $block) {

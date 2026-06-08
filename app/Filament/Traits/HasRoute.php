@@ -2,6 +2,7 @@
 
 namespace App\Filament\Traits;
 
+use App\Models\Configuration;
 use App\Models\Route;
 use Filament\Actions\Action;
 use Filament\Forms\Components as Component;
@@ -16,6 +17,35 @@ use App\Enums\Status;
 
 trait HasRoute
 {
+    public static function isHomePage(?Model $record): bool
+    {
+        if (! $record || ! $record->route) {
+            return false;
+        }
+
+        $homeConfig = Configuration::getValue('home_route_id');
+        $homeRouteId = $homeConfig['route']['route_id'] ?? null;
+
+        return $homeRouteId && (int) $record->route->id === (int) $homeRouteId;
+    }
+
+    public static function isErrorPage(?Model $record): bool
+    {
+        if (! $record || ! $record->route) {
+            return false;
+        }
+
+        $errorConfig = Configuration::getValue('error_404_route_id');
+        $errorRouteId = $errorConfig['route']['route_id'] ?? null;
+
+        return $errorRouteId && (int) $record->route->id === (int) $errorRouteId;
+    }
+
+    public static function isProtectedRoute(?Model $record): bool
+    {
+        return static::isHomePage($record) || static::isErrorPage($record);
+    }
+
     public static function formRoute($form): array
     {
         $modelClass = $form->getModel();
@@ -30,32 +60,14 @@ trait HasRoute
                 ->schema([
                     Component\TextInput::make('route.title')
                         ->label('Título')
-                        ->placeholder('Ingresar titulo')
-                        ->default(function (Get $get, ?Model $record) {
-                            // If editing and route.title already exists, keep it
-                            if ($record && $record->route && $record->route->title) {
-                                return $record->route->title;
-                            }
+                        ->placeholder('Ingresar titulo'),
 
-                            // If creating new or route.title is empty, try to get from resource title
-                            $resourceTitle = $get('title') ?? ($record->title ?? null);
-                            return $resourceTitle;
-                        })
-                        ->live(onBlur: true)
-                        ->afterStateUpdated(function (Get $get, Set $set, ?string $operation, ?string $old, ?string $state, ?Model $record) {
-
-                            if ($operation == 'edit' && $record->isPublished()) {
-                                return;
-                            }
-
-                            if (($get('route.slug') ?? '') !== Str::slug($old)) {
-                                return;
-                            }
-
-                            $set('route.slug', Str::slug($state));
-                        })
-                        ->required()
-                        ->maxLength(255),
+                    Component\Textarea::make('route.description')
+                        ->label('Descripción')
+                        ->placeholder('Ingresar descripción para SEO')
+                        ->maxLength(255)
+                        ->rows(2)
+                        ->helperText('Meta description para SEO. Máximo 255 caracteres.'),
 
                     Component\FileUpload::make('route.image')
                         ->label('Imagen de portada')
@@ -72,7 +84,7 @@ trait HasRoute
                         ->helperText('Sube una imagen para compartir en redes sociales. 1200 x 630 px. Tamaño máximo: 1MB.'),
 
                     Component\Select::make('route.parent_id')
-                        ->label('Madre')
+                        ->label('Superior')
                         ->options(function (Get $get) {
                             return Route::query()
                                 ->when($get('id'), function (Builder $query, $id) {
@@ -87,7 +99,8 @@ trait HasRoute
 
                     Component\TextInput::make('route.slug')
                         ->label('Url personalizada')
-                        ->helperText('Ingresa "home" para redireccionar a ' . url('/'))
+                        ->hidden(fn (?Model $record) => static::isProtectedRoute($record))
+                        ->helperText('La página principal se configura en ' . url('/admin/configurations'))
                         ->prefix(function ($get) {
                             $parentRoute = Route::find($get('route.parent_id'));
                             return $parentRoute ? url($parentRoute->getFullPath()) . '/' : url('/');
@@ -120,7 +133,9 @@ trait HasRoute
                         ->inline()
                         ->default(Status::Draft)
                         ->required()
-                        ->hiddenLabel(),
+                        ->hiddenLabel()
+                        ->hidden(fn (?Model $record) => static::isProtectedRoute($record))
+                        ->default(fn (?Model $record) => static::isProtectedRoute($record) ? Status::Published : Status::Draft),
                 ]),
 
             Section::make(__('Fecha'))

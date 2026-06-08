@@ -67,26 +67,28 @@
             </div>
 
             <div class="fi-visual-editor__reorder-body">
-                <ul
-                    class="fi-visual-editor__reorder-list"
-                    x-sortable
-                    data-sortable-animation-duration="150"
-                    x-on:end.stop="sortedIds = $event.target.sortable.toArray()"
-                >
-                    <template x-for="(item, index) in items" :key="item.id">
-                        <li
-                            class="fi-visual-editor__reorder-item"
-                            x-bind:x-sortable-item="item.id"
-                        >
-                            <span class="fi-visual-editor__reorder-handle" x-sortable-handle>
-                                <svg class="fi-visual-editor__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                                    <path fill-rule="evenodd" d="M2 4.75A.75.75 0 012.75 4h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 4.75zm0 5A.75.75 0 012.75 9h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 9.75zm0 5a.75.75 0 01.75-.75h14.5a.75.75 0 010 1.5H2.75a.75.75 0 01-.75-.75z" clip-rule="evenodd" />
-                                </svg>
-                            </span>
-                            <span class="fi-visual-editor__reorder-label" x-text="item.label"></span>
-                        </li>
-                    </template>
-                </ul>
+                <template x-if="items && items.length">
+                    <ul
+                        class="fi-visual-editor__reorder-list"
+                        x-sortable
+                        data-sortable-animation-duration="150"
+                        x-on:end.stop="sortedIds = $event.target.sortable.toArray()"
+                    >
+                        <template x-for="(item, index) in items" :key="item.id">
+                            <li
+                                class="fi-visual-editor__reorder-item"
+                                x-bind:x-sortable-item="item.id"
+                            >
+                                <span class="fi-visual-editor__reorder-handle" x-sortable-handle>
+                                    <svg class="fi-visual-editor__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                                        <path fill-rule="evenodd" d="M2 4.75A.75.75 0 012.75 4h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 4.75zm0 5A.75.75 0 012.75 9h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 9.75zm0 5a.75.75 0 01.75-.75h14.5a.75.75 0 010 1.5H2.75a.75.75 0 01-.75-.75z" clip-rule="evenodd" />
+                                    </svg>
+                                </span>
+                                <span class="fi-visual-editor__reorder-label" x-text="item.label"></span>
+                            </li>
+                        </template>
+                    </ul>
+                </template>
             </div>
 
             <div class="fi-visual-editor__reorder-footer">
@@ -102,7 +104,7 @@
                     type="button"
                     class="fi-btn fi-btn-color-primary fi-btn-size-sm"
                     x-on:click="applyOrder()"
-                    x-bind:disabled="items.length === 0"
+                    x-bind:disabled="!items || items.length === 0"
                 >
                     {{ __('Aplicar orden') }}
                 </button>

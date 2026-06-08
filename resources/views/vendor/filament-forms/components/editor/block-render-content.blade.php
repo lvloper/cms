@@ -45,7 +45,7 @@ if ($stylesMd) {
         $data['preview'] = true;
     @endphp
     
-    {!! str_replace('="images', '="/storage/images', $item->getParentComponent()->renderPreview($data)) !!}
+    {!! '<style>.block-entrance{opacity:1!important;transform:none!important;}</style>' . str_replace('="images', '="/storage/images', $item->getParentComponent()->renderPreview($data)) !!}
 
     {!! $styleString !!}
 

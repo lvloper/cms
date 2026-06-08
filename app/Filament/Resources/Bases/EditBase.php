@@ -9,6 +9,7 @@ use App\Filament\Traits\HandlesExternalImages;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Facades\DB;
 
 class EditBase extends EditRecord
@@ -20,6 +21,20 @@ class EditBase extends EditRecord
 
     public bool $showHistoryModal = false;
 
+    public bool $isPreviewingHistory = false;
+
+    public ?int $previewHistoryId = null;
+
+    public int $historyPage = 1;
+
+    public int $historyPerPage = 25;
+
+    public int $historyMaxRecords = 200;
+
+    public int $historyTotalCount = 0;
+
+    public ?int $compareHistoryId = null;
+
     protected ?array $historyRecordBeforeSave = null;
 
     protected ?array $historyRouteBeforeSave = null;
@@ -27,7 +42,7 @@ class EditBase extends EditRecord
     public function getTitle(): string
     {
         $record = $this->getRecord();
-        
+
         if ($record->title) {
             if ($record->route && $record->route->parent) {
                 return $record->title . ' - ' . $record->route->parent->title;
@@ -41,9 +56,10 @@ class EditBase extends EditRecord
     protected function getHeaderActions(): array
     {
         return [
-            Actions\DeleteAction::make(),
+            Actions\DeleteAction::make()
+                ->hidden(fn() => $this->record && method_exists($this->record, 'isProtected') && $this->record->isProtected()),
         ];
-    }    
+    }
 
     public function getPageHistoryProperty(): array
     {
@@ -51,13 +67,20 @@ class EditBase extends EditRecord
             return [];
         }
 
-        return DB::table('activity_log')
+        $query = DB::table('activity_log')
             ->where('log_name', 'Resource history')
             ->where('subject_type', $this->getRecord()::class)
-            ->where('subject_id', $this->getRecord()->getKey())
+            ->where('subject_id', $this->getRecord()->getKey());
+
+        $total = $query->count();
+        $this->historyTotalCount = $total;
+
+        $loadedCount = $this->historyPage * $this->historyPerPage;
+
+        return $query
             ->orderByDesc('created_at')
             ->orderByDesc('id')
-            ->limit(50)
+            ->limit(min($loadedCount, $total))
             ->get()
             ->map(fn ($entry) => [
                 'id' => $entry->id,
@@ -67,6 +90,18 @@ class EditBase extends EditRecord
                 'category' => Arr::get($this->decodeHistoryProperties($entry), 'category_label', 'Cambio'),
             ])
             ->all();
+    }
+
+    public function loadMoreHistory(): void
+    {
+        $this->historyPage++;
+    }
+
+    public function getHasMoreHistoryProperty(): bool
+    {
+        $loadedCount = $this->historyPage * $this->historyPerPage;
+
+        return $this->historyTotalCount > $loadedCount;
     }
 
     public function getSelectedHistoryProperty(): ?array
@@ -87,15 +122,27 @@ class EditBase extends EditRecord
         }
 
         $properties = $this->decodeHistoryProperties($entry);
+        $fields = Arr::get($properties, 'fields', []);
 
-        return [
+        $hasBlocks = isset($fields['blocks']);
+
+        $result = [
             'id' => $entry->id,
             'date' => $entry->created_at,
             'event' => $entry->event,
             'change' => $entry->description,
             'category' => Arr::get($properties, 'category_label', 'Cambio'),
-            'fields' => $this->formatHistoryFields(Arr::get($properties, 'fields', [])),
+            'fields' => $this->formatHistoryFields($fields),
+            'hasBlocksDiff' => $hasBlocks,
+            'blocksDiff' => $hasBlocks ? $this->compareBlocks(
+                $fields['blocks']['before'] ?? [],
+                $fields['blocks']['after'] ?? []
+            ) : [],
+            'historyBlocksHtml' => $hasBlocks ? $this->renderBlocksPreviewHtml($fields) : [],
+            'currentBlocksHtml' => $hasBlocks ? $this->renderCurrentBlocksAsHtml() : [],
         ];
+
+        return $result;
     }
 
     public function openHistory(int $historyId): void
@@ -108,6 +155,12 @@ class EditBase extends EditRecord
     {
         $this->showHistoryModal = false;
         $this->selectedHistoryId = null;
+        $this->compareHistoryId = null;
+    }
+
+    public function selectCompareHistory(int $historyId): void
+    {
+        $this->openHistory($historyId);
     }
 
     public function restoreHistory(int $historyId): void
@@ -176,7 +229,237 @@ class EditBase extends EditRecord
 
         Notification::make()->success()->title('Cambio restaurado.')->send();
     }
-    
+
+    public function previewHistory(int $historyId): void
+    {
+        if (! DB::getSchemaBuilder()->hasTable('activity_log')) {
+            return;
+        }
+
+        $entry = DB::table('activity_log')
+            ->where('id', $historyId)
+            ->where('log_name', 'Resource history')
+            ->where('subject_type', $this->getRecord()::class)
+            ->where('subject_id', $this->getRecord()->getKey())
+            ->first();
+
+        if (! $entry) {
+            Notification::make()->danger()->title('El cambio ya no existe.')->send();
+
+            return;
+        }
+
+        $properties = $this->decodeHistoryProperties($entry);
+        $previewData = [];
+
+        foreach (Arr::get($properties, 'fields', []) as $field => $change) {
+            $target = array_key_exists('after', $change) ? $change['after'] : ($change['before'] ?? null);
+
+            if (str_starts_with($field, 'route.')) {
+                $previewData['route'][substr($field, 6)] = $target;
+
+                continue;
+            }
+
+            $previewData[$field] = $target;
+        }
+
+        $this->form->fill($previewData);
+        $this->closeHistoryModal();
+
+        $this->isPreviewingHistory = true;
+        $this->previewHistoryId = $historyId;
+
+        $this->dispatch('switch-to-content-tab');
+
+        Notification::make()
+            ->info()
+            ->title('Vista previa cargada.')
+            ->body('Revisá los cambios en la pestaña Contenido. Si querés aplicarlos, hacé clic en "Confirmar restauración".')
+            ->persistent()
+            ->send();
+    }
+
+    public function confirmHistoryRestore(): void
+    {
+        if (! $this->previewHistoryId) {
+            return;
+        }
+
+        $this->restoreHistory($this->previewHistoryId);
+        $this->isPreviewingHistory = false;
+        $this->previewHistoryId = null;
+    }
+
+    public function cancelHistoryPreview(): void
+    {
+        $this->isPreviewingHistory = false;
+        $this->previewHistoryId = null;
+        $this->fillForm();
+
+        Notification::make()->info()->title('Vista previa descartada.')->send();
+    }
+
+    public function getHistoryBlocksDiff(int $historyId): array
+    {
+        if (! DB::getSchemaBuilder()->hasTable('activity_log')) {
+            return [];
+        }
+
+        $entry = DB::table('activity_log')
+            ->where('id', $historyId)
+            ->where('log_name', 'Resource history')
+            ->where('subject_type', $this->getRecord()::class)
+            ->where('subject_id', $this->getRecord()->getKey())
+            ->first();
+
+        if (! $entry) {
+            return [];
+        }
+
+        $properties = $this->decodeHistoryProperties($entry);
+        $fields = Arr::get($properties, 'fields', []);
+
+        if (! isset($fields['blocks'])) {
+            return [];
+        }
+
+        $beforeBlocks = $fields['blocks']['before'] ?? [];
+        $afterBlocks = $fields['blocks']['after'] ?? [];
+
+        return $this->compareBlocks($beforeBlocks, $afterBlocks);
+    }
+
+    protected function compareBlocks(array $before, array $after): array
+    {
+        $result = [];
+        $maxCount = max(count($before), count($after));
+
+        for ($i = 0; $i < $maxCount; $i++) {
+            $beforeBlock = $before[$i] ?? null;
+            $afterBlock = $after[$i] ?? null;
+
+            if ($beforeBlock === null && $afterBlock !== null) {
+                $result[] = [
+                    'index' => $i,
+                    'status' => 'added',
+                    'type' => $afterBlock['type'] ?? 'unknown',
+                    'data' => $afterBlock['data'] ?? [],
+                    'label' => $this->getBlockLabel($afterBlock['type'] ?? ''),
+                ];
+            } elseif ($beforeBlock !== null && $afterBlock === null) {
+                $result[] = [
+                    'index' => $i,
+                    'status' => 'removed',
+                    'type' => $beforeBlock['type'] ?? 'unknown',
+                    'data' => $beforeBlock['data'] ?? [],
+                    'label' => $this->getBlockLabel($beforeBlock['type'] ?? ''),
+                ];
+            } elseif ($beforeBlock != $afterBlock) {
+                $result[] = [
+                    'index' => $i,
+                    'status' => 'modified',
+                    'type' => $afterBlock['type'] ?? 'unknown',
+                    'before' => $beforeBlock['data'] ?? [],
+                    'data' => $afterBlock['data'] ?? [],
+                    'label' => $this->getBlockLabel($afterBlock['type'] ?? ''),
+                ];
+            }
+        }
+
+        return $result;
+    }
+
+    protected function getBlockLabel(string $type): string
+    {
+        return str($type)->replace('_', ' ')->title()->toString();
+    }
+
+    protected function renderBlocksPreviewHtml(array $fields): array
+    {
+        if (! isset($fields['blocks'])) {
+            return [];
+        }
+
+        $blocksAfter = $fields['blocks']['after'] ?? [];
+
+        return $this->renderBlocksAsHtml($blocksAfter);
+    }
+
+    protected function renderCurrentBlocksAsHtml(): array
+    {
+        $record = $this->getRecord();
+        $blocks = $record->blocks;
+
+        if (empty($blocks)) {
+            return [];
+        }
+
+        $blocksArray = json_decode(json_encode($blocks), true);
+
+        if (! is_array($blocksArray)) {
+            return [];
+        }
+
+        return $this->renderBlocksAsHtml($blocksArray);
+    }
+
+    protected function renderBlocksAsHtml(array $blocks): array
+    {
+        $html = [];
+
+        foreach ($blocks as $i => $block) {
+            $type = $block['type'] ?? 'unknown';
+            $html[$i] = [
+                'status' => 'current',
+                'type' => $type,
+                'label' => $this->getBlockLabel($type),
+                'currentHtml' => $this->renderSingleBlockPreview($block),
+            ];
+        }
+
+        return $html;
+    }
+
+    protected function renderSingleBlockPreview(array $block): string
+    {
+        $type = $block['type'] ?? '';
+        $data = $block['data'] ?? [];
+        $viewName = 'blocks.' . $type;
+        $kebabName = 'blocks.' . \Illuminate\Support\Str::kebab($type);
+
+        $viewPath = null;
+        if (view()->exists($viewName)) {
+            $viewPath = $viewName;
+        } elseif (view()->exists($kebabName)) {
+            $viewPath = $kebabName;
+        }
+
+        if (! $viewPath) {
+            return '<div class="p-4 bg-gray-100 text-gray-500 text-center">Preview no disponible para: ' . e($type) . '</div>';
+        }
+
+        try {
+            $uid = 'preview-' . uniqid();
+            $data['id'] = $uid;
+            $data['preview'] = true;
+
+            $blockHtml = Blade::render('@include(\'' . addcslashes($viewPath, '\'') . '\', $__data)', $data, deleteCachedView: true);
+            $blockHtml = str_replace('="images', '="/storage/images', $blockHtml);
+
+            $blockHtml = '<style>.block-entrance{opacity:1!important;transform:none!important;}</style>' . $blockHtml;
+
+            return '<div id="main">' . $blockHtml . '</div>';
+        } catch (\Exception $e) {
+            return '<div class="p-4 bg-red-50 text-red-600 text-center">Error: ' . e($e->getMessage()) . '</div>';
+        }
+    }
+
+    public function renderBlockPreview(string $type, array $data): string
+    {
+        return $this->renderSingleBlockPreview(['type' => $type, 'data' => $data]);
+    }
+
     protected function mutateFormDataBeforeSave(array $data): array
     {
         $record = $this->getRecord();
@@ -195,7 +478,7 @@ class EditBase extends EditRecord
                 $data[$field] = $data[$field][0] ?? null;
             }
         }
-        
+
         // Si el modelo tiene una propiedad estática llamada 'forceParent', establece el parent_id de la ruta al valor de esa propiedad
         $routeData = $data['route'] ?? [];
         $modelClass = get_class($record);
@@ -210,7 +493,7 @@ class EditBase extends EditRecord
         if ($record->route) {
             $record->route->fill($routeData);
         }
-        
+
         $record->route->full_slug = $record->route->full_slug ?? $record->route->getFullPath();
 
         $record->route->save();
@@ -255,7 +538,7 @@ class EditBase extends EditRecord
 
         // Include all model attributes to preserve existing data like images
         $modelData = $record->toArray();
-        
+
         // Process external images when loading the form
         $modelData = $this->processExternalImagesInData($modelData);
 
@@ -285,7 +568,7 @@ class EditBase extends EditRecord
             $record->route->image = $modelData['route']['image'];
             $record->route->save();
         }
-        
+
         $extraData = array_merge($modelData, $extraData);
 
         $this->fillFormWithDataAndCallHooks($record, $extraData);
@@ -348,6 +631,35 @@ class EditBase extends EditRecord
             'created_at' => now(),
             'updated_at' => now(),
         ]);
+
+        $this->cleanupOldHistory($record);
+    }
+
+    protected function cleanupOldHistory(Model $record): void
+    {
+        if (! DB::getSchemaBuilder()->hasTable('activity_log')) {
+            return;
+        }
+
+        $keepIds = DB::table('activity_log')
+            ->where('log_name', 'Resource history')
+            ->where('subject_type', $record::class)
+            ->where('subject_id', $record->getKey())
+            ->orderByDesc('created_at')
+            ->orderByDesc('id')
+            ->limit($this->historyMaxRecords)
+            ->pluck('id');
+
+        if ($keepIds->isEmpty()) {
+            return;
+        }
+
+        DB::table('activity_log')
+            ->where('log_name', 'Resource history')
+            ->where('subject_type', $record::class)
+            ->where('subject_id', $record->getKey())
+            ->whereNotIn('id', $keepIds)
+            ->delete();
     }
 
     protected function buildHistoryChanges(array $before, array $after): array
@@ -409,7 +721,7 @@ class EditBase extends EditRecord
             'route.description' => 'Descripción SEO',
             'route.layout' => 'Diseño',
             'route.status' => 'Estado',
-            'route.parent_id' => 'Ruta madre',
+            'route.parent_id' => 'Ruta superior',
             'route.image' => 'Imagen de portada',
             'route.custom_css' => 'CSS personalizado',
             'route.header_scripts' => 'Scripts del header',
@@ -425,6 +737,8 @@ class EditBase extends EditRecord
                 'label' => $change['label'] ?? $this->getHistoryFieldLabel($field),
                 'before' => $this->formatHistoryValue($change['before'] ?? null),
                 'after' => $this->formatHistoryValue($change['after'] ?? null),
+                'raw_before' => $change['before'] ?? null,
+                'raw_after' => $change['after'] ?? null,
             ])
             ->values()
             ->all();

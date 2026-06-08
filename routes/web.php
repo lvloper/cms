@@ -22,6 +22,11 @@ Route::get('/preview-blocks', function () {
 })
 ->name('preview.blocks');
 
+Route::get('/preview-blocks-minimal', function () {
+    return view('components.blockLayout-minimal', ['slot' => '']);
+})
+->name('preview.blocks.minimal');
+
 Route::get('/home', function () {
     return redirect('/');
 });

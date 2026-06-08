@@ -15,6 +15,8 @@ abstract class PageBlock
 {
     protected const NAME = '';
 
+    protected const CATEGORY = 'Otros';
+
     protected const LABEL = null;
 
     protected const PREVIEW = null;
@@ -27,12 +29,13 @@ abstract class PageBlock
 
         $block = Block::make(static::NAME)
             ->label(static::LABEL ?? static::NAME)
+            ->meta('category', static::CATEGORY)
             ->schema([
                 Tabs::make('Tabs')
                     ->tabs([
                         Tabs\Tab::make(__('Contenido'))
                             ->icon('heroicon-o-document-text')
-                            ->schema(static::fields()),
+                            ->schema(collect(static::fields())->flatten(1)->toArray()),
                         Tabs\Tab::make(__('General'))
                             ->icon('heroicon-o-document-text')
                             ->schema([

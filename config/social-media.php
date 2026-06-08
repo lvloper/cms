@@ -3,27 +3,27 @@
 return [
     'networks' => [
         'instagram' => [
-            'url' => 'https://www.instagram.com/fundhuesped',
+            'url' => env('SOCIAL_INSTAGRAM', 'https://www.instagram.com/'),
             'icon' => 'fab-instagram',
         ],
         'facebook' => [
-            'url' => 'https://www.facebook.com/FundHuesped',
+            'url' => env('SOCIAL_FACEBOOK', 'https://www.facebook.com/'),
             'icon' => 'fab-facebook-f',
         ],
         'twitter' => [
-            'url' => 'https://x.com/FundHuesped',
+            'url' => env('SOCIAL_TWITTER', 'https://x.com/'),
             'icon' => 'fab-x-twitter',
         ],
         'linkedin' => [
-            'url' => 'https://www.linkedin.com/company/fundacion-huesped/',
+            'url' => env('SOCIAL_LINKEDIN', 'https://www.linkedin.com/'),
             'icon' => 'fab-linkedin-in',
         ],
         'youtube' => [
-            'url' => 'https://www.youtube.com/user/fhuesped',
+            'url' => env('SOCIAL_YOUTUBE', 'https://www.youtube.com/'),
             'icon' => 'fab-youtube',
         ],
         'tiktok' => [
-            'url' => 'https://www.tiktok.com/@fundacionhuesped',
+            'url' => env('SOCIAL_TIKTOK', 'https://www.tiktok.com/'),
             'icon' => 'fab-tiktok',
         ],
     ]

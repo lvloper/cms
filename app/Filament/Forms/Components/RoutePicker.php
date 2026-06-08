@@ -166,33 +166,33 @@ class RoutePicker extends Component
 
             TextInput::make($this->fieldName . '.external_url')
                 ->label('URL externa')
-                ->required(fn ($get): bool => $get($this->fieldName . '.route_id') === '0' && $this->isRequired)
+                ->required(fn ($get): bool => (string) $get($this->fieldName . '.route_id') === '0' && $this->isRequired)
                 ->url()
-                ->visible(fn ($get): bool => $get($this->fieldName . '.route_id') === '0'),
+                ->visible(fn ($get): bool => (string) $get($this->fieldName . '.route_id') === '0'),
 
             FileUpload::make($this->fieldName . '.file')
                 ->label('Archivo')
                 ->helperText('Sube un archivo para enlazarlo como descarga.')
-                ->required(fn ($get): bool => $get($this->fieldName . '.route_id') === '-1' && $this->isRequired)
+                ->required(fn ($get): bool => (string) $get($this->fieldName . '.route_id') === '-1' && $this->isRequired)
                 ->preserveFilenames()
                 ->directory('files')
                 ->visibility('public')
                 ->acceptedFileTypes($this->getAcceptedFileTypes())
-                ->visible(fn ($get): bool => $this->allowsFile && $get($this->fieldName . '.route_id') === '-1'),
+                ->visible(fn ($get): bool => $this->allowsFile && (string) $get($this->fieldName . '.route_id') === '-1'),
 
             TextInput::make($this->fieldName . '.download_name')
                 ->label('Nombre de la descarga')
                 ->placeholder('Ej: Brochure.pdf')
                 ->helperText('Opcional: será el nombre sugerido del archivo al descargar.')
                 ->maxLength(255)
-                ->visible(fn ($get): bool => $this->allowsFile && $get($this->fieldName . '.route_id') === '-1'),
+                ->visible(fn ($get): bool => $this->allowsFile && (string) $get($this->fieldName . '.route_id') === '-1'),
 
             TextInput::make($this->fieldName . '.anchor')
                 ->label('Ancla')
                 ->visible(fn ($get): bool => $this->allowsAnchor
-                    && $get($this->fieldName . '.route_id')
-                    && $get($this->fieldName . '.route_id') !== '0'
-                    && $get($this->fieldName . '.route_id') !== '-1')
+                    && (string) $get($this->fieldName . '.route_id')
+                    && (string) $get($this->fieldName . '.route_id') !== '0'
+                    && (string) $get($this->fieldName . '.route_id') !== '-1')
                 ->prefix('#')
                 ->helperText('Ej: seccion-contacto (sin incluir el #)')
                 ->mask(RawJs::make(<<<'JS'
@@ -205,7 +205,7 @@ class RoutePicker extends Component
                 ->maxLength(100),
 
             Checkbox::make($this->fieldName . '.new_window')
-                ->visible(fn ($get): bool => $this->allowsExternal && $get($this->fieldName . '.route_id') !== '-1')
+                ->visible(fn ($get): bool => $this->allowsExternal && (string) $get($this->fieldName . '.route_id') !== '-1')
                 ->label('Abrir en nueva ventana')
                 ->columnSpan($this->allowsAnchor ? 'full' : 'auto')
                 ->default(fn ($get): bool => (string) $get($this->fieldName . '.route_id') === '0'),

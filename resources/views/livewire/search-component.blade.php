@@ -11,7 +11,7 @@
             </svg>
             <input type="text" id="search-input" wire:model.live.debounce.300ms="search" name="s"
                 class="flex px-2 py-3 w-full h-[52px] bg-transparent rounded-md border-0 outline-none text-md focus:outline-none focus:ring-0 focus:border-0 placeholder:text-neutral-400 disabled:cursor-not-allowed disabled:opacity-50"
-                placeholder="Ej. Prevención de VIH" autocomplete="off" autocorrect="off" @keydown.enter.prevent="
+                placeholder="Buscar..." autocomplete="off" autocorrect="off" @keydown.enter.prevent="
                 open = true;
                 if ($event.target.value.length > 3) {
                     window.location.href = '{{ route('search.index') }}?s=' + encodeURIComponent($event.target.value);

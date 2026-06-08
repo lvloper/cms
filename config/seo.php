@@ -12,7 +12,7 @@ return [
     /**
      * Use this setting to specify the site name that will be used in OpenGraph tags.
      */
-    'site_name' => 'CMS Base',
+    'site_name' => env('APP_NAME', 'CMS Base'),
 
     /**
      * Use this setting to specify the path to the sitemap of your website. This exact path will outputted, so
@@ -75,14 +75,14 @@ return [
          * Use this setting to provide a suffix that will be added after the title on each page.
          * If you don't want a suffix, you should specify an empty string.
          */
-        'suffix' => ' | CMS Base',
+        'suffix' => ' | ' . env('APP_NAME', 'CMS Base'),
 
         /**
          * Use this setting to provide a custom title for the homepage. We will not use the suffix on the homepage,
          * so you'll need to add the suffix manually if you want that. If set to null, we'll determine the title
          * just like the other pages.
          */
-        'homepage_title' => 'CMS Base',
+        'homepage_title' => null,
     ],
 
     'description' => [
@@ -91,7 +91,7 @@ return [
          * where we don't have a description set via an associated ->seo model or via
          * the ->getDynamicSEOData() method.
          */
-        'fallback' => 'CMS base para crear y administrar contenido modular de forma simple y flexible.',
+        'fallback' => '',
     ],
 
     'image' => [

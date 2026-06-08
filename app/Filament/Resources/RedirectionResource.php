@@ -120,8 +120,8 @@ class RedirectionResource extends Resource
                     ->label('')
                     ->getStateUsing(fn() => true)
                     ->icon('heroicon-o-arrow-up-right')
-                    ->tooltip('Abrir en huesped.org.ar')
-                    ->url(fn($record) => 'https://huesped.org.ar' . $record->old_url)
+                    ->tooltip('Abrir en el sitio')
+                    ->url(fn($record) => url($record->old_url))
                     ->openUrlInNewTab()
                     ->alignCenter(),
                 TextColumn::make('old_url')

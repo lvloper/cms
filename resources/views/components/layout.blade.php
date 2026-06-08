@@ -42,6 +42,7 @@
   </x-modal>
   @endif
   @include('components.common.bottom')
+  <x-common.edit-resource-button />
 </body>
 
 </html>

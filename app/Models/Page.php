@@ -23,12 +23,31 @@ class Page extends Model
         return $this->morphOne(Route::class, 'routable');
     }
 
+    public function isProtected(): bool
+    {
+        if (! $this->route) {
+            return false;
+        }
+
+        $homeConfig = Configuration::getValue('home_route_id');
+        $homeRouteId = $homeConfig['route']['route_id'] ?? null;
+
+        $errorConfig = Configuration::getValue('error_404_route_id');
+        $errorRouteId = $errorConfig['route']['route_id'] ?? null;
+
+        return ((int) $this->route->id === (int) $homeRouteId) ||
+               ((int) $this->route->id === (int) $errorRouteId);
+    }
+
     public static function boot()
     {
         parent::boot();
 
-        static::deleting(function ($post) {
-            $post->route()->delete();
+        static::deleting(function ($page) {
+            if ($page->isProtected()) {
+                return false;
+            }
+            $page->route()->delete();
         });
     }
 }

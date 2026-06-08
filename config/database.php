@@ -117,7 +117,7 @@ return [
             'url' => env('WP_DB_URL'),
             'host' => env('WP_DB_HOST', '127.0.0.1'),
             'port' => env('WP_DB_PORT', '3306'),
-            'database' => env('WP_DB_DATABASE', 'huesped-wponline'),
+            'database' => env('WP_DB_DATABASE', 'wordpress'),
             'username' => env('WP_DB_USERNAME', 'root'),
             'password' => env('WP_DB_PASSWORD', ''),
             'unix_socket' => env('WP_DB_SOCKET', ''),

@@ -35,6 +35,7 @@ if ($routeClass) {
 
 if (isset($external_url) && $external_url) {
     $url = $external_url;
+    $allowWireNavitage = false;
 } else {
     $external_url = null;
 }

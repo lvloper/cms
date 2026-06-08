@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Configuration;
 use App\Models\Page;
 use App\Models\Route;
 use Illuminate\Http\Request;
@@ -13,13 +14,22 @@ class RouteController extends Controller
 {
     public function show(Request $request, $slug = 'home')
     {
-        $query = Route::whereFullSlug($slug);
+        try {
+            if ($slug === 'home' || $slug === '') {
+                $homeConfig = Configuration::getValue('home_route_id');
+                $homeRouteId = $homeConfig['route']['route_id'] ?? null;
+                $route = $homeRouteId ? Route::findOrFail($homeRouteId) : Route::where('slug', 'home')->firstOrFail();
+            } else {
+                $route = Route::whereFullSlug($slug)->firstOrFail();
+            }
 
-        $route = $query->firstOrFail();
-        $routable = $route->routable;
+            $routable = $route->routable;
 
-        if ($route->notPublishedOrPreview()) {
-            abort(404);
+            if ($route->notPublishedOrPreview()) {
+                return $this->errorPage();
+            }
+        } catch (\Exception $e) {
+            return $this->errorPage();
         }
 
         View::share('route', $route);
@@ -34,7 +44,6 @@ class RouteController extends Controller
 
             View::share('isModal', true);
             View::share('parent', $parent);
-            // Derive a safe parent URL to return to when closing the modal
             $parentUrl = method_exists($parent, 'getUrlAttribute') || isset($parent->url)
                 ? ($parent->url ?? url('/'))
                 : (method_exists($parent, 'getFullSlugAttribute') || isset($parent->full_slug)
@@ -43,9 +52,6 @@ class RouteController extends Controller
             View::share('parentUrl', $parentUrl);
             View::share('parentView', $parentView);
         }
-
-
-        // View::share('modal', $route->layout == 'hasModal' ? $route->getModal($routable->blocks) : false);
 
         $customControllers = Config::get('cms-routes.custom_controllers', []);
         $routeableClass = get_class($routable);
@@ -57,5 +63,25 @@ class RouteController extends Controller
         }
 
         return view('pages/blocksList', ['blocks' => $routable->blocks]);
+    }
+
+    protected function errorPage()
+    {
+        $errorConfig = Configuration::getValue('error_404_route_id');
+        $errorRouteId = $errorConfig['route']['route_id'] ?? null;
+
+        if ($errorRouteId) {
+            $route = Route::find($errorRouteId);
+            if ($route && $route->routable) {
+                View::share('route', $route);
+                View::share('notPreview', true);
+                View::share('isModal', false);
+                View::share('layout', $route->layout ?? 'default');
+
+                return response(view('pages/blocksList', ['blocks' => $route->routable->blocks]), 404);
+            }
+        }
+
+        abort(404);
     }
 }

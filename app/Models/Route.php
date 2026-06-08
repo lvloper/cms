@@ -217,6 +217,13 @@ class Route extends Model
 
     public function isActive(): bool
     {
+        $homeConfig = \App\Models\Configuration::getValue('home_route_id');
+        $homeRouteId = $homeConfig['route']['route_id'] ?? null;
+
+        if ($homeRouteId && (int) $this->id === (int) $homeRouteId) {
+            return request()->path() === '/';
+        }
+
         return request()->path() === ($this->full_slug === 'home' ? '/' : $this->full_slug);
     }
 
@@ -293,6 +300,13 @@ class Route extends Model
      */
     public function getCanonicalUrl(): string
     {
+        $homeConfig = \App\Models\Configuration::getValue('home_route_id');
+        $homeRouteId = $homeConfig['route']['route_id'] ?? null;
+
+        if ($homeRouteId && (int) $this->id === (int) $homeRouteId) {
+            return url('/');
+        }
+
         return $this->full_slug === 'home' ? url('/') : url($this->full_slug);
     }
 

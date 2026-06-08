@@ -27,8 +27,8 @@
         ])
 
         @if ($editActionIsVisible && (! $hasInteractiveBlockPreviews))
-        <div class="fi-visual-editor__preview-overlay" role="button"
-            x-on:click.stop="$wire.mountAction('edit', { item: '{{ $uuid }}' }, { schemaComponent: '{{ $key }}' })">
+        <div class="fi-visual-editor__preview-overlay pointer-events-auto" role="button"
+            x-on:dblclick.stop="$wire.mountAction('edit', { item: '{{ $uuid }}' }, { schemaComponent: '{{ $key }}' })">
         </div>
         @endif
     @else

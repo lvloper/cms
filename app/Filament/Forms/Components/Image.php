@@ -16,9 +16,10 @@ class Image
         bool $hasMobile = false,
         ?string $widthMobile = null,
         ?string $heightMobile = null,
-        bool $required = false
+        bool $required = false,
+        bool $forceRatio = false,
     ): FileUpload | Tabs {
-        $image = self::upload($name, $label, $width, $height, $directory)
+        $image = self::upload($name, $label, $width, $height, $directory, $forceRatio)
             ->required($required)
             ->acceptedFileTypes(['image/jpeg', 'image/jpg', 'image/png', 'image/webp', 'image/gif'])
             ->rules([
@@ -41,7 +42,7 @@ class Image
                     ->icon('heroicon-o-computer-desktop'),
                 Tabs\Tab::make('Mobile')
                     ->schema([
-                        self::upload($name . '_mobile', $label, $widthMobile, $heightMobile, $directory)
+                        self::upload($name . '_mobile', $label, $widthMobile, $heightMobile, $directory, $forceRatio)
                             ->helperText('Esta en dispositivos móviles, en caso de no asignar, se mostrará la imagen de escritorio'),
                     ])
                     ->icon('heroicon-o-device-phone-mobile'),
@@ -54,18 +55,14 @@ class Image
         string $label,
         ?string $width,
         ?string $height,
-        string $directory
+        string $directory,
+        bool $forceRatio = false,
     ): FileUpload {
-        return FileUpload::make($name)
+        $upload = FileUpload::make($name)
             ->label($label)
             ->image()
             ->imageEditor()
-            ->imageEditorMode(2)
-            ->preserveFilenames()
-            ->imageResizeTargetWidth($width)
-            ->imageResizeTargetHeight($height)
-            ->imageResizeMode('cover')
-            ->imageResizeUpscale(false)
+            ->imageEditorMode(1)
             ->orientImagesFromExif()
             ->multiple(false)
             ->directory($directory)
@@ -74,5 +71,31 @@ class Image
                 fn ($component) => $component->helperText("Tamaño recomendado: $width x $height")
             )
             ->visibility('public');
+
+        if ($forceRatio && $width && $height) {
+            $gcd = self::gcd((int) $width, (int) $height);
+            $ratioW = (int) $width / $gcd;
+            $ratioH = (int) $height / $gcd;
+            $ratio = "{$ratioW}:{$ratioH}";
+
+            $upload->imageAspectRatio($ratio)
+                ->imageEditorAspectRatioOptions([$ratio])
+                ->automaticallyOpenImageEditorForAspectRatio();
+        }
+
+        if (! $forceRatio && $width && $height) {
+            $upload->imageResizeTargetWidth($width)
+                ->imageResizeTargetHeight($height)
+                ->imageResizeMode('cover')
+                ->imageResizeUpscale(true)
+                ->preserveFilenames();
+        }
+
+        return $upload;
+    }
+
+    protected static function gcd(int $a, int $b): int
+    {
+        return $b === 0 ? $a : self::gcd($b, $a % $b);
     }
 }

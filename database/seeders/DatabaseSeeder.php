@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Enums\Status;
 use App\Models\Blog;
+use App\Models\Configuration;
 use App\Models\Menu;
 use App\Models\Page;
 use App\Models\Route;
@@ -19,13 +20,13 @@ class DatabaseSeeder extends Seeder
     {
         $this->seedSuperAdmin();
         $home = $this->seedPage('Home', 'home', $this->homeBlocks(), 'home');
-        $about = $this->seedPage('Acerca del CMS', 'acerca-del-cms', $this->aboutBlocks(), 'default');
-        $components = $this->seedPage('Componentes base', 'componentes-base', $this->componentsBlocks(), 'hasIndex');
-
         $blogIndex = $this->seedPage('Novedades', 'novedades', $this->newsIndexBlocks(), 'default');
+        $errorPage = $this->seedPage('Error 404', 'error-404', $this->errorBlocks(), 'default');
         $posts = $this->seedPosts($blogIndex->route);
-
-        $this->seedMenu([$home, $about, $components, $blogIndex], $posts);
+        $this->seedMenu([$home, $blogIndex], $posts);
+        $this->seedConfig();
+        $this->seedHomeConfig($home);
+        $this->seedErrorConfig($errorPage);
     }
 
     private function seedSuperAdmin(): void
@@ -97,7 +98,7 @@ class DatabaseSeeder extends Seeder
             [
                 'title' => 'Buenas prácticas para armar páginas modulares',
                 'slug' => 'buenas-practicas-paginas-modulares',
-                'description' => 'Criterios simples para combinar hero, cards, métricas y CTAs.',
+                'description' => 'Criterios simples para combinar bloques y crear páginas.',
             ],
             [
                 'title' => 'Checklist antes de publicar contenido',
@@ -105,8 +106,8 @@ class DatabaseSeeder extends Seeder
                 'description' => 'Qué revisar antes de pasar una página o novedad a publicado.',
             ],
             [
-                'title' => 'Nuevos bloques base disponibles',
-                'slug' => 'nuevos-bloques-base-disponibles',
+                'title' => 'Nuevos bloques disponibles',
+                'slug' => 'nuevos-bloques-disponibles',
                 'description' => 'Un repaso de los componentes genéricos incluidos en el builder.',
             ],
         ];
@@ -183,14 +184,14 @@ class DatabaseSeeder extends Seeder
     private function homeBlocks(): array
     {
         return [
-            $this->block('BaseRichText', [
+            $this->block('Text', [
                 'blockTitle' => 'Inicio',
                 'eyebrow' => 'CMS Base',
                 'title' => 'Una base limpia para construir sitios editables',
                 'content' => '<p>Este proyecto incluye rutas dinámicas, page builder, novedades, menús, configuraciones y permisos listos para personalizar.</p>',
                 'width' => 'wide',
             ]),
-            $this->block('BaseCards', [
+            $this->block('Cards', [
                 'blockTitle' => 'Funcionalidades',
                 'title' => 'Qué trae listo',
                 'description' => '<p>Bloques y recursos genéricos para acelerar nuevos proyectos.</p>',
@@ -200,99 +201,17 @@ class DatabaseSeeder extends Seeder
                     ['title' => 'Admin Filament', 'description' => 'CRUDs para contenido, menú y configuración.', 'image' => null, 'route' => []],
                 ],
             ]),
-            $this->block('BaseStats', [
-                'blockTitle' => 'Métricas',
-                'title' => 'Base operativa',
-                'items' => [
-                    ['value' => '7', 'label' => 'Bloques base', 'description' => 'Componentes genéricos nuevos.'],
-                    ['value' => '3', 'label' => 'Páginas demo', 'description' => 'Contenido inicial para explorar.'],
-                    ['value' => '4', 'label' => 'Novedades', 'description' => 'Posts de ejemplo publicados.'],
-                ],
-            ]),
-            $this->block('BaseCta', [
-                'blockTitle' => 'CTA',
-                'eyebrow' => 'Siguiente paso',
-                'title' => 'Entrá al panel y empezá a editar',
-                'description' => '<p>Usuario inicial: admin@socies.agency</p>',
-                'variant' => 'accent',
-                'primary_route' => ['btn_label' => 'Ir al admin', 'route_id' => '0', 'external_url' => url('/admin'), 'new_window' => true],
-                'secondary_route' => [],
-            ]),
-        ];
-    }
-
-    private function aboutBlocks(): array
-    {
-        return [
-            $this->block('BaseRichText', [
-                'blockTitle' => 'Acerca',
-                'eyebrow' => 'Arquitectura',
-                'title' => 'CMS Laravel + Filament',
-                'content' => '<p>Las páginas se componen con bloques, las rutas resuelven el contenido publicado y Filament concentra la administración.</p>',
-                'width' => 'container',
-            ]),
-            $this->block('BaseQuote', [
-                'blockTitle' => 'Filosofía',
-                'quote' => 'Menos variantes específicas, más componentes base bien compuestos.',
-                'author' => 'Socies CMS',
-                'source' => 'Seeder inicial',
-                'image' => null,
-            ]),
-            $this->block('BaseLinkList', [
-                'blockTitle' => 'Accesos',
-                'title' => 'Atajos útiles',
-                'items' => [
-                    ['route' => ['btn_label' => 'Panel de administración', 'route_id' => '0', 'external_url' => url('/admin'), 'new_window' => true], 'description' => 'Ingresar al panel Filament.'],
-                    ['route' => ['btn_label' => 'Sitemap', 'route_id' => '0', 'external_url' => url('/sitemap.xml'), 'new_window' => true], 'description' => 'Ver sitemap generado.'],
-                ],
-            ]),
-        ];
-    }
-
-    private function componentsBlocks(): array
-    {
-        return [
-            $this->block('BaseRichText', [
-                'blockTitle' => 'Texto',
-                'title' => 'Texto enriquecido',
-                'content' => '<p>Bloque para contenido editorial simple con ancho configurable.</p>',
-                'width' => 'narrow',
-            ]),
-            $this->block('BaseCards', [
-                'blockTitle' => 'Cards',
-                'title' => 'Cards genéricas',
-                'items' => [
-                    ['title' => 'Card uno', 'description' => 'Descripción breve.', 'image' => null, 'route' => []],
-                    ['title' => 'Card dos', 'description' => 'Descripción breve.', 'image' => null, 'route' => []],
-                    ['title' => 'Card tres', 'description' => 'Descripción breve.', 'image' => null, 'route' => []],
-                ],
-            ]),
-            $this->block('BaseStats', [
-                'blockTitle' => 'Stats',
-                'title' => 'Métricas',
-                'items' => [
-                    ['value' => '+120', 'label' => 'Registros', 'description' => 'Dato de ejemplo.'],
-                    ['value' => '24/7', 'label' => 'Disponible', 'description' => 'Dato de ejemplo.'],
-                    ['value' => '100%', 'label' => 'Editable', 'description' => 'Dato de ejemplo.'],
-                ],
-            ]),
-            $this->block('BaseEmbed', [
-                'blockTitle' => 'Embed',
-                'title' => 'Embed seguro de ejemplo',
-                'embed' => '<iframe src="https://www.openstreetmap.org/export/embed.html?bbox=-58.45%2C-34.62%2C-58.35%2C-34.55&amp;layer=mapnik"></iframe>',
-                'caption' => 'Ejemplo de iframe embebido.',
-            ]),
         ];
     }
 
     private function newsIndexBlocks(): array
     {
         return [
-            $this->block('BaseRichText', [
+            $this->block('Text', [
                 'blockTitle' => 'Novedades',
                 'eyebrow' => 'Blog',
-                'title' => 'Novedades de ejemplo',
-                'content' => '<p>Esta página funciona como índice editorial inicial. Las novedades tienen rutas hijas publicadas.</p>',
+                'title' => 'Novedades',
+                'content' => '<p>Últimas novedades y actualizaciones.</p>',
                 'width' => 'container',
             ]),
         ];
@@ -315,4 +234,57 @@ class DatabaseSeeder extends Seeder
         ];
     }
 
+    private function seedConfig(): void
+    {
+        Configuration::updateOrCreate(
+            ['key' => 'site-name'],
+            [
+                'type' => 'text',
+                'value' => ['text' => 'CMS Base'],
+            ]
+        );
+    }
+
+    private function seedHomeConfig(Page $home): void
+    {
+        Configuration::updateOrCreate(
+            ['key' => 'home_route_id'],
+            [
+                'type' => 'url',
+                'value' => [
+                    'route' => $this->routeAttrs($home->route),
+                ],
+            ]
+        );
+    }
+
+    private function seedErrorConfig(Page $errorPage): void
+    {
+        Configuration::updateOrCreate(
+            ['key' => 'error_404_route_id'],
+            [
+                'type' => 'url',
+                'value' => [
+                    'route' => $this->routeAttrs($errorPage->route),
+                ],
+            ]
+        );
+    }
+
+    private function errorBlocks(): array
+    {
+        return [
+            $this->block('Text', [
+                'blockTitle' => 'Error 404',
+                'title' => 'Página no encontrada',
+                'content' => '<p>La página que buscás no existe o fue movida.</p>',
+                'width' => 'narrow',
+            ]),
+            $this->block('Search', [
+                'blockTitle' => 'Búsqueda',
+                'title' => 'Buscá en el sitio',
+                'description' => 'Usá el buscador para encontrar lo que necesitás.',
+            ]),
+        ];
+    }
 }
