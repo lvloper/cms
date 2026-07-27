@@ -81,6 +81,12 @@ Guia operativa para que cualquier agente del proyecto interprete comandos cortos
 - `te paso una maqueta` / `usa este HTML` -> infiere schema, crea draft para revisar (paso 1)
 - `mejora la interfaz`, `mejorar UI`, `mejorar UX`, `mejorar diseno` (o similar) -> usar `docs/cms/blocks/subagents/design-prompt.md`
 
+## Inventario de bloques
+
+- Usar `php artisan cms:blocks-list` para listar todos los bloques del proyecto (PHP + Blade).
+- Opciones: `--orphans` (solo vistas sin clase PHP), `--unregistered` (solo clases no registradas en templates), `--json` (salida JSON para consumo agente).
+- Los bloques sin clase PHP son vistas frontend reutilizables pero no tienen backend en el CMS.
+
 ## Acceso al panel
 
 - En desarrollo, las credenciales por defecto del panel `/admin` se definen via variables de entorno o seeders. Consultar `README.md` o `.env.example` para credenciales de desarrollo.

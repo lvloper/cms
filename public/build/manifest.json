@@ -1,68 +1,93 @@
 {
-  "public/fonts/FuturaStd/FuturaStd-Bold.woff": {
-    "file": "assets/FuturaStd-Bold-cpCxj6tM.woff",
-    "src": "public/fonts/FuturaStd/FuturaStd-Bold.woff"
+  "_Default-CM__5XNV.js": {
+    "file": "assets/Default-CM__5XNV.js",
+    "name": "Default",
+    "imports": [
+      "resources/js/app.jsx"
+    ]
   },
-  "public/fonts/FuturaStd/FuturaStd-Bold.woff2": {
-    "file": "assets/FuturaStd-Bold-Dkhs5Jom.woff2",
-    "src": "public/fonts/FuturaStd/FuturaStd-Bold.woff2"
+  "_chunk-BtN6Uazr.js": {
+    "file": "assets/chunk-BtN6Uazr.js",
+    "name": "chunk"
   },
-  "public/fonts/FuturaStd/FuturaStd-Heavy.woff": {
-    "file": "assets/FuturaStd-Heavy-g_eb-p_u.woff",
-    "src": "public/fonts/FuturaStd/FuturaStd-Heavy.woff"
-  },
-  "public/fonts/FuturaStd/FuturaStd-Heavy.woff2": {
-    "file": "assets/FuturaStd-Heavy-CWd-UHkw.woff2",
-    "src": "public/fonts/FuturaStd/FuturaStd-Heavy.woff2"
-  },
-  "public/fonts/FuturaStd/FuturaStd-Light.woff": {
-    "file": "assets/FuturaStd-Light-DPdgeAzF.woff",
-    "src": "public/fonts/FuturaStd/FuturaStd-Light.woff"
-  },
-  "public/fonts/FuturaStd/FuturaStd-Light.woff2": {
-    "file": "assets/FuturaStd-Light-CKN9E_wg.woff2",
-    "src": "public/fonts/FuturaStd/FuturaStd-Light.woff2"
-  },
-  "public/fonts/FuturaStd/FuturaStd-Medium.woff": {
-    "file": "assets/FuturaStd-Medium-Bb0X0zKW.woff",
-    "src": "public/fonts/FuturaStd/FuturaStd-Medium.woff"
-  },
-  "public/fonts/FuturaStd/FuturaStd-Medium.woff2": {
-    "file": "assets/FuturaStd-Medium-CTtvQZIS.woff2",
-    "src": "public/fonts/FuturaStd/FuturaStd-Medium.woff2"
+  "_preload-helper-DU1UIEn3.js": {
+    "file": "assets/preload-helper-DU1UIEn3.js",
+    "name": "preload-helper"
   },
   "resources/css/app.css": {
-    "file": "assets/app-Cq0PoeQu.css",
+    "file": "assets/app-DTUB8k3x.css",
     "name": "app",
     "names": [
       "app.css"
     ],
     "src": "resources/css/app.css",
-    "isEntry": true,
-    "assets": [
-      "assets/FuturaStd-Medium-CTtvQZIS.woff2",
-      "assets/FuturaStd-Medium-Bb0X0zKW.woff",
-      "assets/FuturaStd-Heavy-CWd-UHkw.woff2",
-      "assets/FuturaStd-Heavy-g_eb-p_u.woff",
-      "assets/FuturaStd-Light-CKN9E_wg.woff2",
-      "assets/FuturaStd-Light-DPdgeAzF.woff",
-      "assets/FuturaStd-Bold-Dkhs5Jom.woff2",
-      "assets/FuturaStd-Bold-cpCxj6tM.woff"
+    "isEntry": true
+  },
+  "resources/js/Pages/Cms/BlogPost.jsx": {
+    "file": "assets/BlogPost-BnnkLLsD.js",
+    "name": "BlogPost",
+    "src": "resources/js/Pages/Cms/BlogPost.jsx",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.jsx",
+      "_Default-CM__5XNV.js"
+    ]
+  },
+  "resources/js/Pages/Cms/Page.jsx": {
+    "file": "assets/Page-DePv3sjM.js",
+    "name": "Page",
+    "src": "resources/js/Pages/Cms/Page.jsx",
+    "isDynamicEntry": true,
+    "imports": [
+      "_chunk-BtN6Uazr.js",
+      "resources/js/app.jsx",
+      "_Default-CM__5XNV.js"
+    ]
+  },
+  "resources/js/Pages/Cms/Search.jsx": {
+    "file": "assets/Search-B14VRtHs.js",
+    "name": "Search",
+    "src": "resources/js/Pages/Cms/Search.jsx",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.jsx",
+      "_Default-CM__5XNV.js"
     ]
   },
   "resources/js/app.js": {
-    "file": "assets/app-B_ddubmQ.js",
+    "file": "assets/app-Br_JER9l.js",
     "name": "app",
     "src": "resources/js/app.js",
     "isEntry": true,
+    "imports": [
+      "_preload-helper-DU1UIEn3.js"
+    ],
     "css": [
       "assets/app-CSvobdiw.css"
     ]
   },
+  "resources/js/app.jsx": {
+    "file": "assets/app-Bf7OW5F6.js",
+    "name": "app",
+    "src": "resources/js/app.jsx",
+    "isEntry": true,
+    "imports": [
+      "_chunk-BtN6Uazr.js",
+      "_preload-helper-DU1UIEn3.js"
+    ],
+    "dynamicImports": [
+      "resources/js/Pages/Cms/BlogPost.jsx",
+      "resources/js/Pages/Cms/Page.jsx",
+      "resources/js/Pages/Cms/Search.jsx"
+    ]
+  },
   "resources/js/hot-reload.js": {
-    "file": "assets/hot-reload-m--vgylm.js",
+    "file": "assets/hot-reload-Bw4z34-y.js",
     "name": "hot-reload",
     "src": "resources/js/hot-reload.js",
-    "isEntry": true
+    "isEntry": true,
+    "imports": [
+      "_chunk-BtN6Uazr.js"
+    ]
   }
 }

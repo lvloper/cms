@@ -5,16 +5,52 @@ use App\Http\Controllers\SearchController;
 use App\Http\Controllers\SitemapController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/search-block', function () {
-    $block = request('block');
+Route::get('/search-block', function (\Illuminate\Http\Request $request) {
+    $query = $request->get('q', $request->get('s', ''));
 
-    $pages = \App\Models\Page::where('blocks', 'like', "%{$block}%")->with('route')->get();
-
-    foreach ($pages as $page) {
-        if ($page->route) {
-            echo "<a href='" . $page->route->getFullPath() . "'>" . $page->route->title . "</a><br>";
-        }
+    if (! $query || strlen($query) < 3) {
+        return response()->json(['results' => []]);
     }
+
+    $pages = \App\Models\Page::where('blocks', 'like', '%' . $query . '%')
+        ->whereHas('route', function ($q) {
+            $q->where('status', 'published');
+        })
+        ->with('route')
+        ->limit(20)
+        ->get();
+
+    $results = $pages->map(function ($page) {
+        return [
+            'title' => $page->route->title ?? $page->name ?? 'Sin titulo',
+            'url' => url($page->route->getFullPath()),
+            'type' => 'page',
+        ];
+    });
+
+    $blogs = \App\Models\Blog::where(function ($q) use ($query) {
+            $q->where('description', 'like', '%' . $query . '%')
+              ->orWhere('content', 'like', '%' . $query . '%');
+        })
+        ->whereHas('route', function ($q) {
+            $q->where('status', 'published');
+        })
+        ->where('published_at', '<=', now())
+        ->with('route')
+        ->limit(20)
+        ->get();
+
+    $blogResults = $blogs->map(function ($blog) {
+        return [
+            'title' => $blog->route->title ?? $blog->name ?? 'Sin titulo',
+            'url' => url($blog->route->getFullPath()),
+            'type' => 'blog',
+        ];
+    });
+
+    return response()->json([
+        'results' => $results->concat($blogResults)->values()->toArray(),
+    ]);
 });
 
 Route::get('/preview-blocks', function () {

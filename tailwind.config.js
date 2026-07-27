@@ -3,6 +3,7 @@ export default {
         './app/Filament/**/*.php',
         './app/Livewire/**/*.php',
         './resources/views/**/*.blade.php',
+        './resources/js/**/*.jsx',
         './vendor/filament/**/*.blade.php',
     ],
   safelist: [
