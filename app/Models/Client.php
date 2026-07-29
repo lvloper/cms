@@ -26,6 +26,7 @@ class Client extends Model
     protected $fillable = [
         'logo',
         'color',
+        'sort_order',
         'popup_text_color',
         'is_featured',
         'blocks',

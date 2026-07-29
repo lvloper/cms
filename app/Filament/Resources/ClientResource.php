@@ -21,6 +21,7 @@ use Filament\Schemas\Components\Section;
 use Filament\Schemas\Components\Tabs;
 use Filament\Schemas\Components\Utilities\Get;
 use Filament\Schemas\Schema;
+use Filament\Tables\Table;
 
 class ClientResource extends ResourceBase
 {
@@ -212,6 +213,13 @@ class ClientResource extends ResourceBase
                         ->columnSpanFull(),
                 ]),
         ];
+    }
+
+    public static function table(Table $table): Table
+    {
+        return parent::table($table)
+            ->reorderable('sort_order')
+            ->defaultSort('sort_order');
     }
 
     public static function getPages(): array

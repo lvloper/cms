@@ -19,6 +19,7 @@ class HomeController extends Controller
             ->where('is_featured', true)
             ->whereHas('route', fn (Builder $query) => $query->where('status', Status::Published))
             ->with('route')
+            ->orderBy('sort_order')
             ->orderBy('id')
             ->get()
             ->map(function (Client $client): array {
@@ -27,6 +28,7 @@ class HomeController extends Controller
                 return [
                     'id' => $client->id,
                     'src' => Storage::url($client->logo),
+                    'url' => url($client->route?->getFullPath() ?? '#'),
                     'alt' => $title,
                     'title' => $title,
                     'color' => $client->color,

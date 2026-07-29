@@ -119,12 +119,12 @@ html.hero-scroll-lock body {
 
 .home-hero__line-anchor {
   position: absolute;
-  top: 50%;
+  top: 0;
   left: 0;
   z-index: 1;
   width: 100dvw;
   height: 1px;
-  transform: translateY(-50%);
+  transform: none;
 }
 
 .home-hero__line-anchor,
@@ -224,12 +224,14 @@ html.hero-scroll-lock body {
 .home-hero__rotating-word {
   display: inline-grid;
   overflow: hidden;
+  width: max-content;
   vertical-align: bottom;
 }
 
 .home-hero__rotating-option {
   grid-area: 1 / 1;
   display: inline-block;
+  justify-self: start;
   white-space: nowrap;
   will-change: transform, opacity;
 }

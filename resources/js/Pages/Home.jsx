@@ -11,6 +11,7 @@ const STATIC_CLIENT_LOGOS = [
         title: 'Fundación Huésped',
         color: '#00A7A0',
         popupTextColor: 'black',
+        url: '/cliente/fundacion-huesped',
     },
     {
         id: 'amnistia-internacional',
@@ -19,6 +20,7 @@ const STATIC_CLIENT_LOGOS = [
         title: 'Amnistía Internacional',
         color: '#FFF200',
         popupTextColor: 'black',
+        url: '/cliente/amnistia-internacional',
     },
     {
         id: 'eurobursatil',
@@ -27,6 +29,7 @@ const STATIC_CLIENT_LOGOS = [
         title: 'Eurobursatil',
         color: '#23408E',
         popupTextColor: 'white',
+        url: '/cliente/eurobursatil',
     },
     {
         id: 'qyt-servicios',
@@ -35,6 +38,7 @@ const STATIC_CLIENT_LOGOS = [
         title: 'QyT Servicios',
         color: '#2D7D8A',
         popupTextColor: 'white',
+        url: '/cliente/qyt-servicios',
     },
     {
         id: 'fundacion-leloir',
@@ -43,6 +47,7 @@ const STATIC_CLIENT_LOGOS = [
         title: 'Fundación Leloir',
         color: '#713C8C',
         popupTextColor: 'white',
+        url: '/cliente/fundacion-leloir',
     },
     {
         id: 'cedes',
@@ -51,6 +56,7 @@ const STATIC_CLIENT_LOGOS = [
         title: 'CEDES',
         color: '#E7772E',
         popupTextColor: 'black',
+        url: '/cliente/cedes',
     },
     {
         id: 'iidi',
@@ -59,6 +65,7 @@ const STATIC_CLIENT_LOGOS = [
         title: 'IIDI',
         color: '#E34D61',
         popupTextColor: 'black',
+        url: '/cliente/iidi',
     },
 ]
 

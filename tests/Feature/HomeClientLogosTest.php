@@ -79,6 +79,21 @@ class HomeClientLogosTest extends TestCase
                 ->where('clients.0.previewItems.2.durationMs', null));
     }
 
+    public function test_home_orders_clients_by_sort_order(): void
+    {
+        $last = $this->createClient('images/clients/logos/last.webp', sortOrder: 20);
+        $this->createRoute($last, 'Último', Status::Published);
+
+        $first = $this->createClient('images/clients/logos/first.webp', sortOrder: 10);
+        $this->createRoute($first, 'Primero', Status::Published);
+
+        $this->get('/')
+            ->assertOk()
+            ->assertInertia(fn (AssertableInertia $page) => $page
+                ->where('clients.0.id', $first->id)
+                ->where('clients.1.id', $last->id));
+    }
+
     /**
      * @param  array<int, array<string, string>>  $testimonials
      * @param  array<int, array<string, mixed>>  $previewItems
@@ -88,10 +103,12 @@ class HomeClientLogosTest extends TestCase
         bool $isFeatured = true,
         array $testimonials = [],
         array $previewItems = [],
+        int $sortOrder = 0,
     ): Client {
         return Client::create([
             'logo' => $logo,
             'color' => '#123456',
+            'sort_order' => $sortOrder,
             'popup_text_color' => 'white',
             'is_featured' => $isFeatured,
             'blocks' => [],

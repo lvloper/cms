@@ -94,7 +94,7 @@ class ClientSeeder extends Seeder
             ],
         ];
 
-        foreach ($clients as $data) {
+        foreach ($clients as $index => $data) {
             $slug = Str::slug($data['title']);
 
             $client = Client::query()
@@ -105,6 +105,7 @@ class ClientSeeder extends Seeder
                 $client = Client::create([
                     'logo' => $data['logo'],
                     'color' => $data['color'],
+                    'sort_order' => $index,
                     'popup_text_color' => $data['popup_text_color'],
                     'is_featured' => $data['is_featured'],
                     'blocks' => [],

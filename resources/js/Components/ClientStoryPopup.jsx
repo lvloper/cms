@@ -299,6 +299,11 @@ export function ClientStoryCard({
                 </div>
                 <TvStaticTransition transition={transition} />
             </div>
+            {client.url && (
+                <a className="client-story-card__link" href={client.url}>
+                    Ver cliente <span aria-hidden="true">↗</span>
+                </a>
+            )}
         </article>
     )
 }

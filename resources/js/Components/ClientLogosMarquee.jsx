@@ -10,11 +10,17 @@ import {
 const MARQUEE_DURATION = '40s'
 
 function ClientLogo({ client, hidden, onOpen }) {
-    const Trigger = hidden ? 'span' : 'button'
+    const [isMobile, setIsMobile] = useState(false)
+    const Trigger = hidden ? 'span' : isMobile ? 'button' : 'a'
     const triggerRef = useRef(null)
     const tippyRef = useRef(null)
 
     useEffect(() => {
+        const mediaQuery = window.matchMedia('(max-width: 767px)')
+        const updateMobile = () => setIsMobile(mediaQuery.matches)
+        updateMobile()
+        mediaQuery.addEventListener('change', updateMobile)
+
         const content = document.createElement('div')
         const contentRoot = createRoot(content)
         const renderContent = (isActive) => {
@@ -45,22 +51,29 @@ function ClientLogo({ client, hidden, onOpen }) {
         tippyRef.current = instance
 
         return () => {
+            mediaQuery.removeEventListener('change', updateMobile)
             tippyRef.current = null
             instance.destroy()
             contentRoot.unmount()
         }
-    }, [client])
+    }, [client, isMobile])
 
     return (
         <Trigger
             ref={triggerRef}
-            type={hidden ? undefined : 'button'}
+            type={!hidden && isMobile ? 'button' : undefined}
+            href={!hidden && !isMobile ? client.url : undefined}
             tabIndex={hidden ? -1 : undefined}
             className="home-client-logos__trigger"
             aria-label={hidden ? undefined : `Ver historia de ${client.alt}`}
             aria-haspopup={hidden ? undefined : 'dialog'}
             onBlur={() => tippyRef.current?.hide()}
-            onClick={() => {
+            onClick={(event) => {
+                if (!hidden && !isMobile) {
+                    return
+                }
+
+                event.preventDefault()
                 tippyRef.current?.hide()
                 onOpen(client)
             }}

@@ -56,6 +56,16 @@ function addTitleReveal(timeline, titleElement, position, { onArrowPulse, onDotP
     }, 'title')
 
     timeline.call(onArrowPulse)
+    timeline.addLabel('text')
+
+    lines.forEach((characters, lineIndex) => {
+        timeline.to(characters, {
+            yPercent: 0,
+            duration: 0.48,
+            ease: 'power4.out',
+            stagger: 0.018,
+        }, lineIndex === 0 ? 'text' : '>')
+    })
 
     timeline.to(dot, {
         autoAlpha: 1,
@@ -71,16 +81,6 @@ function addTitleReveal(timeline, titleElement, position, { onArrowPulse, onDotP
     })
 
     timeline.call(onDotPulse)
-    timeline.addLabel('text')
-
-    lines.forEach((characters, lineIndex) => {
-        timeline.to(characters, {
-            yPercent: 0,
-            duration: 0.48,
-            ease: 'power4.out',
-            stagger: 0.018,
-        }, lineIndex === 0 ? 'text' : '>')
-    })
 }
 
 export default function HomeHero() {
@@ -232,15 +232,18 @@ export default function HomeHero() {
             }
 
             const startTitleRotation = () => {
+                const rotatingWord = title.querySelector('[data-rotating-word]')
                 const options = [...title.querySelectorAll('[data-rotating-option]')]
 
-                if (titleRotationStarted || reduceMotion || options.length < 2) return
+                if (titleRotationStarted || reduceMotion || !rotatingWord || options.length < 2) return
 
                 titleRotationStarted = true
                 let activeIndex = 0
                 let delayIndex = 0
+                const getOptionWidth = (option) => option.getBoundingClientRect().width
 
                 gsap.set(options.slice(1), { autoAlpha: 0, yPercent: 0 })
+                gsap.set(rotatingWord, { width: getOptionWidth(options[activeIndex]) })
 
                 const rotate = () => {
                     const current = options[activeIndex]
@@ -257,6 +260,11 @@ export default function HomeHero() {
                             gsap.set(current, { autoAlpha: 0, yPercent: 0 })
                         },
                     })
+                        .to(rotatingWord, {
+                            width: getOptionWidth(next),
+                            duration: 0.2,
+                            ease: 'power2.inOut',
+                        }, 0)
                         .to(current, {
                             autoAlpha: 0,
                             yPercent: -100,
@@ -285,7 +293,6 @@ export default function HomeHero() {
             const getFinalLogoY = () => (
                 window.innerHeight / 2
                 - getBottomOffset()
-                - logoMotion.getBoundingClientRect().height / 2
             )
 
             const getLogoToLineGap = () => (
@@ -299,11 +306,7 @@ export default function HomeHero() {
                 headerLine.style.top = `${headerLogoRect.bottom + getLogoToLineGap()}px`
             }
 
-            const getFinalLineY = () => (
-                getFinalLogoY()
-                + logoMotion.getBoundingClientRect().height / 2
-                + getLogoToLineGap()
-            )
+            const getFinalLineY = () => getFinalLogoY() + window.innerHeight / 2
 
             const setHandoff = (active) => {
                 if (handoffActive === active) return
