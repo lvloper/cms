@@ -2,19 +2,22 @@
 
 namespace App\Filament\Resources\Bases;
 
+use App\Filament\Traits\HandlesExternalImages;
+use Filament\Actions;
 use Filament\Notifications\Notification;
 use Filament\Resources\Pages\EditRecord;
-use Filament\Actions;
-use App\Filament\Traits\HandlesExternalImages;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
 
 class EditBase extends EditRecord
 {
     use HandlesExternalImages;
+
     protected string $view = 'filament.admin.pages.edit-page';
 
     public ?int $selectedHistoryId = null;
@@ -45,8 +48,9 @@ class EditBase extends EditRecord
 
         if ($record->title) {
             if ($record->route && $record->route->parent) {
-                return $record->title . ' - ' . $record->route->parent->title;
+                return $record->title.' - '.$record->route->parent->title;
             }
+
             return $record->title;
         }
 
@@ -57,7 +61,7 @@ class EditBase extends EditRecord
     {
         return [
             Actions\DeleteAction::make()
-                ->hidden(fn() => $this->record && method_exists($this->record, 'isProtected') && $this->record->isProtected()),
+                ->hidden(fn () => $this->record && method_exists($this->record, 'isProtected') && $this->record->isProtected()),
         ];
     }
 
@@ -425,8 +429,8 @@ class EditBase extends EditRecord
     {
         $type = $block['type'] ?? '';
         $data = $block['data'] ?? [];
-        $viewName = 'blocks.' . $type;
-        $kebabName = 'blocks.' . \Illuminate\Support\Str::kebab($type);
+        $viewName = 'blocks.'.$type;
+        $kebabName = 'blocks.'.Str::kebab($type);
 
         $viewPath = null;
         if (view()->exists($viewName)) {
@@ -436,22 +440,22 @@ class EditBase extends EditRecord
         }
 
         if (! $viewPath) {
-            return '<div class="p-4 bg-gray-100 text-gray-500 text-center">Preview no disponible para: ' . e($type) . '</div>';
+            return '<div class="p-4 bg-gray-100 text-gray-500 text-center">Preview no disponible para: '.e($type).'</div>';
         }
 
         try {
-            $uid = 'preview-' . uniqid();
+            $uid = 'preview-'.uniqid();
             $data['id'] = $uid;
             $data['preview'] = true;
 
-            $blockHtml = Blade::render('@include(\'' . addcslashes($viewPath, '\'') . '\', $__data)', $data, deleteCachedView: true);
+            $blockHtml = Blade::render('@include(\''.addcslashes($viewPath, '\'').'\', $__data)', $data, deleteCachedView: true);
             $blockHtml = str_replace('="images', '="/storage/images', $blockHtml);
 
-            $blockHtml = '<style>.block-entrance{opacity:1!important;transform:none!important;}</style>' . $blockHtml;
+            $blockHtml = '<style>.block-entrance{opacity:1!important;transform:none!important;}</style>'.$blockHtml;
 
-            return '<div id="main">' . $blockHtml . '</div>';
+            return '<div id="main">'.$blockHtml.'</div>';
         } catch (\Exception $e) {
-            return '<div class="p-4 bg-red-50 text-red-600 text-center">Error: ' . e($e->getMessage()) . '</div>';
+            return '<div class="p-4 bg-red-50 text-red-600 text-center">Error: '.e($e->getMessage()).'</div>';
         }
     }
 
@@ -483,12 +487,15 @@ class EditBase extends EditRecord
         $routeData = $data['route'] ?? [];
         $modelClass = get_class($record);
 
-
         if (method_exists($record, 'getDefaultRouteParentId')) {
             $routeData['parent_id'] = $record->getDefaultRouteParentId();
         }
         if (method_exists($record, 'getDefaultRouteLayout')) {
             $routeData['layout'] = $record->getDefaultRouteLayout();
+        }
+        if (property_exists($modelClass, 'routePrefix') && filled($modelClass::$routePrefix ?? null)) {
+            $routeData['parent_id'] = null;
+            $routeData['full_slug'] = trim($modelClass::$routePrefix, '/').'/'.ltrim($routeData['slug'], '/');
         }
         if ($record->route) {
             $record->route->fill($routeData);
@@ -530,10 +537,12 @@ class EditBase extends EditRecord
         $record = $this->getRecord();
         $record->load('route');
 
-        if ($record->route === null) return;
+        if ($record->route === null) {
+            return;
+        }
 
         $extraData = [
-            'route' => $record->route->toArray()
+            'route' => $record->route->toArray(),
         ];
 
         // Include all model attributes to preserve existing data like images
@@ -556,7 +565,7 @@ class EditBase extends EditRecord
             }
         }
 
-        if (!empty($updates)) {
+        if (! empty($updates)) {
             foreach ($updates as $k => $v) {
                 $record->{$k} = $v;
             }
@@ -687,9 +696,9 @@ class EditBase extends EditRecord
     protected function summarizeHistoryChanges(array $changes): string
     {
         $labels = collect($changes)->pluck('label')->take(3)->implode(', ');
-        $extra = count($changes) > 3 ? ' y ' . (count($changes) - 3) . ' más' : '';
+        $extra = count($changes) > 3 ? ' y '.(count($changes) - 3).' más' : '';
 
-        return 'Cambió ' . $labels . $extra;
+        return 'Cambió '.$labels.$extra;
     }
 
     protected function getHistoryCategoryLabel(array $fields): string
@@ -750,7 +759,7 @@ class EditBase extends EditRecord
             return $value->value;
         }
 
-        if ($value instanceof \Illuminate\Support\Collection) {
+        if ($value instanceof Collection) {
             return $value->all();
         }
 

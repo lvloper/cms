@@ -21,7 +21,9 @@ use Joaopaulolndev\FilamentEditProfile\FilamentEditProfilePlugin;
 use Filament\Navigation\MenuItem;
 use Joaopaulolndev\FilamentEditProfile\Pages\EditProfilePage;
 
+use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\HtmlString;
+use Filament\View\PanelsRenderHook;
 
 class AdminPanelProvider extends PanelProvider
 {
@@ -92,6 +94,7 @@ class AdminPanelProvider extends PanelProvider
           }),
       ])
 
+        ->renderHook(PanelsRenderHook::HEAD_START, fn (): string => Blade::render("@vite('resources/css/admin-overrides.css')"))
         ->databaseNotifications()
         ->databaseNotificationsPolling('5s')
       ->brandLogo(fn() => new HtmlString('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 601 101">

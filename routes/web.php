@@ -3,7 +3,10 @@
 use App\Http\Controllers\RouteController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\SitemapController;
+use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
+
+Route::get('/', [HomeController::class, 'index'])->name('home');
 
 Route::get('/search-block', function (\Illuminate\Http\Request $request) {
     $query = $request->get('q', $request->get('s', ''));

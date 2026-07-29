@@ -14,6 +14,19 @@
     <link rel="manifest" href="{{ asset('site.webmanifest') }}">
 
     @vite(['resources/css/app.css', 'resources/js/app.jsx'])
+    @php
+        $hotPath = public_path('hot');
+        $viteUrl = file_exists($hotPath) ? trim(file_get_contents($hotPath)) : null;
+    @endphp
+    @if($viteUrl)
+        <script type="module">
+            import RefreshRuntime from '{{ $viteUrl }}/@react-refresh'
+            RefreshRuntime.injectIntoGlobalHook(window)
+            window.$RefreshReg$ = () => {}
+            window.$RefreshSig$ = () => (type) => type
+            window.__vite_plugin_react_preamble_installed__ = true
+        </script>
+    @endif
     @inertiaHead
 
     @php

@@ -1,4 +1,5 @@
 import BlockWrapper from '@/Components/BlockWrapper'
+import Hero from '@/Blocks/Hero'
 import Text from '@/Blocks/Text'
 import Media from '@/Blocks/Media'
 import MediaText from '@/Blocks/MediaText'
@@ -6,6 +7,7 @@ import Cards from '@/Blocks/Cards'
 import Search from '@/Blocks/Search'
 
 const blockComponents = {
+    Hero,
     Text,
     Media,
     MediaText,
@@ -15,7 +17,7 @@ const blockComponents = {
 
 export default function BlocksList({ blocks = [] }) {
     return (
-        <div className="bg-white blocks-container fade-in">
+        <div className="blocks-container fade-in">
             {blocks.map((block, index) => {
                 if (block.data?.hidden) return null
 

@@ -13,22 +13,22 @@ namespace App\Models;
  * @property string $description
  * @property string $image
  * @property string $url
- * @property \Carbon\Carbon $created_at
- * @property \Carbon\Carbon $updated_at
-
-
-  * HasRoute
+ * @property Carbon $created_at
+ * @property Carbon $updated_at
+ *                              HasRoute
+ *
  * @function string getFullPath()*/
 
 use App\Enums\Status;
+use App\Models\Traits\HasPreview;
+use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
-use App\Models\Traits\HasPreview;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 use RalphJSmit\Laravel\SEO\Support\HasSEO;
 use RalphJSmit\Laravel\SEO\Support\SEOData;
-use Illuminate\Support\Facades\Storage;
-
-
 
 class Route extends Model
 {
@@ -71,7 +71,6 @@ class Route extends Model
         }
     }
 
-
     protected static function boot()
     {
         parent::boot();
@@ -94,14 +93,15 @@ class Route extends Model
     public function getIndex(): array
     {
         $blocks = $this->routable->blocks;
+
         return collect($blocks)
             ->filter(function ($block) {
-                return isset($block['data']['blockTitle']) && !empty($block['data']['blockTitle']);
+                return isset($block['data']['blockTitle']) && ! empty($block['data']['blockTitle']);
             })
             ->map(function ($block) {
                 return [
                     'title' => $block['data']['blockTitle'],
-                    'id' => \Illuminate\Support\Str::slug($block['data']['blockTitle']) ?? null,
+                    'id' => Str::slug($block['data']['blockTitle']) ?? null,
                 ];
             })
             ->values()
@@ -118,8 +118,12 @@ class Route extends Model
         return $this->hasMany(Route::class, 'parent_id');
     }
 
-    public function getFullSlugAttribute()
+    public function getFullSlugAttribute(?string $value = null): string
     {
+        if (! $this->parent_id && filled($value)) {
+            return $value;
+        }
+
         $slugs = collect([]);
         $route = $this;
 
@@ -134,9 +138,10 @@ class Route extends Model
     public function getFullPath()
     {
         if ($this->parent_id) {
-            return $this->parent->getFullPath() . '/' . $this->slug;
+            return $this->parent->getFullPath().'/'.$this->slug;
         }
-        return $this->slug;
+
+        return $this->full_slug ?: $this->slug;
     }
 
     public function getUrlAttribute()
@@ -146,7 +151,8 @@ class Route extends Model
 
     /**
      * Obtiene todos los IDs de rutas descendientes de forma recursiva
-     * @return \Illuminate\Database\Eloquent\Collection
+     *
+     * @return Collection
      */
     public function getDescendantIds()
     {
@@ -154,7 +160,7 @@ class Route extends Model
 
         $children = $this->children()->with('children')->get();
 
-        $children->each(function($child) use (&$ids) {
+        $children->each(function ($child) use (&$ids) {
             $ids = $ids->merge($child->getDescendantIds());
         });
 
@@ -172,9 +178,9 @@ class Route extends Model
 
     public static function getSelectOptions($search = null, $addExternal = false, ?\Closure $filter = null): array
     {
-        $routeOptions = \App\Models\Route::with('children')
+        $routeOptions = Route::with('children')
             ->orderBy('title', 'asc')
-            ->when($filter, function ($query) use ($filter) {
+            ->when($filter, function ($query) {
                 $query->whereNotNull('parent_id');
             }, function ($query) {
                 $query->whereNull('parent_id');
@@ -192,7 +198,7 @@ class Route extends Model
             })
             ->get()
             ->mapWithKeys(function ($route) use ($search) {
-                $options = [(string)$route->id => $route->title];
+                $options = [(string) $route->id => $route->title];
 
                 // Si hay búsqueda, mostramos todas las rutas hijas que coincidan
                 // Si no hay búsqueda, limitamos a 5
@@ -200,10 +206,11 @@ class Route extends Model
 
                 foreach ($children as $child) {
                     // Si hay búsqueda, solo agregar si coincide con el término de búsqueda
-                    if (!$search || stripos($child->title, $search) !== false) {
-                        $options[(string)$child->id] = '-- ' . $child->title;
+                    if (! $search || stripos($child->title, $search) !== false) {
+                        $options[(string) $child->id] = '-- '.$child->title;
                     }
                 }
+
                 return $options;
             })
             ->toArray();
@@ -217,7 +224,7 @@ class Route extends Model
 
     public function isActive(): bool
     {
-        $homeConfig = \App\Models\Configuration::getValue('home_route_id');
+        $homeConfig = Configuration::getValue('home_route_id');
         $homeRouteId = $homeConfig['route']['route_id'] ?? null;
 
         if ($homeRouteId && (int) $this->id === (int) $homeRouteId) {
@@ -235,7 +242,7 @@ class Route extends Model
         }
 
         // Verificar si alguno de los hijos en el menú está activo
-        $menu = \App\Models\Menu::where('slug', 'header')->first();
+        $menu = Menu::where('slug', 'header')->first();
         if ($menu) {
             foreach ($menu->items as $item) {
                 // Si este item es la ruta activa y tiene hijos
@@ -276,7 +283,7 @@ class Route extends Model
             return false;
         }
 
-        return !$this->isPreview();
+        return ! $this->isPreview();
     }
 
     /**
@@ -300,7 +307,7 @@ class Route extends Model
      */
     public function getCanonicalUrl(): string
     {
-        $homeConfig = \App\Models\Configuration::getValue('home_route_id');
+        $homeConfig = Configuration::getValue('home_route_id');
         $homeRouteId = $homeConfig['route']['route_id'] ?? null;
 
         if ($homeRouteId && (int) $this->id === (int) $homeRouteId) {
@@ -309,6 +316,4 @@ class Route extends Model
 
         return $this->full_slug === 'home' ? url('/') : url($this->full_slug);
     }
-
-
 }

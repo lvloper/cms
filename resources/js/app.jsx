@@ -1,5 +1,5 @@
 import { createInertiaApp } from '@inertiajs/react'
-import { createRoot, hydrateRoot } from 'react-dom/client'
+import { createRoot } from 'react-dom/client'
 import { resolvePageComponent } from 'laravel-vite-plugin/inertia-helpers'
 
 const appName = import.meta.env.VITE_APP_NAME || 'CMS'
@@ -12,11 +12,7 @@ createInertiaApp({
             import.meta.glob('./Pages/**/*.jsx'),
         ),
     setup({ el, App, props }) {
-        if (import.meta.env.DEV) {
-            createRoot(el).render(<App {...props} />)
-            return
-        }
-        hydrateRoot(el, <App {...props} />)
+        createRoot(el).render(<App {...props} />)
     },
     progress: {
         color: '#334155',

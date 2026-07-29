@@ -1,5 +1,5 @@
-import { Head, usePage } from '@inertiajs/react'
-import DefaultLayout from './Default'
+import { Head } from '@inertiajs/react'
+import SiteHeader from '@/Components/SiteHeader'
 
 export default function HomeLayout({ children, route }) {
     return (
@@ -8,8 +8,9 @@ export default function HomeLayout({ children, route }) {
                 {route?.custom_css && <style>{route.custom_css}</style>}
                 {route?.header_scripts && <script dangerouslySetInnerHTML={{ __html: route.header_scripts }} />}
             </Head>
-            <div className="font-sans text-base tracking-normal leading-normal text-gray-800 frontend">
-                <div className="z-10 bg-white main-content">{children}</div>
+            <div className="font-sans text-base tracking-normal leading-normal text-white bg-black frontend">
+                <SiteHeader />
+                <main className="relative z-10 bg-black main-content">{children}</main>
                 <Footer route={route} />
             </div>
         </>
@@ -18,9 +19,9 @@ export default function HomeLayout({ children, route }) {
 
 function Footer({ route }) {
     return (
-        <footer className="bg-gray-50 border-t border-gray-100 py-8">
+        <footer className="bg-black border-t border-white/20 py-8">
             <div className="container mx-auto px-4">
-                <p className="text-sm text-gray-500 text-center">
+                <p className="text-sm text-white/60 text-center">
                     {import.meta.env.VITE_APP_NAME || 'CMS'} &copy; {new Date().getFullYear()}
                 </p>
                 {route?.footer_scripts && <script dangerouslySetInnerHTML={{ __html: route.footer_scripts }} />}

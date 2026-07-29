@@ -11,11 +11,11 @@ export default function DefaultLayout({ children, route, layout = 'default' }) {
                 {route?.header_scripts && <script dangerouslySetInnerHTML={{ __html: route.header_scripts }} />}
             </Head>
 
-            <div className="font-sans text-base tracking-normal leading-normal text-gray-800 frontend">
+            <div className="font-sans text-base tracking-normal leading-normal text-white bg-black frontend">
                 <Header route={route} />
                 <div id="main" className={hasIndex ? 'has-sidebar' : ''}>
                     {hasIndex && <Sidebar index={index} />}
-                    <div className="z-10 bg-white main-content">{children}</div>
+                    <div className="z-10 main-content">{children}</div>
                 </div>
                 <Footer route={route} />
             </div>
@@ -28,16 +28,16 @@ function Header({ route }) {
     const menu = shared?.menu ?? []
 
     return (
-        <header className="relative z-50 bg-white border-b border-gray-100">
+        <header className="relative z-50 bg-black border-b border-gray-800">
             <div className="container mx-auto px-4">
                 <div className="flex items-center justify-between h-16 md:h-20">
-                    <a href="/" className="text-xl font-bold text-gray-900">
+                    <a href="/" className="text-xl font-bold text-white">
                         {import.meta.env.VITE_APP_NAME || 'CMS'}
                     </a>
                     {menu.length > 0 && (
                         <nav className="hidden md:flex items-center gap-6">
                             {menu.map((item, i) => (
-                                <a key={i} href={item.url} className="text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors">
+                                <a key={i} href={item.url} className="text-sm font-medium text-gray-400 hover:text-white transition-colors">
                                     {item.title}
                                 </a>
                             ))}
@@ -51,7 +51,7 @@ function Header({ route }) {
 
 function Footer({ route }) {
     return (
-        <footer className="bg-gray-50 border-t border-gray-100 py-8">
+        <footer className="bg-black border-t border-gray-800 py-8">
             <div className="container mx-auto px-4">
                 <p className="text-sm text-gray-500 text-center">
                     {import.meta.env.VITE_APP_NAME || 'CMS'} &copy; {new Date().getFullYear()}

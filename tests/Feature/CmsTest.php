@@ -12,11 +12,10 @@ class CmsTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function test_home_route_returns_404_when_not_set_up()
+    public function test_home_route_is_available_without_a_cms_page()
     {
         $response = $this->get('/');
-        // Home route doesn't exist in fresh DB, so 404 is expected
-        $response->assertStatus(404);
+        $response->assertOk();
     }
 
     public function test_page_can_be_created_with_route()

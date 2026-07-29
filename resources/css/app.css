@@ -4,11 +4,15 @@
 @import "./components/line-title.css";
 @import "./components/text-wysiwyg.css";
 @import "./components/gallery.css";
+@import "./components/hero.css";
+@import "./components/client-logos.css";
 @import "./blocks/marquee.css";
 
 @import "./view-transition.css";
 
 :root {
+  --color-surface: var(--color-black);
+  --color-text: var(--color-white);
   --color-primary: #334155;
   --color-primary-hover: #1e293b;
   --color-secondary: #64748b;
@@ -20,6 +24,12 @@
   --color-gray: #707070;
   --color-gray-2: #E7E7E7;
   --color-gray-3: #F2F2F2;
+  --color-socies-green: #00f081;
+  --color-socies-blue: #1d71ff;
+  --color-socies-yellow: #ffc700;
+  --color-socies-coral: #ff4d61;
+  --color-socies-violet: #951b81;
+  --color-socies-aqua: #0dd6cc;
   --scrollbar-color: var(--color-secondary);
   --header-height: 80px;
   --side-bar-width: 260px;
@@ -65,11 +75,17 @@ html {
   @screen 2xl { font-size:var(--font-size-2xl); }
   @screen 3xl { font-size:var(--font-size-3xl); }
   overflow-x: hidden;
+  background: var(--color-black);
+}
+
+body {
+  background: var(--color-black);
+  color: var(--color-white);
+}
 
   /* @media (min-width: 1280px) {
     zoom: 0.8;
   } */
-}
 
 
 * {
@@ -607,57 +623,6 @@ html {
     &.swiper-pagination-bullet-active {
       @apply !bg-primary !opacity-100 !w-12 ;
     }
-  }
-}
-
-/* Custom styles for Filament selects - remove rounded borders */
-.fi-input-wrp,
-.fi-fo-select .fi-select-input,
-.fi-fo-select .choices__inner,
-.fi-fo-select .choices,
-.fi-select .fi-select-input,
-.fi-select .choices__inner,
-.fi-select .choices,
-.fi-input,
-.fi-select-input {
-  border-radius: 0 !important;
-}
-
-/* Custom styles for selected items in Filament selects - only for selected badges */
-.choices__item[data-deletable] {
-  background-color: var(--color-primary) !important;
-  color: white !important;
-}
-
-/* Custom styles for field labels */
-.fi-fo-field-wrp-label span {
-  color: white !important;
-}
-
-/* Ensure proper grid layout for form columns */
-.fi-fo-form .fi-fo-component-ctn {
-  width: 100% !important;
-}
-
-/* Fix Filament form grid columns - more specific selectors */
-.fi-fo-form .grid,
-.fi-form .grid,
-[x-data*="form"] .grid {
-  --cols-default: repeat(1, minmax(0, 1fr)) !important;
-  --cols-lg: repeat(4, minmax(0, 1fr)) !important;
-}
-
-@media (min-width: 1024px) {
-  .fi-fo-form .grid,
-  .fi-form .grid,
-  [x-data*="form"] .grid {
-    grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
-  }
-
-  .fi-fo-form .grid.lg\:grid-cols-\[--cols-lg\],
-  .fi-form .grid.lg\:grid-cols-\[--cols-lg\],
-  [x-data*="form"] .grid.lg\:grid-cols-\[--cols-lg\] {
-    grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
   }
 }
 

@@ -14,10 +14,8 @@ class ExampleTest extends TestCase
      */
     public function test_the_application_returns_a_successful_response(): void
     {
-        // In a fresh database there is no home route, so the app returns 404.
-        // Once a home page is created this would return 200.
         $response = $this->get('/');
 
-        $response->assertStatus(404);
+        $response->assertStatus(200);
     }
 }

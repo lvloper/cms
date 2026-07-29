@@ -2,18 +2,16 @@
 
 namespace App\Filament\Traits;
 
+use App\Enums\Status;
 use App\Models\Configuration;
 use App\Models\Route;
 use Filament\Actions\Action;
 use Filament\Forms\Components as Component;
-use Filament\Support\RawJs;
 use Filament\Schemas\Components\Section;
 use Filament\Schemas\Components\Utilities\Get;
-use Filament\Schemas\Components\Utilities\Set;
-use Illuminate\Database\Eloquent\Model;
+use Filament\Support\RawJs;
 use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Support\Str;
-use App\Enums\Status;
+use Illuminate\Database\Eloquent\Model;
 
 trait HasRoute
 {
@@ -50,6 +48,9 @@ trait HasRoute
     {
         $modelClass = $form->getModel();
         $forceParent = $modelClass::$forceParent ?? null;
+        $routePrefix = property_exists($modelClass, 'routePrefix')
+            ? trim($modelClass::$routePrefix, '/')
+            : null;
         $editLayout = $modelClass::$editLayout ?? false;
         $editDate = $modelClass::$editDate ?? false;
 
@@ -73,7 +74,7 @@ trait HasRoute
                         ->label('Imagen de portada')
                         ->image()
                         ->maxSize(1024)
-                                    ->image()
+                        ->image()
                         ->imageEditor()
                         ->imageEditorMode(2)
                         ->preserveFilenames()
@@ -95,15 +96,20 @@ trait HasRoute
                         ->searchable()
                         ->live()
                         ->nullable()
-                        ->hidden(fn() => $forceParent !== null),
+                        ->hidden(fn () => $forceParent !== null || filled($routePrefix)),
 
                     Component\TextInput::make('route.slug')
                         ->label('Url personalizada')
                         ->hidden(fn (?Model $record) => static::isProtectedRoute($record))
-                        ->helperText('La página principal se configura en ' . url('/admin/configurations'))
-                        ->prefix(function ($get) {
+                        ->helperText('La página principal se configura en '.url('/admin/configurations'))
+                        ->prefix(function ($get) use ($routePrefix) {
+                            if (filled($routePrefix)) {
+                                return url($routePrefix).'/';
+                            }
+
                             $parentRoute = Route::find($get('route.parent_id'));
-                            return $parentRoute ? url($parentRoute->getFullPath()) . '/' : url('/');
+
+                            return $parentRoute ? url($parentRoute->getFullPath()).'/' : url('/');
                         })
                         ->reactive()
                         ->mask(RawJs::make(<<<'JS'
@@ -115,8 +121,8 @@ trait HasRoute
                     JS))
                         ->maxLength(200)
                         /*->unique(
-                        table: 'routes', 
-                        column: 'slug', 
+                        table: 'routes',
+                        column: 'slug',
                         ignorable: fn ($record) => $record->id === $record->route->routable_id ? $record->route : null
                     )**/
                         ->required()
@@ -124,7 +130,7 @@ trait HasRoute
                             Action::make('go')
                                 ->icon('heroicon-o-eye')
                                 ->openUrlInNewTab(true)
-                                ->url(fn($record): string => !$record ? '#' : $record->previewUrl)
+                                ->url(fn ($record): string => ! $record ? '#' : $record->previewUrl)
                         ),
 
                     Component\ToggleButtons::make('route.status')
@@ -141,7 +147,7 @@ trait HasRoute
             Section::make(__('Fecha'))
                 ->aside(true)
                 ->columns(1)
-                ->visible(fn() => $editDate)
+                ->visible(fn () => $editDate)
                 ->schema([
                     Component\DateTimePicker::make('created_at')
                         ->label('Fecha de creación')
@@ -154,15 +160,14 @@ trait HasRoute
                     Component\DateTimePicker::make('published_at')
                         ->label('Fecha de publicación')
                         ->default(now())
-                        ->required()
+                        ->required(),
                 ])
                 ->columns(3),
-
 
             Section::make(__('Diseño'))
                 ->aside(true)
                 ->columns(1)
-                ->visible(fn() => $editLayout)
+                ->visible(fn () => $editLayout)
                 ->schema([
                     Component\Select::make('route.layout')
                         ->label('')
@@ -172,7 +177,7 @@ trait HasRoute
                             'modal' => 'Modal',
                             'home' => 'Home',
                         ])
-                        ->default('default')
+                        ->default('default'),
                     // ->required()
                 ]),
 
@@ -182,7 +187,6 @@ trait HasRoute
                 ->columns(1)
                 ->collapsed(true)
                 ->schema([
-
 
                     Section::make(__('Scripts y CSS personalizados'))
                         ->collapsed()
