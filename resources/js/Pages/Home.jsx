@@ -78,6 +78,7 @@ export default function Home({ clients }) {
             <HomeLayout route={{ title: 'Home' }}>
                 <HomeHero />
                 <ClientLogosMarquee clients={clientLogos} />
+                <div className="home-handoff-runway" data-home-handoff-runway aria-hidden="true" />
             </HomeLayout>
         </>
     )

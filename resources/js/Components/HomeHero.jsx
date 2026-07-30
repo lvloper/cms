@@ -16,10 +16,8 @@ export const HOME_HERO = {
     rotatingWords: ['sistemas', 'soluciones', 'diseños', 'experiencias', 'productos'],
     durationScale: 1,
     logoSettleDuration: 0.72,
-    logoBottomOffset: 24,
-    mobileLogoBottomOffset: 16,
-    logoToLineGap: 12,
-    mobileLogoToLineGap: 10,
+    logoBottomOffset: 30,
+    mobileLogoBottomOffset: 30,
     followSpacing: 30,
     scrollCueDelay: 4,
     scrollCueDismissDistance: 300,
@@ -102,6 +100,7 @@ export default function HomeHero() {
         const headerLogo = document.querySelector('[data-header-logo-target]')
         const headerLine = document.querySelector('[data-header-line]')
         const clientLogos = document.querySelector('[data-client-logos]')
+        const handoffRunway = document.querySelector('[data-home-handoff-runway]')
 
         if (!root || !line || !logoMotion || !logoSvg || !title || !scrollCue || !message || !headerLogo || !headerLine) {
             return undefined
@@ -129,6 +128,7 @@ export default function HomeHero() {
         let titleRotationTimer
         let titleRotationTween
         let titleRotationStarted = false
+        let rebuildScrollHandoff
         const initialScrollY = window.scrollY
         let userScrolledBeforeCue = initialScrollY > 1
         let scrollCueStartY = initialScrollY
@@ -290,23 +290,27 @@ export default function HomeHero() {
                     : HOME_HERO.logoBottomOffset
             )
 
-            const getFinalLogoY = () => (
-                window.innerHeight / 2
-                - getBottomOffset()
+            const getLogoHeight = () => (
+                logoMotion.offsetHeight || logoMotion.getBoundingClientRect().height
             )
 
-            const getLogoToLineGap = () => (
-                window.matchMedia('(max-width: 767px)').matches
-                    ? HOME_HERO.mobileLogoToLineGap
-                    : HOME_HERO.logoToLineGap
+            const getFinalLogoY = () => (
+                window.innerHeight / 2
+                - getLogoHeight() / 2
+                - getBottomOffset()
             )
 
             const positionHeaderLine = () => {
                 const headerLogoRect = headerLogo.getBoundingClientRect()
-                headerLine.style.top = `${headerLogoRect.bottom + getLogoToLineGap()}px`
+                const headerLogoCenterY = headerLogoRect.top + headerLogoRect.height / 2
+                headerLine.style.top = `${headerLogoCenterY - headerLine.offsetHeight / 2}px`
             }
 
-            const getFinalLineY = () => getFinalLogoY() + window.innerHeight / 2
+            const getFinalLineY = () => (
+                getFinalLogoY()
+                + window.innerHeight / 2
+                - line.offsetHeight / 2
+            )
 
             const setHandoff = (active) => {
                 if (handoffActive === active) return
@@ -329,7 +333,7 @@ export default function HomeHero() {
                 gsap.set(message, { y: 0 })
                 gsap.set(line, {
                     y: getFinalLineY(),
-                    scaleX: 1,
+                    scaleX: 0,
                     autoAlpha: 1,
                     transformOrigin: '50% 50%',
                 })
@@ -337,9 +341,15 @@ export default function HomeHero() {
             }
 
             const setupScrollHandoff = () => {
+                scrollTimeline?.kill()
                 ScrollTrigger.getById(SCROLL_TRIGGER_ID)?.kill()
                 setHandoff(false)
                 positionHeaderLine()
+                gsap.set(line, {
+                    scaleX: 0,
+                    autoAlpha: 1,
+                    transformOrigin: '50% 50%',
+                })
 
                 const logoRect = logoMotion.getBoundingClientRect()
                 const targetRect = headerLogo.getBoundingClientRect()
@@ -359,7 +369,9 @@ export default function HomeHero() {
                     clientLogos ? getComputedStyle(clientLogos).getPropertyValue('--home-hero-follow-spacing') : '',
                 ) || HOME_HERO.followSpacing
                 const desiredClientTop = headerLineRect.bottom + followSpacing
-                const clientTop = clientLogos?.getBoundingClientRect().top
+                const clientTop = clientLogos
+                    ? clientLogos.getBoundingClientRect().top + window.scrollY
+                    : Number.NaN
                 const contentScrollDistance = Number.isFinite(clientTop)
                     ? Math.max(0, clientTop - desiredClientTop)
                     : 0
@@ -368,11 +380,14 @@ export default function HomeHero() {
                     contentScrollDistance,
                     window.innerHeight * 0.55,
                 )
+                const currentRunwayHeight = handoffRunway?.getBoundingClientRect().height || 0
                 const availableScrollDistance = Math.max(
-                    document.documentElement.scrollHeight - window.innerHeight,
+                    document.documentElement.scrollHeight - currentRunwayHeight - window.innerHeight,
                     1,
                 )
-                const scrollDistance = Math.min(preferredScrollDistance, availableScrollDistance)
+                const runwayHeight = Math.max(0, preferredScrollDistance - availableScrollDistance)
+                handoffRunway?.style.setProperty('--home-handoff-runway-height', `${Math.ceil(runwayHeight)}px`)
+                const scrollDistance = preferredScrollDistance
                 const messageExitY = -messageRect.bottom - 24
 
                 scrollTimeline = gsap.timeline({
@@ -399,11 +414,19 @@ export default function HomeHero() {
 
                 scrollTimeline.to(line, {
                     y: lineStartY + lineDeltaY,
+                    scaleX: 1,
                 }, 0)
 
                 scrollTimeline.to(message, {
                     y: messageExitY,
                 }, 0)
+
+                ScrollTrigger.refresh()
+            }
+
+            rebuildScrollHandoff = () => {
+                setFinalHeroState()
+                setupScrollHandoff()
             }
 
             gsap.set(headerLogo, { visibility: 'hidden' })
@@ -422,6 +445,7 @@ export default function HomeHero() {
                 setFinalHeroState()
                 gsap.set(characters, { yPercent: 0 })
                 gsap.set(marks, { autoAlpha: 1, scale: 1 })
+                gsap.set(line, { scaleX: 1 })
                 scheduleScrollCue()
                 return
             }
@@ -537,7 +561,7 @@ export default function HomeHero() {
                 }, 'invert')
                 .to(line, {
                     y: getFinalLineY,
-                    scaleX: 1,
+                    scaleX: 0,
                     autoAlpha: 1,
                     duration: duration(HOME_HERO.logoSettleDuration),
                     ease: 'power2.inOut',
@@ -551,6 +575,11 @@ export default function HomeHero() {
 
         const handleFontsReady = () => ScrollTrigger.refresh()
         const handleResize = () => {
+            if (introCompleted) {
+                rebuildScrollHandoff?.()
+                return
+            }
+
             positionHeaderLine()
             ScrollTrigger.refresh()
         }
@@ -569,6 +598,7 @@ export default function HomeHero() {
             titleRotationTween?.kill()
             scrollTimeline?.kill()
             ScrollTrigger.getById(SCROLL_TRIGGER_ID)?.kill()
+            handoffRunway?.style.removeProperty('--home-handoff-runway-height')
             context.revert()
             root.classList.remove('is-logo-transfer')
             root.classList.remove('is-handoff-complete')

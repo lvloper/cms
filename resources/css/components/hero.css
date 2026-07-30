@@ -8,6 +8,8 @@
 }
 
 .site-header__inner {
+  position: relative;
+  z-index: 2;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -25,6 +27,7 @@
 
 .site-header__line {
   position: absolute;
+  z-index: 1;
   top: calc(50% + 1.5rem);
   left: 0;
   width: 100%;
@@ -103,7 +106,9 @@
 }
 
 .home-hero.is-logo-transfer {
-  z-index: 90;
+  z-index: 100;
+  background: transparent;
+  pointer-events: none;
 }
 
 .home-hero.is-handoff-complete {
