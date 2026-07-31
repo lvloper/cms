@@ -48,6 +48,10 @@ class HandleInertiaRequests extends Middleware
             ...parent::share($request),
             'shared' => [
                 'menu' => $this->resolveMenu(),
+                'social' => [
+                    'linkedin' => config('social-media.networks.linkedin.url'),
+                    'instagram' => config('social-media.networks.instagram.url'),
+                ],
             ],
         ];
     }

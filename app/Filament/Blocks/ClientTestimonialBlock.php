@@ -3,7 +3,6 @@
 namespace App\Filament\Blocks;
 
 use App\Filament\Forms\Components\Field;
-use App\Filament\Forms\Components\MediaPicker;
 use Filament\Forms\Components\Repeater;
 
 class ClientTestimonialBlock extends PageBlock
@@ -25,12 +24,6 @@ class ClientTestimonialBlock extends PageBlock
                     Field::textarea('quote', 'Cita')->required()->rows(5)->maxLength(1200),
                     Field::text('person', 'Nombre')->required()->maxLength(120),
                     Field::text('role', 'Cargo')->required()->maxLength(180),
-                    ...MediaPicker::make(
-                        directory: 'media/clients/testimonials',
-                        label: 'Retrato o video testimonial',
-                        width: '600',
-                        height: '600',
-                    ),
                 ])
                 ->minItems(1)
                 ->maxItems(2)

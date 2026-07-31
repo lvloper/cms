@@ -10,11 +10,12 @@
 .paco-section::before {
   content: '';
   position: absolute;
-  inset: 8% auto auto 50%;
-  width: min(72rem, 92vw);
-  aspect-ratio: 2 / 1;
-  transform: translateX(-50%);
-  background: radial-gradient(circle, color-mix(in srgb, var(--color-socies-green) 12%, transparent), transparent 68%);
+  inset: -13rem -9rem auto auto;
+  width: min(30rem, 78vw);
+  aspect-ratio: 1;
+  border: 1px solid color-mix(in srgb, var(--color-socies-green) 24%, transparent);
+  border-radius: 50%;
+  box-shadow: 0 0 0 1.5rem color-mix(in srgb, var(--color-socies-green) 7%, transparent);
   pointer-events: none;
   z-index: -1;
 }

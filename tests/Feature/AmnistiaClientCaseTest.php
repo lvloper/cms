@@ -42,6 +42,9 @@ class AmnistiaClientCaseTest extends TestCase
         $this->assertSame('text_left', $client->blocks[1]['data']['layout']);
         $this->assertSame('text_right', $client->blocks[3]['data']['layout']);
         $this->assertGreaterThan(40, strlen($client->blocks[0]['data']['items'][0]));
+        $this->assertStringContainsString('El equipo lideró con gran profesionalismo', $client->blocks[7]['data']['testimonials'][0]['quote']);
+        $this->assertStringContainsString('Nos alegra haber contado con un equipo tan comprometido y profesional.', $client->blocks[7]['data']['testimonials'][1]['quote']);
+        $this->assertArrayNotHasKey('media_type', $client->blocks[7]['data']['testimonials'][0]);
         $this->assertStringStartsWith('Reemplazar por imagen/video', $client->hero_media_placeholder);
     }
 

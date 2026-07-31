@@ -16,7 +16,6 @@ class BlockDataPreprocessor
         'ClientFeature' => ['media' => ['media_image']],
         'ClientStatement' => ['media_image'],
         'ClientMetrics' => ['media_image'],
-        'ClientTestimonial' => ['testimonials' => ['media_image']],
         'ClientClosing' => ['media' => ['media_image']],
     ];
 
@@ -33,7 +32,6 @@ class BlockDataPreprocessor
         'ClientFeature' => ['media' => ['media_video']],
         'ClientStatement' => ['media_video'],
         'ClientMetrics' => ['media_video'],
-        'ClientTestimonial' => ['testimonials' => ['media_video']],
         'ClientClosing' => ['media' => ['media_video']],
     ];
 

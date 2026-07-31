@@ -92,5 +92,29 @@
                 </ul>
             </section>
         @endif
+
+        @if (! empty($clientData['navigation']))
+            <nav class="client-navigation container mx-auto px-4 py-8 md:py-12" aria-label="Navegación entre clientes">
+                <div class="client-navigation__inner">
+                    <a
+                        href="{{ $clientData['navigation']['previous']['url'] }}"
+                        class="client-navigation__link"
+                        style="--client-reference-color: {{ $clientData['navigation']['previous']['color'] ?: 'var(--color-socies-green)' }}"
+                    >
+                        <span class="client-navigation__eyebrow">← Anterior</span>
+                        <strong class="client-navigation__title">{{ $clientData['navigation']['previous']['title'] }}</strong>
+                    </a>
+
+                    <a
+                        href="{{ $clientData['navigation']['next']['url'] }}"
+                        class="client-navigation__link client-navigation__link--next"
+                        style="--client-reference-color: {{ $clientData['navigation']['next']['color'] ?: 'var(--color-socies-green)' }}"
+                    >
+                        <span class="client-navigation__eyebrow">Siguiente →</span>
+                        <strong class="client-navigation__title">{{ $clientData['navigation']['next']['title'] }}</strong>
+                    </a>
+                </div>
+            </nav>
+        @endif
     </article>
 </x-layout>

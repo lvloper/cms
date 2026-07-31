@@ -85,7 +85,7 @@
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 1px;
   padding: 1px;
-  background: transparent;
+  background: color-mix(in srgb, var(--color-white) 20%, transparent);
 }
 
 .client-process__node {
@@ -125,6 +125,62 @@
 .client-closing__wide {
   grid-column: 1 / -1;
   aspect-ratio: 16 / 7;
+}
+
+.client-navigation__inner {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  gap: 2rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid color-mix(in srgb, var(--color-white) 20%, transparent);
+}
+
+.client-navigation__inner::after {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 1px;
+  content: "";
+  background: color-mix(in srgb, var(--color-white) 20%, transparent);
+}
+
+.client-navigation__link {
+  display: grid;
+  gap: 0.5rem;
+  max-width: 45%;
+  color: var(--color-white);
+}
+
+.client-navigation__link--next {
+  text-align: right;
+}
+
+.client-navigation__eyebrow {
+  color: var(--color-socies-green);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.client-navigation__title {
+  font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+  line-height: 1.15;
+  transition: color 140ms ease;
+}
+
+.client-navigation__link:hover .client-navigation__eyebrow,
+.client-navigation__link:hover .client-navigation__title,
+.client-navigation__link:focus-visible .client-navigation__eyebrow,
+.client-navigation__link:focus-visible .client-navigation__title {
+  color: var(--client-reference-color, var(--color-socies-green));
+}
+
+.client-navigation__link:focus-visible {
+  outline: 2px solid var(--color-focus);
+  outline-offset: 0.35rem;
 }
 
 @keyframes client-marquee-left {
@@ -167,6 +223,16 @@
   .client-closing__wide {
     grid-column: span 2;
     aspect-ratio: 16 / 9;
+  }
+}
+
+@media (max-width: 479px) {
+  .client-navigation__inner {
+    gap: 1rem;
+  }
+
+  .client-navigation__link {
+    max-width: 48%;
   }
 }
 

@@ -1,13 +1,14 @@
 # ClientTestimonial — Props del bloque
 
-Categoría: `Cliente`. Una o dos voces con retrato o video testimonial.
+Categoría: `Cliente`. Una o dos voces textuales tomadas del tab de testimonios del cliente.
 
 | Prop | Tipo | Requerido | Descripción |
 |---|---|---:|---|
 | `eyebrow` | `string` | no | Volanta. |
 | `title` | `string` | no | Título de sección. |
 | `testimonials` | `array` | sí | Uno o dos testimonios. |
-| `testimonials[].quote` | `string` | sí | Cita exacta o extracto aprobado. |
+| `testimonials[].quote` | `string` | sí | Texto literal completo enviado por el cliente. Puede conservar saltos de párrafo. |
 | `testimonials[].person` | `string` | sí | Nombre. |
 | `testimonials[].role` | `string` | sí | Cargo. |
-| `testimonials[].media_*` | `media` | sí | Retrato/video, alt, placeholder y autoplay. |
+
+El bloque no agrega imágenes ni videos: la evidencia testimonial se presenta como texto firmado para respetar el contenido original del cliente.

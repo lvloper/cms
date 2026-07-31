@@ -129,6 +129,7 @@ export default function ClientLogosMarquee({ clients = [] }) {
 
     return (
         <section
+            id="clientes"
             aria-labelledby="client-logos-title"
             className="home-client-logos"
             data-client-logos

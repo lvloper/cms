@@ -1,4 +1,5 @@
 import { Head, usePage } from '@inertiajs/react'
+import SiteFooter from '@/Components/SiteFooter'
 
 export default function DefaultLayout({ children, route, layout = 'default' }) {
     const hasIndex = layout === 'hasIndex'
@@ -17,7 +18,8 @@ export default function DefaultLayout({ children, route, layout = 'default' }) {
                     {hasIndex && <Sidebar index={index} />}
                     <div className="z-10 main-content">{children}</div>
                 </div>
-                <Footer route={route} />
+                <SiteFooter />
+                {route?.footer_scripts && <script dangerouslySetInnerHTML={{ __html: route.footer_scripts }} />}
             </div>
         </>
     )
@@ -46,19 +48,6 @@ function Header({ route }) {
                 </div>
             </div>
         </header>
-    )
-}
-
-function Footer({ route }) {
-    return (
-        <footer className="bg-black border-t border-gray-800 py-8">
-            <div className="container mx-auto px-4">
-                <p className="text-sm text-gray-500 text-center">
-                    {import.meta.env.VITE_APP_NAME || 'CMS'} &copy; {new Date().getFullYear()}
-                </p>
-                {route?.footer_scripts && <script dangerouslySetInnerHTML={{ __html: route.footer_scripts }} />}
-            </div>
-        </footer>
     )
 }
 

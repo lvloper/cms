@@ -52,7 +52,7 @@ En mobile, identidad, título, resumen, metadatos y media se apilan en ese orden
 5. `ClientStatement`: declaración humana de gran escala con media de apoyo.
 6. `ClientProcess`: diagrama editorial de procesos e integraciones.
 7. `ClientMetrics`: escala, responsabilidad operativa y evidencia visual.
-8. `ClientTestimonial`: una o dos voces, con retrato o video intercambiable.
+8. `ClientTestimonial`: una o dos voces textuales tomadas literalmente del tab de testimonios.
 9. `ClientClosing`: mosaico final y llamado a la conversación.
 
 El hero más estas nueve instancias forman diez momentos editoriales. Hay ocho tipos de bloque porque `ClientFeature` se reutiliza para dos contenidos diferentes. Ningún nombre, schema o comportamiento depende de Amnistía.
@@ -61,7 +61,7 @@ El hero más estas nueve instancias forman diez momentos editoriales. Hay ocho t
 
 ## Sistema multimedia
 
-Todo lugar que admite una imagen también admite video mediante `MediaPicker`:
+Todo lugar visual que admite una imagen también admite video mediante `MediaPicker`:
 
 - toggle `Imagen` / `Video`;
 - carga de imagen o MP4/WebM/MOV;
@@ -70,6 +70,8 @@ Todo lugar que admite una imagen también admite video mediante `MediaPicker`:
 - autoplay opcional para clips silenciosos, siempre con controles visibles.
 
 Mientras el archivo no exista se muestra una superficie gris con el texto `Reemplazar por imagen/video de …`. El placeholder reserva proporción y evita layout shift.
+
+Los testimonios son la excepción editorial: se muestran como texto literal firmado, sin media adicional.
 
 ## Movimiento
 
@@ -115,5 +117,5 @@ Con `prefers-reduced-motion: reduce`:
 
 - Validar antes de publicar las métricas `30+` y `~10.000`.
 - Sustituir cada placeholder con material aprobado y anonimizado.
-- Confirmar retratos, cargos y autorización de testimonios.
+- Confirmar cargos y autorización de publicación de los testimonios textuales.
 - Revisar que capturas técnicas no expongan credenciales ni datos personales.

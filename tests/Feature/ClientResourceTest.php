@@ -79,4 +79,53 @@ class ClientResourceTest extends TestCase
         $this->assertInstanceOf(Collection::class, $client->testimonials);
         $this->assertInstanceOf(Collection::class, $client->preview_items);
     }
+
+    public function test_client_navigation_wraps_between_published_clients(): void
+    {
+        $this->createClientWithRoute('Primero', 'primero', 10);
+        $this->createClientWithRoute('Segundo', 'segundo', 20);
+        $this->createClientWithRoute('Último', 'ultimo', 30);
+
+        $this->get('/cliente/primero')
+            ->assertOk()
+            ->assertInertia(fn (AssertableInertia $page) => $page
+                ->where('client.navigation.previous.title', 'Último')
+                ->where('client.navigation.previous.url', url('/cliente/ultimo'))
+                ->where('client.navigation.next.title', 'Segundo')
+                ->where('client.navigation.next.url', url('/cliente/segundo'))
+                ->where('client.navigation.next.color', '#123456')
+                ->where('client.navigation.next.popupTextColor', 'black')
+                ->has('client.navigation.next.previewItems', 0));
+
+        $this->get('/cliente/ultimo')
+            ->assertOk()
+            ->assertInertia(fn (AssertableInertia $page) => $page
+                ->where('client.navigation.previous.title', 'Segundo')
+                ->where('client.navigation.next.title', 'Primero'));
+
+    }
+
+    private function createClientWithRoute(string $title, string $slug, int $sortOrder): Client
+    {
+        $client = Client::create([
+            'blocks' => [],
+            'works' => [],
+            'testimonials' => [],
+            'preview_items' => [],
+            'sort_order' => $sortOrder,
+            'color' => '#123456',
+            'popup_text_color' => 'black',
+        ]);
+
+        Route::create([
+            'title' => $title,
+            'slug' => $slug,
+            'full_slug' => 'cliente/'.$slug,
+            'status' => Status::Published,
+            'routable_type' => Client::class,
+            'routable_id' => $client->id,
+        ]);
+
+        return $client;
+    }
 }

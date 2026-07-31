@@ -2,7 +2,7 @@
     "private": true,
     "type": "module",
     "scripts": {
-        "dev": "concurrently -k -n \"laravel,vite\" \"php artisan serve --host=127.0.0.1 --port=8080\" \"vite\"",
+        "dev": "concurrently -k -n \"laravel,vite\" \"php artisan serve --host=127.0.0.1 --port=8081\" \"vite\"",
         "build": "vite build"
     },
     "devDependencies": {

@@ -1,4 +1,7 @@
 @php($media = $media ?? [])
+@php($bodyHtml = filled($body ?? null)
+    ? \Filament\Forms\Components\RichEditor\RichContentRenderer::make($body)->toHtml()
+    : '')
 @php($textOrder = ($layout ?? 'text_left') === 'text_right' ? 'md:order-2 md:col-start-9' : 'md:order-1')
 @php($mediaOrder = ($layout ?? 'text_left') === 'text_right' ? 'md:order-1 md:col-start-1' : 'md:order-2')
 
@@ -8,7 +11,7 @@
             <div class="md:sticky md:top-28">
                 @if($eyebrow ?? false)<p class="mb-4 text-xs font-bold tracking-widest text-socies-green">{{ $eyebrow }}</p>@endif
                 @if($title ?? false)<h2 class="text-3xl font-bold md:text-5xl">{{ $title }}</h2>@endif
-                @if($body ?? false)<div class="client-case-rich mt-6 text-gray-2">{!! $body !!}</div>@endif
+                @if($bodyHtml)<div class="client-case-rich mt-6 text-gray-2">{!! $bodyHtml !!}</div>@endif
                 @if($outcome ?? false)<p class="mt-8 border-t border-socies-green pt-5 text-lg font-bold">{{ $outcome }}</p>@endif
             </div>
         </div>

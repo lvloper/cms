@@ -1,5 +1,4 @@
 import { Quote } from 'lucide-react'
-import CaseMedia from '@/Components/ClientCase/CaseMedia'
 import SectionIntro from '@/Components/ClientCase/SectionIntro'
 
 export default function ClientTestimonial({ eyebrow, title, testimonials = [] }) {
@@ -9,19 +8,10 @@ export default function ClientTestimonial({ eyebrow, title, testimonials = [] })
                 <SectionIntro eyebrow={eyebrow} title={title} />
                 <div className="mt-10 grid gap-10 md:mt-14 md:grid-cols-2 md:gap-8">
                     {testimonials.map((testimonial, index) => (
-                        <figure key={`${testimonial.person}-${index}`} className="grid gap-6 border-t border-white/30 pt-6 sm:grid-cols-[8rem_1fr]" data-client-reveal>
-                            <CaseMedia
-                                type={testimonial.media_type}
-                                image={testimonial.media_image}
-                                video={testimonial.media_video}
-                                alt={testimonial.media_alt}
-                                placeholder={testimonial.media_placeholder}
-                                autoplay={testimonial.media_autoplay}
-                                className="aspect-square"
-                            />
+                        <figure key={`${testimonial.person}-${index}`} className="border-t border-white/30 pt-6" data-client-reveal>
                             <div>
                                 <Quote className="h-7 w-7 text-socies-green" aria-hidden="true" />
-                                <blockquote className="mt-5 text-xl font-bold leading-snug md:text-2xl">{testimonial.quote}</blockquote>
+                                <blockquote className="mt-5 whitespace-pre-line text-xl font-bold leading-snug md:text-2xl">{testimonial.quote}</blockquote>
                                 <figcaption className="mt-6 border-t border-white/20 pt-4 text-sm">
                                     <strong className="block">{testimonial.person}</strong>
                                     <span className="mt-1 block text-gray-2">{testimonial.role}</span>
