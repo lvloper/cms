@@ -75,6 +75,10 @@ export type PacoEntry = {
     utmSource?: string | null
     utmMedium?: string | null
     utmCampaign?: string | null
+    pageContext?: {
+        contentType: 'client'
+        contentId: number
+    } | null
 }
 
 export type PacoAction = {

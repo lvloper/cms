@@ -62,6 +62,7 @@ final class PacoLeadResource extends Resource
             ])->columns(1),
             Section::make('Conversación')->schema([
                 TextEntry::make('conversation.campaign.name')->label('Campaña')->placeholder('Sin campaña'),
+                TextEntry::make('conversation.sourceClient.title')->label('Caso de origen')->placeholder('Ingreso directo'),
                 TextEntry::make('conversation.utm_source')->label('Origen UTM')->placeholder('Sin UTM'),
                 TextEntry::make('conversation.created_at')->label('Inicio')->dateTime(),
                 TextEntry::make('conversation.closed_at')->label('Cierre')->dateTime()->placeholder('En curso'),
@@ -90,6 +91,7 @@ final class PacoLeadResource extends Resource
             TextColumn::make('score')->label('Puntaje')->numeric()->sortable()->placeholder('Pendiente'),
             TextColumn::make('status')->label('Estado')->badge()->sortable(),
             TextColumn::make('conversation.campaign.name')->label('Campaña')->placeholder('Directa'),
+            TextColumn::make('conversation.sourceClient.title')->label('Caso de origen')->placeholder('Directo'),
             TextColumn::make('created_at')->label('Recibida')->since()->sortable(),
         ])->filters([
             SelectFilter::make('status')->options([

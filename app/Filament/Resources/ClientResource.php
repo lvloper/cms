@@ -4,15 +4,17 @@ namespace App\Filament\Resources;
 
 use App\Filament\Forms\Components\Field;
 use App\Filament\Forms\Components\Image;
+use App\Filament\Forms\Components\MediaPicker;
 use App\Filament\Resources\Bases\ResourceBase;
 use App\Filament\Resources\ClientResource\Pages;
-use App\Filament\Templates\DefaultTemplate;
+use App\Filament\Templates\ClientTemplate;
 use App\Models\Client;
 use Filament\Forms\Components\ColorPicker;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Repeater;
 use Filament\Forms\Components\Repeater\TableColumn;
 use Filament\Forms\Components\Select;
+use Filament\Forms\Components\TagsInput;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Toggle;
@@ -37,7 +39,7 @@ class ClientResource extends ResourceBase
     {
         return [
             Section::make('Identidad del cliente')
-                ->description('El logo se muestra antes del contenido compuesto con bloques.')
+                ->description('El logo forma parte del hero propio de la vista Cliente.')
                 ->aside()
                 ->schema([
                     Image::make(
@@ -67,6 +69,44 @@ class ClientResource extends ResourceBase
                         ->label('Cliente destacado')
                         ->helperText('Los clientes destacados aparecen en el slider de la home.')
                         ->default(true),
+                ]),
+            Section::make('Hero del caso')
+                ->description('Encabezado editorial fijo. Después de este hero se renderizan los bloques de categoría Cliente.')
+                ->aside()
+                ->schema([
+                    TextInput::make('hero_eyebrow')
+                        ->label('Volanta')
+                        ->placeholder('Caso de cliente')
+                        ->maxLength(100),
+                    TextInput::make('hero_title')
+                        ->label('Título principal')
+                        ->helperText('Si queda vacío se usa el nombre del cliente.')
+                        ->maxLength(180),
+                    Textarea::make('hero_summary')
+                        ->label('Resumen')
+                        ->rows(4)
+                        ->maxLength(800)
+                        ->columnSpanFull(),
+                    TextInput::make('relationship_since')
+                        ->label('Inicio o duración de la relación')
+                        ->placeholder('Desde 2018')
+                        ->maxLength(80),
+                    TagsInput::make('hero_services')
+                        ->label('Capacidades aplicadas')
+                        ->helperText('Usa etiquetas breves; se muestran como una lista editorial.')
+                        ->columnSpanFull(),
+                    ...MediaPicker::make(
+                        type: 'hero_media_type',
+                        image: 'hero_media_image',
+                        video: 'hero_media_video',
+                        alt: 'hero_media_alt',
+                        placeholder: 'hero_media_placeholder',
+                        autoplay: 'hero_media_autoplay',
+                        directory: 'media/clients/heroes',
+                        label: 'Media principal del hero',
+                        width: '1800',
+                        height: '1200',
+                    ),
                 ]),
             Section::make('Evidencia comercial para Socies')
                 ->description('Estos datos delimitan qué puede mencionar la conversación. Publicar la página no habilita automáticamente el uso comercial.')
@@ -98,7 +138,19 @@ class ClientResource extends ResourceBase
                         ->helperText('Solo se considera si también tiene permiso de uso y la página está publicada.')
                         ->default(false),
                 ]),
-            ...DefaultTemplate::schema($schema),
+            Section::make('Chat de cierre del caso')
+                ->description('La última sección del caso abre la conversación de Socies y registra este cliente como origen de la consulta.')
+                ->aside()
+                ->schema([
+                    Textarea::make('paco_closing_message')
+                        ->label('Mensaje inicial')
+                        ->helperText('Se muestra como el primer mensaje del chat. Si queda vacío, se usa el mensaje predeterminado.')
+                        ->placeholder('Hola, ¿te gustaría hacer algo similar para tu organización? Contanos tu caso.')
+                        ->rows(3)
+                        ->maxLength(700)
+                        ->columnSpanFull(),
+                ]),
+            ...ClientTemplate::schema($schema),
         ];
     }
 

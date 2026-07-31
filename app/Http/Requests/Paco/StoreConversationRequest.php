@@ -26,8 +26,8 @@ final class StoreConversationRequest extends FormRequest
             'utm_medium' => ['nullable', 'string', 'max:255'],
             'utm_campaign' => ['nullable', 'string', 'max:255'],
             'page_context' => ['nullable', 'array'],
-            'page_context.content_type' => ['nullable', 'string', 'max:100'],
-            'page_context.content_id' => ['nullable', 'integer'],
+            'page_context.content_type' => ['nullable', 'string', 'in:client'],
+            'page_context.content_id' => ['nullable', 'integer', 'required_with:page_context.content_type', 'exists:clients,id'],
         ];
     }
 }

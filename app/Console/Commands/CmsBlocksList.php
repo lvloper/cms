@@ -32,8 +32,12 @@ class CmsBlocksList extends Command
             $hasPhp = isset($phpClasses[$name]);
             $reg = in_array($name, $registeredBlocks);
 
-            if ($this->option('orphans') && $hasPhp) continue;
-            if ($this->option('unregistered') && $reg) continue;
+            if ($this->option('orphans') && $hasPhp) {
+                continue;
+            }
+            if ($this->option('unregistered') && $reg) {
+                continue;
+            }
 
             $status = $hasPhp ? ($reg ? 'REGISTRADO' : 'SIN_REGISTRO') : 'SOLO_VISTA';
             $label = '';
@@ -57,32 +61,45 @@ class CmsBlocksList extends Command
 
         if ($this->option('json')) {
             $this->line(json_encode(['blocks' => $rows, 'total' => count($rows)], JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE));
+
             return 0;
         }
 
         $this->table($headers, $rows);
         $this->newLine();
-        $this->info("Total: " . count($rows) . " bloques");
+        $this->info('Total: '.count($rows).' bloques');
 
-        $orphans = count(array_filter($rows, fn($r) => $r[1] === 'SOLO_VISTA'));
-        $unreg = count(array_filter($rows, fn($r) => $r[1] === 'SIN_REGISTRO'));
-        if ($orphans) $this->warn("  $orphans solo tienen vista (sin clase PHP)");
-        if ($unreg) $this->warn("  $unreg tienen clase PHP pero no estan registrados en templates");
+        $orphans = count(array_filter($rows, fn ($r) => $r[1] === 'SOLO_VISTA'));
+        $unreg = count(array_filter($rows, fn ($r) => $r[1] === 'SIN_REGISTRO'));
+        if ($orphans) {
+            $this->warn("  $orphans solo tienen vista (sin clase PHP)");
+        }
+        if ($unreg) {
+            $this->warn("  $unreg tienen clase PHP pero no estan registrados en templates");
+        }
 
         return 0;
     }
 
     private function getPhpClasses(string $dir): array
     {
-        if (!is_dir($dir)) return [];
+        if (! is_dir($dir)) {
+            return [];
+        }
         $classes = [];
         foreach (File::files($dir) as $file) {
             $name = $file->getFilenameWithoutExtension();
-            if ($name === 'PageBlock') continue;
+            if ($name === 'PageBlock') {
+                continue;
+            }
             $fqcn = "App\\Filament\\Blocks\\$name";
-            if (!class_exists($fqcn)) continue;
+            if (! class_exists($fqcn)) {
+                continue;
+            }
             $ref = new ReflectionClass($fqcn);
-            if (!$ref->isSubclassOf(PageBlock::class)) continue;
+            if (! $ref->isSubclassOf(PageBlock::class)) {
+                continue;
+            }
             try {
                 $label = $ref->getConstant('LABEL') ?? $name;
                 $category = $ref->getConstant('CATEGORY') ?? '—';
@@ -96,37 +113,57 @@ class CmsBlocksList extends Command
                 $classes[$name] = ['label' => $name, 'category' => '—', 'class' => $name];
             }
         }
+
         return $classes;
     }
 
     private function getBladeViews(string $dir): array
     {
-        if (!is_dir($dir)) return [];
+        if (! is_dir($dir)) {
+            return [];
+        }
+
         return collect(File::files($dir))
-            ->filter(fn($f) => $f->getExtension() === 'php' && !str_contains($f->getFilename(), '.bak'))
-            ->map(fn($f) => $f->getFilename())
+            ->filter(fn ($f) => $f->getExtension() === 'php' && ! str_contains($f->getFilename(), '.bak'))
+            ->map(fn ($f) => $f->getFilename())
             ->values()
             ->toArray();
     }
 
     private function getRegisteredBlocks(string $templatesDir): array
     {
-        if (!is_dir($templatesDir)) return [];
+        if (! is_dir($templatesDir)) {
+            return [];
+        }
         $registered = [];
         foreach (File::files($templatesDir) as $file) {
             $content = $file->getContents();
             preg_match_all('/App\\\\Filament\\\\Blocks\\\\(\w+)::make\(\)/', $content, $matches);
             foreach ($matches[1] as $class) {
-                $fqcn = "App\\Filament\\Blocks\\$class";
-                if (class_exists($fqcn)) {
-                    $ref = new ReflectionClass($fqcn);
-                    $name = $ref->getConstant('NAME') ?? str_replace('Block', '', $class);
-                    $registered[] = $name;
-                } else {
-                    $registered[] = str_replace('Block', '', $class);
+                $registered[] = $this->blockNameForClass($class);
+            }
+
+            preg_match_all('/use App\\\\Filament\\\\Blocks\\\\(\w+);/', $content, $imports);
+            foreach ($imports[1] as $class) {
+                if (preg_match('/\\b'.preg_quote($class, '/').'::make\(\)/', $content)) {
+                    $registered[] = $this->blockNameForClass($class);
                 }
             }
         }
+
         return array_unique($registered);
+    }
+
+    private function blockNameForClass(string $class): string
+    {
+        $fqcn = "App\\Filament\\Blocks\\$class";
+
+        if (! class_exists($fqcn)) {
+            return str_replace('Block', '', $class);
+        }
+
+        $ref = new ReflectionClass($fqcn);
+
+        return $ref->getConstant('NAME') ?? str_replace('Block', '', $class);
     }
 }

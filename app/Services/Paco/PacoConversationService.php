@@ -13,6 +13,7 @@ use App\Enums\Paco\ConversationStatus;
 use App\Enums\Paco\FitStatus;
 use App\Jobs\Paco\SendLeadNotification;
 use App\Models\Paco\Campaign;
+use App\Models\Client;
 use App\Models\Paco\ContentImpression;
 use App\Models\Paco\Conversation;
 use App\Models\Paco\ConversationEvent;
@@ -55,9 +56,10 @@ final class PacoConversationService
         $this->assertOriginAllowed($campaign, $clientContext['origin_host'] ?? null);
 
         $prefill = $this->consumePrefill($data['prefill_token'] ?? null, $campaign);
+        $sourceClient = $this->sourceClient($data['page_context'] ?? null);
         $token = $this->tokens->issue();
 
-        $conversation = DB::transaction(function () use ($campaign, $clientContext, $data, $token): Conversation {
+        $conversation = DB::transaction(function () use ($campaign, $clientContext, $data, $sourceClient, $token): Conversation {
             $conversation = Conversation::query()->create([
                 'public_token_hash' => $this->tokens->hash($token),
                 'campaign_id' => $campaign->id,
@@ -71,6 +73,7 @@ final class PacoConversationService
                 'utm_source' => $data['utm_source'] ?? null,
                 'utm_medium' => $data['utm_medium'] ?? null,
                 'utm_campaign' => $data['utm_campaign'] ?? null,
+                'source_client_id' => $sourceClient?->id,
                 'client_ip_hash' => $clientContext['ip_hash'] ?? null,
                 'country_code' => $clientContext['country_code'] ?? null,
                 'user_agent_summary' => $clientContext['user_agent'] ?? null,
@@ -92,13 +95,37 @@ final class PacoConversationService
             ]);
 
             $this->appendEvent($conversation, 'assistant', 'assistant_turn', [
-                'turn' => $this->turns->initial($campaign->initial_message),
+                'turn' => $this->turns->initial($this->initialMessage($campaign, $sourceClient)),
             ]);
 
             return $conversation;
         });
 
         return ['conversation' => $conversation->fresh(), 'token' => $token, 'prefill' => $prefill];
+    }
+
+    private function sourceClient(mixed $pageContext): ?Client
+    {
+        if (! is_array($pageContext) || ($pageContext['content_type'] ?? null) !== 'client') {
+            return null;
+        }
+
+        $id = $pageContext['content_id'] ?? null;
+
+        return is_int($id) || ctype_digit((string) $id)
+            ? Client::query()->find($id)
+            : null;
+    }
+
+    private function initialMessage(Campaign $campaign, ?Client $sourceClient): string
+    {
+        if (! $sourceClient) {
+            return $campaign->initial_message;
+        }
+
+        return filled($sourceClient->paco_closing_message)
+            ? $sourceClient->paco_closing_message
+            : (string) config('paco.client_closing_message');
     }
 
     /** @param array<string, mixed> $action */

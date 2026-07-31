@@ -9,14 +9,9 @@ class ModalTemplate
 {
     public static function schema(): array
     {
-        // Copy here the blocks you want to use in the template
-        $blocks = [
-            \App\Filament\Blocks\TextBlock::make(),
-            \App\Filament\Blocks\MediaBlock::make(),
-            \App\Filament\Blocks\MediaTextBlock::make(),
-            \App\Filament\Blocks\CardsBlock::make(),
-            \App\Filament\Blocks\SearchBlock::make(),
-        ];    
+        // Los bloques de ejemplo se retiraron del selector. Sus clases y
+        // vistas se conservan únicamente para contenido histórico.
+        $blocks = [];
 
         $defaultTemplate = [
         ];
@@ -25,7 +20,7 @@ class ModalTemplate
             Builder::make('blocks')
                 ->label('Bloques')
                 ->blockPreviews(areInteractive: true)
-                ->default( $defaultTemplate )
+                ->default($defaultTemplate)
                 ->blocks($blocks)
                 ->columnSpan('full')
                 ->cloneable()

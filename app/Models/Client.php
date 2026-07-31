@@ -37,8 +37,20 @@ class Client extends Model
         'industry',
         'paco_summary',
         'paco_chat_text',
+        'paco_closing_message',
         'paco_use_authorized',
         'paco_chat_enabled',
+        'hero_eyebrow',
+        'hero_title',
+        'hero_summary',
+        'relationship_since',
+        'hero_services',
+        'hero_media_type',
+        'hero_media_image',
+        'hero_media_video',
+        'hero_media_alt',
+        'hero_media_placeholder',
+        'hero_media_autoplay',
     ];
 
     protected $casts = [
@@ -52,5 +64,7 @@ class Client extends Model
         'preview_items' => 'collection',
         'paco_use_authorized' => 'boolean',
         'paco_chat_enabled' => 'boolean',
+        'hero_services' => 'collection',
+        'hero_media_autoplay' => 'boolean',
     ];
 }

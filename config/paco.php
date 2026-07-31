@@ -6,6 +6,10 @@ return [
     'model_driver' => env('PACO_MODEL_DRIVER', 'opencode_go'),
     'default_campaign' => env('PACO_DEFAULT_CAMPAIGN', 'home_default'),
     'direct_campaign' => env('PACO_DIRECT_CAMPAIGN', 'direct_default'),
+    'client_closing_message' => env(
+        'PACO_CLIENT_CLOSING_MESSAGE',
+        'Hola, ¿te gustaría hacer algo similar para tu organización? Contanos tu caso.',
+    ),
     'max_message_length' => (int) env('PACO_MAX_MESSAGE_LENGTH', 1500),
     'min_intent_confidence' => (float) env('PACO_MIN_INTENT_CONFIDENCE', 0.45),
     'prefill_ttl_minutes' => (int) env('PACO_PREFILL_TTL_MINUTES', 60),

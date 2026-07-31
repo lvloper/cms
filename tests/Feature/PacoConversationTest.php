@@ -11,6 +11,7 @@ use App\Mail\PacoLeadReceived;
 use App\Models\Client;
 use App\Models\Paco\Campaign;
 use App\Models\Paco\ContentImpression;
+use App\Models\Paco\Conversation;
 use App\Models\Paco\Intent;
 use App\Models\Paco\Lead;
 use App\Models\Paco\Playbook;
@@ -138,6 +139,28 @@ final class PacoConversationTest extends TestCase
         ], $lead->attributes()->where('field_code', 'content_readiness')->firstOrFail()->value_json);
         self::assertNotNull($lead->score);
         Queue::assertPushed(SendLeadNotification::class, fn (SendLeadNotification $job): bool => $job->leadId === $lead->id);
+    }
+
+    public function test_client_closing_conversation_uses_the_client_message_and_records_its_origin(): void
+    {
+        $client = Client::query()->create([
+            'paco_closing_message' => 'Hola, ¿te gustaría hacer algo parecido para tu organización? Contanos tu caso.',
+        ]);
+
+        $created = $this->postJson('/api/paco/conversations', [
+            'campaign' => 'direct_default',
+            'page_context' => [
+                'content_type' => 'client',
+                'content_id' => $client->id,
+            ],
+        ])->assertCreated()
+            ->assertJsonPath('turn.message', 'Hola, ¿te gustaría hacer algo parecido para tu organización? Contanos tu caso.')
+            ->json();
+
+        self::assertSame(
+            $client->id,
+            Conversation::query()->findOrFail($created['conversation_id'])->source_client_id,
+        );
     }
 
     public function test_contact_is_followed_by_authorized_commercial_evidence_with_visible_client_name(): void

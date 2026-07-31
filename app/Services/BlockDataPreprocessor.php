@@ -12,21 +12,34 @@ class BlockDataPreprocessor
         'Media' => ['image'],
         'MediaText' => ['image'],
         'Cards' => ['items' => ['image']],
+        'ClientProjects' => ['projects' => ['media_image']],
+        'ClientFeature' => ['media' => ['media_image']],
+        'ClientStatement' => ['media_image'],
+        'ClientMetrics' => ['media_image'],
+        'ClientTestimonial' => ['testimonials' => ['media_image']],
+        'ClientClosing' => ['media' => ['media_image']],
     ];
 
     protected array $routeFields = [
         'MediaText' => ['cta'],
         'Cards' => ['items' => ['route']],
+        'ClientClosing' => ['cta'],
     ];
 
     protected array $storageFields = [
         'Media' => ['video_file'],
         'MediaText' => ['video_file'],
+        'ClientProjects' => ['projects' => ['media_video']],
+        'ClientFeature' => ['media' => ['media_video']],
+        'ClientStatement' => ['media_video'],
+        'ClientMetrics' => ['media_video'],
+        'ClientTestimonial' => ['testimonials' => ['media_video']],
+        'ClientClosing' => ['media' => ['media_video']],
     ];
 
     public function __construct(?LinkResolver $linkResolver = null)
     {
-        $this->linkResolver = $linkResolver ?? new LinkResolver();
+        $this->linkResolver = $linkResolver ?? new LinkResolver;
     }
 
     public function process(array $blocks): array

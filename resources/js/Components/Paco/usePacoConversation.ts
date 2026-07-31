@@ -13,7 +13,10 @@ export function usePacoConversation(
     const [state, setState] = useState<PacoConversationState | null>(initialState)
     const [token, setToken] = useState<string | null>(null)
     const initialized = useRef(false)
-    const storageKey = `socies-conversation:${entry.campaign}`
+    const sourceKey = entry.pageContext?.contentType === 'client'
+        ? `client-${entry.pageContext.contentId}`
+        : 'direct'
+    const storageKey = `socies-conversation:${entry.campaign}:${sourceKey}`
 
     const createMutation = useMutation({
         mutationFn: () => createConversation(entry),

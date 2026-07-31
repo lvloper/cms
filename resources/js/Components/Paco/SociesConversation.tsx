@@ -22,7 +22,8 @@ export default function SociesConversation({ mode = 'inline', entry = {}, readOn
         utmSource: entry.utmSource || null,
         utmMedium: entry.utmMedium || null,
         utmCampaign: entry.utmCampaign || null,
-    }), [entry.campaign, entry.prefillToken, entry.utmSource, entry.utmMedium, entry.utmCampaign, mode])
+        pageContext: entry.pageContext || null,
+    }), [entry.campaign, entry.prefillToken, entry.utmSource, entry.utmMedium, entry.utmCampaign, entry.pageContext, mode])
     const conversation = usePacoConversation(resolvedEntry, visible && !readOnly, readOnlyState)
 
     useEffect(() => {

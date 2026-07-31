@@ -108,6 +108,10 @@ export function createConversation(entry: PacoEntry): Promise<PacoConversationSt
             utm_source: entry.utmSource || null,
             utm_medium: entry.utmMedium || null,
             utm_campaign: entry.utmCampaign || null,
+            page_context: entry.pageContext ? {
+                content_type: entry.pageContext.contentType,
+                content_id: entry.pageContext.contentId,
+            } : null,
         }),
     })
 }

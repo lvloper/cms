@@ -16,8 +16,20 @@ class ClientController extends Controller
     {
         $clientData = [
             'id' => $client->id,
+            'paco_campaign' => config('paco.direct_campaign'),
             'title' => $route->title,
             'logo' => $this->storageUrl($client->logo),
+            'hero_eyebrow' => $client->hero_eyebrow,
+            'hero_title' => $client->hero_title,
+            'hero_summary' => $client->hero_summary,
+            'relationship_since' => $client->relationship_since,
+            'hero_services' => $client->hero_services?->values()->all() ?? [],
+            'hero_media_type' => $client->hero_media_type,
+            'hero_media_image' => $this->storageUrl($client->hero_media_image),
+            'hero_media_video' => $this->storageUrl($client->hero_media_video),
+            'hero_media_alt' => $client->hero_media_alt,
+            'hero_media_placeholder' => $client->hero_media_placeholder,
+            'hero_media_autoplay' => $client->hero_media_autoplay,
             'works' => $this->withResolvedImages($client->works, resolveCategories: true),
             'testimonials' => $this->withResolvedImages($client->testimonials),
         ];

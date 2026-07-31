@@ -6,6 +6,7 @@ namespace App\Models\Paco;
 
 use App\Enums\Paco\ConversationStage;
 use App\Enums\Paco\ConversationStatus;
+use App\Models\Client;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -23,6 +24,7 @@ final class Conversation extends Model
     protected $fillable = [
         'public_token_hash', 'campaign_id', 'playbook_id', 'status', 'stage', 'locale',
         'origin_url', 'origin_host', 'referrer', 'utm_source', 'utm_medium', 'utm_campaign',
+        'source_client_id',
         'client_ip_hash', 'country_code', 'user_agent_summary', 'interaction_count',
         'useful_interaction_count', 'version', 'last_activity_at', 'closed_at',
     ];
@@ -44,6 +46,11 @@ final class Conversation extends Model
     public function playbook(): BelongsTo
     {
         return $this->belongsTo(Playbook::class);
+    }
+
+    public function sourceClient(): BelongsTo
+    {
+        return $this->belongsTo(Client::class, 'source_client_id');
     }
 
     public function events(): HasMany
