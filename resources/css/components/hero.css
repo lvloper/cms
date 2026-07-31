@@ -189,7 +189,7 @@ html.hero-scroll-lock body {
   width: 100%;
   margin: 0;
   color: var(--color-white);
-  font-family: "Gotham Light", Gotham, "Futura Std", Manrope, sans-serif;
+  font-family: "Gotham Light", Gotham, Manrope, sans-serif;
   font-size: inherit;
   font-weight: 300;
   line-height: 1.08;
@@ -224,26 +224,6 @@ html.hero-scroll-lock body {
 
 .home-hero__word--green {
   color: var(--color-socies-green);
-}
-
-.home-hero__rotating-word {
-  display: inline-grid;
-  overflow: hidden;
-  width: max-content;
-  vertical-align: bottom;
-}
-
-.home-hero__rotating-option {
-  grid-area: 1 / 1;
-  display: inline-block;
-  justify-self: start;
-  white-space: nowrap;
-  will-change: transform, opacity;
-}
-
-.home-hero__rotating-option:not(:first-child) {
-  opacity: 0;
-  visibility: hidden;
 }
 
 .home-hero__word-space {

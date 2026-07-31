@@ -27,6 +27,7 @@ class DatabaseSeeder extends Seeder
         $this->seedConfig();
         $this->seedHomeConfig($home);
         $this->seedErrorConfig($errorPage);
+        $this->call(PacoBootstrapSeeder::class);
     }
 
     private function seedSuperAdmin(): void
@@ -130,7 +131,7 @@ class DatabaseSeeder extends Seeder
                     'layout' => 'default',
                     'status' => Status::Published,
                     'parent_id' => $parentRoute->id,
-                    'full_slug' => $parentRoute->full_slug . '/' . $post['slug'],
+                    'full_slug' => $parentRoute->full_slug.'/'.$post['slug'],
                     'description' => $post['description'],
                 ]
             );
@@ -142,7 +143,7 @@ class DatabaseSeeder extends Seeder
     private function seedMenu(array $pages, array $posts): void
     {
         $items = collect($pages)->map(fn (Page $page): array => [
-            '_token' => 'page-' . $page->id,
+            '_token' => 'page-'.$page->id,
             'label' => $page->route->title,
             'order' => $page->id,
             'route' => $this->routeAttrs($page->route),

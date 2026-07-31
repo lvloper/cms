@@ -12,6 +12,7 @@ export default defineConfig({
                 'resources/css/admin-overrides.css',
                 'resources/js/app.js',
                 'resources/js/app.jsx',
+                'resources/js/admin-paco-preview.jsx',
                 'resources/js/hot-reload.js',
             ],
             refresh: [

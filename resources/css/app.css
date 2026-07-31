@@ -6,6 +6,7 @@
 @import "./components/gallery.css";
 @import "./components/hero.css";
 @import "./components/client-logos.css";
+@import "./components/paco.css";
 @import "./blocks/marquee.css";
 
 @import "./view-transition.css";
@@ -30,6 +31,14 @@
   --color-socies-coral: #ff4d61;
   --color-socies-violet: #951b81;
   --color-socies-aqua: #0dd6cc;
+  --color-focus: var(--color-socies-green);
+  --color-success: var(--color-socies-green);
+  --color-error: var(--color-socies-coral);
+  --color-warning: var(--color-socies-yellow);
+  --paco-radius-panel: 1.5rem;
+  --paco-radius-message: 1.15rem;
+  --paco-radius-control: 0.85rem;
+  --paco-thread-width: 52rem;
   --scrollbar-color: var(--color-secondary);
   --header-height: 80px;
   --side-bar-width: 260px;

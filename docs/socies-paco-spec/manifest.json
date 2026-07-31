@@ -1,0 +1,32 @@
+{
+  "project": "Socies Paco",
+  "generated_at": "2026-07-31",
+  "files": [
+    "00_README.md",
+    "01_PRODUCTO_Y_FLUJO.md",
+    "02_ORQUESTACION_DEL_AGENTE.md",
+    "03_CMS_Y_BASE_DE_CONOCIMIENTO.md",
+    "04_MODELO_DE_DATOS.md",
+    "05_CONTRATOS_API_Y_UI.md",
+    "06_PROMPTS_Y_GUARDRAILS.md",
+    "07_CALIFICACION_DE_LEADS.md",
+    "08_FRONTEND_REACT.md",
+    "09_BACKEND_E_IA.md",
+    "10_SEGURIDAD_Y_PRIVACIDAD.md",
+    "11_TESTING_Y_EVALS.md",
+    "12_ROADMAP_MVP.md",
+    "13_DECISIONES_ABIERTAS.md",
+    "14_EJEMPLO_LANDING_ONG.md",
+    "15_LIBRERIAS_Y_DECISIONES_TECNICAS.md",
+    "16_DISENO_Y_EXPERIENCIA.md",
+    "17_SEEDS_INICIALES.md",
+    "18_IMPLEMENTACION_ACTUAL.md",
+    "adrs/README.md",
+    "adrs/ADR-001-PIPELINE-CONTROLADO.md",
+    "adrs/ADR-002-TRANSPORTE-ATOMICO.md",
+    "adrs/ADR-003-INTEGRACION-DE-MODELOS.md",
+    "adrs/ADR-004-UI-CONVERSACIONAL.md",
+    "adrs/ADR-005-CONOCIMIENTO-Y-PGVECTOR.md"
+  ],
+  "status": "minimum-vertical-implemented"
+}

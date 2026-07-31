@@ -1,0 +1,675 @@
+.paco-section {
+  position: relative;
+  isolation: isolate;
+  background: var(--color-black);
+  color: var(--color-white);
+  padding: 5rem 1rem;
+  overflow: clip;
+}
+
+.paco-section::before {
+  content: '';
+  position: absolute;
+  inset: 8% auto auto 50%;
+  width: min(72rem, 92vw);
+  aspect-ratio: 2 / 1;
+  transform: translateX(-50%);
+  background: radial-gradient(circle, color-mix(in srgb, var(--color-socies-green) 12%, transparent), transparent 68%);
+  pointer-events: none;
+  z-index: -1;
+}
+
+.paco-section--page {
+  min-height: 100dvh;
+  padding-top: calc(var(--header-height) + 4rem);
+}
+
+.paco-admin-preview {
+  margin: -1rem;
+}
+
+.paco-admin-preview .paco-section {
+  min-height: auto;
+}
+
+.paco-admin-preview .paco-controls {
+  display: none;
+}
+
+.paco-shell {
+  width: min(100%, var(--paco-thread-width));
+  margin-inline: auto;
+}
+
+.paco-intro {
+  margin-bottom: 2rem;
+  max-width: 42rem;
+}
+
+.paco-intro > span {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--color-socies-green);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+}
+
+.paco-intro > span::before {
+  content: '';
+  width: 0.55rem;
+  height: 0.55rem;
+  border-radius: 50%;
+  background: currentColor;
+}
+
+.paco-intro h1,
+.paco-intro h2 {
+  margin-top: 0.8rem;
+  font-size: clamp(2rem, 7vw, 4.75rem);
+  line-height: 0.96;
+  font-weight: 500;
+  letter-spacing: -0.045em;
+  text-wrap: balance;
+}
+
+.paco-intro p {
+  margin-top: 1rem;
+  max-width: 34rem;
+  color: color-mix(in srgb, var(--color-white) 68%, transparent);
+  line-height: 1.55;
+}
+
+.paco-panel {
+  border: 1px solid color-mix(in srgb, var(--color-white) 18%, transparent);
+  border-radius: var(--paco-radius-panel);
+  background: color-mix(in srgb, var(--color-black) 94%, var(--color-gray));
+  box-shadow: 0 2rem 7rem color-mix(in srgb, var(--color-black) 72%, transparent);
+  overflow: hidden;
+}
+
+.paco-panel__topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  min-height: 4rem;
+  padding: 0.85rem 1rem;
+  border-bottom: 1px solid color-mix(in srgb, var(--color-white) 13%, transparent);
+  font-size: 0.8rem;
+}
+
+.paco-panel__topbar > div {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.paco-panel__meta {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.paco-panel__meta > span {
+  color: color-mix(in srgb, var(--color-white) 58%, transparent);
+}
+
+.paco-dev-reset {
+  border: 1px solid color-mix(in srgb, var(--color-socies-green) 70%, transparent);
+  border-radius: var(--paco-radius-control);
+  padding: 0.35rem 0.6rem;
+  color: var(--color-socies-green);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  transition: background-color 140ms ease, color 140ms ease;
+}
+
+.paco-dev-reset:hover,
+.paco-dev-reset:focus-visible {
+  background: var(--color-socies-green);
+  color: var(--color-black);
+  outline: none;
+}
+
+.paco-dev-reset:disabled {
+  cursor: wait;
+  opacity: 0.45;
+}
+
+.paco-panel__status {
+  width: 0.65rem;
+  height: 0.65rem;
+  border-radius: 50%;
+  background: var(--color-socies-green);
+  box-shadow: 0 0 0 0.3rem color-mix(in srgb, var(--color-socies-green) 14%, transparent);
+}
+
+.paco-thread {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  min-height: 24rem;
+  max-height: min(58dvh, 36rem);
+  padding: 1.25rem 1rem 2rem;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-color: color-mix(in srgb, var(--color-white) 30%, transparent) transparent;
+}
+
+.paco-message {
+  width: fit-content;
+  max-width: min(90%, 36rem);
+  padding: 0.85rem 1rem;
+  border-radius: var(--paco-radius-message);
+  line-height: 1.5;
+  animation: paco-message-in 180ms ease-out both;
+}
+
+.paco-message--socies {
+  align-self: flex-start;
+  border: 1px solid var(--color-socies-green);
+  border-bottom-left-radius: 0.25rem;
+  background: var(--color-black);
+}
+
+.paco-message--visitor {
+  align-self: flex-end;
+  border-bottom-right-radius: 0.25rem;
+  background: var(--color-socies-coral);
+  color: var(--color-white);
+}
+
+.paco-message__author {
+  display: block;
+  margin-bottom: 0.35rem;
+  color: var(--color-socies-green);
+  font-size: 0.65rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+}
+
+.paco-message__content {
+  display: grid;
+  gap: 0.85rem;
+}
+
+.paco-message__content p {
+  margin: 0;
+}
+
+.paco-message__question {
+  padding-top: 0.8rem;
+  border-top: 1px solid color-mix(in srgb, var(--color-socies-green) 32%, transparent);
+  line-height: 1.4;
+}
+
+.paco-message__question strong {
+  font-weight: 800;
+}
+
+.paco-message--with-evidence {
+  width: min(100%, 42rem);
+  max-width: 100%;
+}
+
+.paco-evidence {
+  display: grid;
+  gap: 0.75rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.paco-evidence > li {
+  min-width: 0;
+}
+
+.paco-evidence-card {
+  height: 100%;
+  overflow: hidden;
+  border: 1px solid color-mix(in srgb, var(--color-white) 18%, transparent);
+  border-radius: var(--paco-radius-control);
+  background: color-mix(in srgb, var(--color-white) 5%, var(--color-black));
+}
+
+.paco-evidence-card__image {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+}
+
+.paco-evidence-card__body {
+  padding: 1rem;
+}
+
+.paco-evidence-card--testimonial {
+  height: auto;
+  margin: 0;
+}
+
+.paco-evidence-card--testimonial .paco-evidence-card__body {
+  padding: 0.8rem;
+}
+
+.paco-evidence-card__testimonial-head {
+  display: flex;
+  min-height: 2.75rem;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+.paco-evidence-card__person {
+  display: flex;
+  min-width: 0;
+  align-items: center;
+  gap: 0.65rem;
+}
+
+.paco-evidence-card__avatar {
+  flex: 0 0 2.5rem;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.paco-evidence-card__logo {
+  width: auto;
+  max-width: 5rem;
+  height: 2rem;
+  object-fit: contain;
+  object-position: right top;
+}
+
+.paco-evidence-card__client {
+  display: block;
+  margin-bottom: 0.3rem;
+  color: var(--color-socies-green);
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.paco-evidence-card h3 {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 750;
+}
+
+.paco-evidence-card dl {
+  display: grid;
+  gap: 0.65rem;
+  margin: 0.85rem 0 0;
+}
+
+.paco-evidence-card dt {
+  color: var(--color-gray-2);
+  font-size: 0.72rem;
+  font-weight: 700;
+}
+
+.paco-evidence-card dd {
+  margin: 0.12rem 0 0;
+  font-size: 0.88rem;
+  line-height: 1.45;
+}
+
+.paco-evidence-card blockquote {
+  margin: 0.65rem 0 0;
+  font-size: 0.85rem;
+  line-height: 1.45;
+}
+
+.paco-evidence-card figcaption {
+  display: grid;
+  gap: 0.1rem;
+  min-width: 0;
+  margin: 0;
+  color: var(--color-gray-2);
+  font-size: 0.72rem;
+  line-height: 1.35;
+}
+
+.paco-evidence-card figcaption strong {
+  color: var(--color-white);
+}
+
+.paco-evidence-card a {
+  display: inline-flex;
+  margin-top: 0.7rem;
+  color: var(--color-socies-green);
+  font-size: 0.76rem;
+  font-weight: 750;
+  text-underline-offset: 0.2em;
+}
+
+.paco-evidence-card a:focus-visible {
+  border-radius: 0.2rem;
+  outline: 2px solid var(--color-focus);
+  outline-offset: 0.2rem;
+}
+
+.paco-controls {
+  padding: 1rem 1rem max(1rem, env(safe-area-inset-bottom));
+  border-top: 1px solid color-mix(in srgb, var(--color-white) 13%, transparent);
+  background: color-mix(in srgb, var(--color-white) 3%, var(--color-black));
+}
+
+.paco-composer {
+  display: flex;
+  align-items: flex-end;
+  gap: 0.65rem;
+}
+
+.paco-composer textarea,
+.paco-field input,
+.paco-field textarea,
+.paco-field select,
+.paco-date input {
+  width: 100%;
+  border: 1px solid color-mix(in srgb, var(--color-white) 26%, transparent);
+  border-radius: var(--paco-radius-control);
+  background: var(--color-black);
+  color: var(--color-white);
+  padding: 0.8rem 0.9rem;
+  outline: none;
+}
+
+.paco-composer textarea {
+  min-height: 3.4rem;
+  resize: none;
+}
+
+.paco-composer textarea:focus,
+.paco-field input:focus,
+.paco-field textarea:focus,
+.paco-field select:focus,
+.paco-date input:focus {
+  border-color: var(--color-focus);
+  box-shadow: 0 0 0 0.2rem color-mix(in srgb, var(--color-focus) 20%, transparent);
+}
+
+.paco-composer button {
+  display: grid;
+  flex: 0 0 3.4rem;
+  width: 3.4rem;
+  height: 3.4rem;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--color-socies-green);
+  color: var(--color-black);
+  font-size: 1.25rem;
+  font-weight: 800;
+}
+
+.paco-composer button:disabled,
+.paco-submit:disabled,
+.paco-options button:disabled {
+  cursor: not-allowed;
+  opacity: 0.42;
+}
+
+.paco-options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+}
+
+.paco-option-response,
+.paco-option-detail {
+  display: grid;
+  gap: 1rem;
+}
+
+.paco-option-detail {
+  padding-top: 0.25rem;
+}
+
+.paco-option-detail label {
+  color: color-mix(in srgb, var(--color-white) 78%, transparent);
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+.paco-option-detail textarea {
+  width: 100%;
+  resize: none;
+  border: 1px solid color-mix(in srgb, var(--color-white) 26%, transparent);
+  border-radius: var(--paco-radius-control);
+  background: var(--color-black);
+  color: var(--color-white);
+  padding: 0.8rem 0.9rem;
+  outline: none;
+}
+
+.paco-option-detail textarea:focus {
+  border-color: var(--color-focus);
+  box-shadow: 0 0 0 0.2rem color-mix(in srgb, var(--color-focus) 20%, transparent);
+}
+
+.paco-options button,
+.paco-new-conversation {
+  min-height: 2.8rem;
+  border: 1px solid var(--color-socies-green);
+  border-radius: 999px;
+  padding: 0.65rem 1rem;
+  color: var(--color-white);
+  transition: background-color 140ms ease, color 140ms ease, transform 140ms ease;
+}
+
+.paco-options button:hover,
+.paco-options button:focus-visible,
+.paco-options button[aria-pressed='true'],
+.paco-new-conversation:hover,
+.paco-new-conversation:focus-visible {
+  background: var(--color-socies-green);
+  color: var(--color-black);
+  outline: none;
+  transform: translateY(-1px);
+}
+
+.paco-form,
+.paco-prefill,
+.paco-multi,
+.paco-date {
+  display: grid;
+  gap: 1rem;
+}
+
+.paco-prefill {
+  border: 1px solid var(--color-socies-green);
+  border-radius: var(--paco-radius-message);
+  padding: 1rem;
+}
+
+.paco-prefill__heading span {
+  color: var(--color-socies-green);
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.paco-prefill__heading p {
+  margin-top: 0.25rem;
+  color: color-mix(in srgb, var(--color-white) 65%, transparent);
+}
+
+.paco-prefill__grid {
+  display: grid;
+  gap: 1rem;
+}
+
+.paco-field {
+  display: grid;
+  gap: 0.4rem;
+}
+
+.paco-field label,
+.paco-fieldset legend,
+.paco-date label {
+  color: color-mix(in srgb, var(--color-white) 78%, transparent);
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+.paco-field__error,
+.paco-inline-error {
+  color: var(--color-error);
+  font-size: 0.78rem;
+}
+
+.paco-choice-row {
+  display: flex;
+  gap: 0.65rem;
+  margin-top: 0.5rem;
+}
+
+.paco-radio,
+.paco-multi label {
+  position: relative;
+  cursor: pointer;
+}
+
+.paco-radio input,
+.paco-multi input {
+  position: absolute;
+  opacity: 0;
+}
+
+.paco-radio span,
+.paco-multi span {
+  display: block;
+  border: 1px solid color-mix(in srgb, var(--color-white) 28%, transparent);
+  border-radius: 999px;
+  padding: 0.65rem 0.9rem;
+}
+
+.paco-radio input:checked + span,
+.paco-multi input:checked + span {
+  border-color: var(--color-socies-green);
+  background: color-mix(in srgb, var(--color-socies-green) 15%, transparent);
+}
+
+.paco-radio input:focus-visible + span,
+.paco-multi input:focus-visible + span {
+  outline: 2px solid var(--color-socies-green);
+  outline-offset: 2px;
+}
+
+.paco-submit {
+  min-height: 3rem;
+  justify-self: start;
+  border-radius: 999px;
+  padding: 0.75rem 1.15rem;
+  background: var(--color-socies-green);
+  color: var(--color-black);
+  font-weight: 800;
+}
+
+.paco-submit:focus-visible,
+.paco-composer button:focus-visible,
+.paco-state button:focus-visible {
+  outline: 2px solid var(--color-focus);
+  outline-offset: 3px;
+}
+
+.paco-form__privacy {
+  color: color-mix(in srgb, var(--color-white) 55%, transparent);
+  font-size: 0.74rem;
+}
+
+.paco-typing {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  align-self: flex-start;
+  color: color-mix(in srgb, var(--color-white) 58%, transparent);
+  font-size: 0.75rem;
+}
+
+.paco-typing i {
+  width: 0.35rem;
+  height: 0.35rem;
+  border-radius: 50%;
+  background: var(--color-socies-green);
+  animation: paco-dot 900ms infinite alternate;
+}
+
+.paco-typing i:nth-child(3) { animation-delay: 150ms; }
+.paco-typing i:nth-child(4) { animation-delay: 300ms; }
+
+.paco-loading {
+  display: flex;
+  justify-content: center;
+  gap: 0.45rem;
+  min-height: 25rem;
+  align-items: center;
+}
+
+.paco-loading span {
+  width: 0.55rem;
+  height: 0.55rem;
+  border-radius: 50%;
+  background: var(--color-socies-green);
+  animation: paco-dot 700ms infinite alternate;
+}
+
+.paco-loading span:nth-child(2) { animation-delay: 120ms; }
+.paco-loading span:nth-child(3) { animation-delay: 240ms; }
+
+.paco-state {
+  display: grid;
+  gap: 0.7rem;
+  min-height: 20rem;
+  place-content: center;
+  padding: 2rem;
+  text-align: center;
+}
+
+.paco-state button {
+  justify-self: center;
+  color: var(--color-socies-green);
+  text-decoration: underline;
+  text-underline-offset: 0.25rem;
+}
+
+.paco-new-conversation {
+  display: block;
+  margin-left: auto;
+}
+
+@media (min-width: 640px) {
+  .paco-section { padding: 7rem 2rem; }
+  .paco-panel__topbar { padding-inline: 1.5rem; }
+  .paco-thread { padding: 1.75rem 1.5rem 2.5rem; }
+  .paco-controls { padding: 1.25rem 1.5rem max(1.25rem, env(safe-area-inset-bottom)); }
+  .paco-prefill__grid { grid-template-columns: minmax(0, 1fr) minmax(10rem, 0.55fr); }
+  .paco-message { max-width: min(78%, 36rem); }
+  .paco-message--with-evidence { max-width: min(94%, 42rem); }
+  .paco-evidence:has(> li:nth-child(2)) { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .paco-message,
+  .paco-typing i,
+  .paco-loading span {
+    animation: none;
+  }
+
+  .paco-thread { scroll-behavior: auto; }
+}
+
+@keyframes paco-message-in {
+  from { opacity: 0; transform: translateY(0.35rem); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes paco-dot {
+  from { opacity: 0.25; transform: translateY(0); }
+  to { opacity: 1; transform: translateY(-0.2rem); }
+}

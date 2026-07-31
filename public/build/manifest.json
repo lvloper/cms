@@ -1,34 +1,68 @@
 {
-  "_BlocksList-ClsPw0lJ.js": {
-    "file": "assets/BlocksList-ClsPw0lJ.js",
+  "_BlocksList-BcTZI7r_.js": {
+    "file": "assets/BlocksList-BcTZI7r_.js",
     "name": "BlocksList",
     "imports": [
-      "_chunk-qMK8H_w0.js",
-      "resources/js/app.jsx"
+      "_chunk-CmbHGe4o.js",
+      "resources/js/app.jsx",
+      "_jsx-runtime-CQqLScDf.js"
     ]
   },
-  "_Default-DQRJyAR2.js": {
-    "file": "assets/Default-DQRJyAR2.js",
+  "_Default-CQLtJvej.js": {
+    "file": "assets/Default-CQLtJvej.js",
     "name": "Default",
     "imports": [
-      "resources/js/app.jsx"
+      "resources/js/app.jsx",
+      "_jsx-runtime-CQqLScDf.js"
     ]
   },
-  "_Home-BPBH87Il.js": {
-    "file": "assets/Home-BPBH87Il.js",
+  "_Home-CBBZumWA.js": {
+    "file": "assets/Home-CBBZumWA.js",
     "name": "Home",
     "imports": [
-      "_chunk-qMK8H_w0.js",
-      "resources/js/app.jsx"
+      "_chunk-CmbHGe4o.js",
+      "resources/js/app.jsx",
+      "_jsx-runtime-CQqLScDf.js"
     ]
   },
-  "_chunk-qMK8H_w0.js": {
-    "file": "assets/chunk-qMK8H_w0.js",
+  "_QueryClientProvider-DLzKjiif.js": {
+    "file": "assets/QueryClientProvider-DLzKjiif.js",
+    "name": "QueryClientProvider",
+    "imports": [
+      "_chunk-CmbHGe4o.js",
+      "_jsx-runtime-CQqLScDf.js"
+    ]
+  },
+  "_SociesConversation-B_U-X0Op.js": {
+    "file": "assets/SociesConversation-B_U-X0Op.js",
+    "name": "SociesConversation",
+    "imports": [
+      "_chunk-CmbHGe4o.js",
+      "_QueryClientProvider-DLzKjiif.js",
+      "_jsx-runtime-CQqLScDf.js"
+    ]
+  },
+  "_chunk-CmbHGe4o.js": {
+    "file": "assets/chunk-CmbHGe4o.js",
     "name": "chunk"
   },
-  "_preload-helper-CYaGY4Wq.js": {
-    "file": "assets/preload-helper-CYaGY4Wq.js",
+  "_jsx-runtime-CQqLScDf.js": {
+    "file": "assets/jsx-runtime-CQqLScDf.js",
+    "name": "jsx-runtime",
+    "imports": [
+      "_chunk-CmbHGe4o.js"
+    ]
+  },
+  "_preload-helper-CTTryutC.js": {
+    "file": "assets/preload-helper-CTTryutC.js",
     "name": "preload-helper"
+  },
+  "_queryClient-CrNiZVl0.js": {
+    "file": "assets/queryClient-CrNiZVl0.js",
+    "name": "queryClient",
+    "imports": [
+      "_QueryClientProvider-DLzKjiif.js"
+    ]
   },
   "resources/css/admin-overrides.css": {
     "file": "assets/admin-overrides-DszK0AMP.css",
@@ -40,7 +74,7 @@
     "isEntry": true
   },
   "resources/css/app.css": {
-    "file": "assets/app-Des-lw5q.css",
+    "file": "assets/app-DtnboO4g.css",
     "name": "app",
     "names": [
       "app.css"
@@ -49,98 +83,135 @@
     "isEntry": true
   },
   "resources/js/Pages/Cms/BlogPost.jsx": {
-    "file": "assets/BlogPost-CGU04Pc9.js",
+    "file": "assets/BlogPost-BEXV91Ex.js",
     "name": "BlogPost",
     "src": "resources/js/Pages/Cms/BlogPost.jsx",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.jsx",
-      "_Default-DQRJyAR2.js"
+      "_jsx-runtime-CQqLScDf.js",
+      "_Default-CQLtJvej.js"
     ]
   },
   "resources/js/Pages/Cms/Client.jsx": {
-    "file": "assets/Client-CSMPk-dS.js",
+    "file": "assets/Client-C4W8Wf7V.js",
     "name": "Client",
     "src": "resources/js/Pages/Cms/Client.jsx",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.jsx",
-      "_BlocksList-ClsPw0lJ.js",
-      "_Default-DQRJyAR2.js"
+      "_BlocksList-BcTZI7r_.js",
+      "_jsx-runtime-CQqLScDf.js",
+      "_Default-CQLtJvej.js"
     ]
   },
   "resources/js/Pages/Cms/Page.jsx": {
-    "file": "assets/Page-B-xbvvQB.js",
+    "file": "assets/Page-RVBeIYjU.js",
     "name": "Page",
     "src": "resources/js/Pages/Cms/Page.jsx",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.jsx",
-      "_BlocksList-ClsPw0lJ.js",
-      "_Home-BPBH87Il.js",
-      "_Default-DQRJyAR2.js"
+      "_BlocksList-BcTZI7r_.js",
+      "_jsx-runtime-CQqLScDf.js",
+      "_Home-CBBZumWA.js",
+      "_Default-CQLtJvej.js"
     ]
   },
   "resources/js/Pages/Cms/Search.jsx": {
-    "file": "assets/Search-BZTyofUO.js",
+    "file": "assets/Search-cbpPrTkb.js",
     "name": "Search",
     "src": "resources/js/Pages/Cms/Search.jsx",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.jsx",
-      "_Default-DQRJyAR2.js"
+      "_jsx-runtime-CQqLScDf.js",
+      "_Default-CQLtJvej.js"
     ]
   },
   "resources/js/Pages/Home.jsx": {
-    "file": "assets/Home-CdKuCZLc.js",
+    "file": "assets/Home-BsP_KFI0.js",
     "name": "Home",
     "src": "resources/js/Pages/Home.jsx",
     "isDynamicEntry": true,
     "imports": [
-      "_chunk-qMK8H_w0.js",
+      "_chunk-CmbHGe4o.js",
+      "_SociesConversation-B_U-X0Op.js",
       "resources/js/app.jsx",
-      "_Home-BPBH87Il.js"
+      "_jsx-runtime-CQqLScDf.js",
+      "_Home-CBBZumWA.js"
     ],
     "css": [
       "assets/Home-Lcq2UOUK.css"
     ]
   },
+  "resources/js/Pages/Paco/Show.jsx": {
+    "file": "assets/Show-DIH9KVvU.js",
+    "name": "Show",
+    "src": "resources/js/Pages/Paco/Show.jsx",
+    "isDynamicEntry": true,
+    "imports": [
+      "_SociesConversation-B_U-X0Op.js",
+      "resources/js/app.jsx",
+      "_jsx-runtime-CQqLScDf.js",
+      "_Home-CBBZumWA.js"
+    ]
+  },
+  "resources/js/admin-paco-preview.jsx": {
+    "file": "assets/admin-paco-preview-BHViCSZ5.js",
+    "name": "admin-paco-preview",
+    "src": "resources/js/admin-paco-preview.jsx",
+    "isEntry": true,
+    "imports": [
+      "_SociesConversation-B_U-X0Op.js",
+      "_QueryClientProvider-DLzKjiif.js",
+      "_queryClient-CrNiZVl0.js",
+      "_jsx-runtime-CQqLScDf.js"
+    ],
+    "css": [
+      "assets/app-DtnboO4g.css"
+    ]
+  },
   "resources/js/app.js": {
-    "file": "assets/app-CV-9fyao.js",
+    "file": "assets/app-CUikInUa.js",
     "name": "app",
     "src": "resources/js/app.js",
     "isEntry": true,
     "imports": [
-      "_preload-helper-CYaGY4Wq.js"
+      "_preload-helper-CTTryutC.js"
     ],
     "css": [
       "assets/app-CSvobdiw.css"
     ]
   },
   "resources/js/app.jsx": {
-    "file": "assets/app-D4i9yZAB.js",
+    "file": "assets/app-mASgZe2C.js",
     "name": "app",
     "src": "resources/js/app.jsx",
     "isEntry": true,
     "imports": [
-      "_chunk-qMK8H_w0.js",
-      "_preload-helper-CYaGY4Wq.js"
+      "_chunk-CmbHGe4o.js",
+      "_preload-helper-CTTryutC.js",
+      "_QueryClientProvider-DLzKjiif.js",
+      "_queryClient-CrNiZVl0.js",
+      "_jsx-runtime-CQqLScDf.js"
     ],
     "dynamicImports": [
       "resources/js/Pages/Cms/BlogPost.jsx",
       "resources/js/Pages/Cms/Client.jsx",
       "resources/js/Pages/Cms/Page.jsx",
       "resources/js/Pages/Cms/Search.jsx",
-      "resources/js/Pages/Home.jsx"
+      "resources/js/Pages/Home.jsx",
+      "resources/js/Pages/Paco/Show.jsx"
     ]
   },
   "resources/js/hot-reload.js": {
-    "file": "assets/hot-reload-Do-ePGFX.js",
+    "file": "assets/hot-reload-1i-i3Kba.js",
     "name": "hot-reload",
     "src": "resources/js/hot-reload.js",
     "isEntry": true,
     "imports": [
-      "_chunk-qMK8H_w0.js"
+      "_chunk-CmbHGe4o.js"
     ]
   }
 }

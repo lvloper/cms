@@ -68,6 +68,36 @@ class ClientResource extends ResourceBase
                         ->helperText('Los clientes destacados aparecen en el slider de la home.')
                         ->default(true),
                 ]),
+            Section::make('Evidencia comercial para Socies')
+                ->description('Estos datos delimitan qué puede mencionar la conversación. Publicar la página no habilita automáticamente el uso comercial.')
+                ->aside()
+                ->schema([
+                    TextInput::make('public_name')
+                        ->label('Nombre público')
+                        ->helperText('Nombre exacto que Socies puede mostrar en el chat.')
+                        ->maxLength(255),
+                    TextInput::make('industry')
+                        ->label('Rubro')
+                        ->helperText('Ayuda a priorizar casos del mismo sector.')
+                        ->maxLength(255),
+                    Textarea::make('paco_summary')
+                        ->label('Descripción breve aprobada')
+                        ->rows(2)
+                        ->maxLength(500),
+                    Textarea::make('paco_chat_text')
+                        ->label('Texto aprobado para Socies')
+                        ->helperText('Opcional. Se usa literalmente o se acorta sin agregar afirmaciones.')
+                        ->rows(3)
+                        ->maxLength(700),
+                    Toggle::make('paco_use_authorized')
+                        ->label('Permiso de uso comercial')
+                        ->helperText('Autoriza mencionar públicamente al cliente dentro de la conversación.')
+                        ->default(false),
+                    Toggle::make('paco_chat_enabled')
+                        ->label('Disponible para el chat')
+                        ->helperText('Solo se considera si también tiene permiso de uso y la página está publicada.')
+                        ->default(false),
+                ]),
             ...DefaultTemplate::schema($schema),
         ];
     }
@@ -80,7 +110,7 @@ class ClientResource extends ResourceBase
                 ->schema([
                     Repeater::make('works')
                         ->label('Trabajos relacionados')
-                        ->helperText('Cada trabajo enlaza a una URL externa y puede pertenecer a varias categorías.')
+                        ->helperText('Cada trabajo puede usarse como evidencia solo con permiso explícito y contenido documentado.')
                         ->table([
                             TableColumn::make('Trabajo')->markAsRequired(),
                             TableColumn::make('Categorías')->markAsRequired(),
@@ -114,6 +144,33 @@ class ClientResource extends ResourceBase
                                 ->label('Descripción')
                                 ->rows(2)
                                 ->maxLength(500),
+                            Textarea::make('problem')
+                                ->label('Problema documentado')
+                                ->rows(2)
+                                ->maxLength(700),
+                            Textarea::make('solution')
+                                ->label('Qué hizo Socies')
+                                ->rows(2)
+                                ->maxLength(700),
+                            Textarea::make('result')
+                                ->label('Resultado documentado')
+                                ->helperText('Dejar vacío si no existe evidencia verificable.')
+                                ->rows(2)
+                                ->maxLength(700),
+                            Textarea::make('paco_text')
+                                ->label('Texto breve aprobado para Socies')
+                                ->rows(2)
+                                ->maxLength(500),
+                            TextInput::make('tags')
+                                ->label('Tags de búsqueda')
+                                ->helperText('Separados por coma: landing, donaciones, ONG.')
+                                ->maxLength(500),
+                            Toggle::make('use_authorized')
+                                ->label('Permiso de uso comercial')
+                                ->default(false),
+                            Toggle::make('chat_enabled')
+                                ->label('Mostrar en el chat')
+                                ->default(false),
                         ])
                         ->default([])
                         ->reorderableWithButtons()
@@ -145,6 +202,23 @@ class ClientResource extends ResourceBase
                             Field::rich('testimonial', 'Testimonio')
                                 ->required()
                                 ->columnSpanFull(),
+                            Textarea::make('short_quote')
+                                ->label('Versión breve aprobada')
+                                ->helperText('Si queda vacía, Socies puede acortar la cita exacta sin cambiar su sentido.')
+                                ->rows(2)
+                                ->maxLength(500)
+                                ->columnSpanFull(),
+                            TextInput::make('source_url')
+                                ->label('Fuente o evidencia')
+                                ->url()
+                                ->maxLength(2048)
+                                ->columnSpanFull(),
+                            Toggle::make('use_authorized')
+                                ->label('Permiso de uso comercial')
+                                ->default(false),
+                            Toggle::make('chat_enabled')
+                                ->label('Mostrar en el chat')
+                                ->default(false),
                         ])
                         ->columns(2)
                         ->default([])

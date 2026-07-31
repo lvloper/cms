@@ -2,6 +2,7 @@ import { Head } from '@inertiajs/react'
 import HomeLayout from '@/Layouts/Home'
 import HomeHero from '@/Components/HomeHero'
 import ClientLogosMarquee from '@/Components/ClientLogosMarquee'
+import SociesConversation from '@/Components/Paco/SociesConversation'
 
 const STATIC_CLIENT_LOGOS = [
     {
@@ -79,6 +80,7 @@ export default function Home({ clients }) {
                 <HomeHero />
                 <ClientLogosMarquee clients={clientLogos} />
                 <div className="home-handoff-runway" data-home-handoff-runway aria-hidden="true" />
+                <SociesConversation mode="inline" entry={{ campaign: 'home_default' }} />
             </HomeLayout>
         </>
     )

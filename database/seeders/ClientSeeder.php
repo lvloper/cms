@@ -18,6 +18,7 @@ class ClientSeeder extends Seeder
                 'color' => '#00A7A0',
                 'popup_text_color' => 'black',
                 'is_featured' => true,
+                'industry' => 'Organizaciones sociales y salud',
                 'testimonials' => [
                     [
                         'person' => 'Florencia Gadea',
@@ -37,6 +38,7 @@ class ClientSeeder extends Seeder
                 'color' => '#FFF200',
                 'popup_text_color' => 'black',
                 'is_featured' => true,
+                'industry' => 'Organizaciones sociales y derechos humanos',
                 'testimonials' => [
                     [
                         'person' => 'Laura Durán',
@@ -56,6 +58,7 @@ class ClientSeeder extends Seeder
                 'color' => '#23408E',
                 'popup_text_color' => 'white',
                 'is_featured' => true,
+                'industry' => 'Servicios financieros',
             ],
             [
                 'title' => 'QyT Servicios',
@@ -63,6 +66,7 @@ class ClientSeeder extends Seeder
                 'color' => '#2D7D8A',
                 'popup_text_color' => 'white',
                 'is_featured' => true,
+                'industry' => 'Servicios profesionales',
             ],
             [
                 'title' => 'Fundación Leloir',
@@ -70,6 +74,7 @@ class ClientSeeder extends Seeder
                 'color' => '#713C8C',
                 'popup_text_color' => 'white',
                 'is_featured' => true,
+                'industry' => 'Ciencia e investigación',
             ],
             [
                 'title' => 'CEDES',
@@ -77,6 +82,7 @@ class ClientSeeder extends Seeder
                 'color' => '#E7772E',
                 'popup_text_color' => 'black',
                 'is_featured' => true,
+                'industry' => 'Organizaciones sociales e investigación',
                 'testimonials' => [
                     [
                         'person' => 'Mariana Romero',
@@ -91,11 +97,19 @@ class ClientSeeder extends Seeder
                 'color' => '#E34D61',
                 'popup_text_color' => 'black',
                 'is_featured' => true,
+                'industry' => 'Innovación y desarrollo institucional',
             ],
         ];
 
         foreach ($clients as $index => $data) {
             $slug = Str::slug($data['title']);
+            $testimonials = collect($data['testimonials'] ?? [])
+                ->map(fn (array $testimonial): array => [
+                    ...$testimonial,
+                    'use_authorized' => true,
+                    'chat_enabled' => true,
+                ])
+                ->all();
 
             $client = Client::query()
                 ->whereHas('route', fn ($query) => $query->where('slug', $slug))
@@ -108,9 +122,15 @@ class ClientSeeder extends Seeder
                     'sort_order' => $index,
                     'popup_text_color' => $data['popup_text_color'],
                     'is_featured' => $data['is_featured'],
+                    'public_name' => $data['title'],
+                    'industry' => $data['industry'],
+                    'paco_summary' => null,
+                    'paco_chat_text' => null,
+                    'paco_use_authorized' => true,
+                    'paco_chat_enabled' => true,
                     'blocks' => [],
                     'works' => [],
-                    'testimonials' => $data['testimonials'] ?? [],
+                    'testimonials' => $testimonials,
                     'preview_items' => [],
                 ]);
             } else {
@@ -119,10 +139,14 @@ class ClientSeeder extends Seeder
                     'color' => $data['color'],
                     'popup_text_color' => $data['popup_text_color'],
                     'is_featured' => $data['is_featured'],
+                    'public_name' => $data['title'],
+                    'industry' => $data['industry'],
+                    'paco_use_authorized' => true,
+                    'paco_chat_enabled' => true,
                 ];
 
                 if (array_key_exists('testimonials', $data)) {
-                    $incomingTestimonials = collect($data['testimonials']);
+                    $incomingTestimonials = collect($testimonials);
                     $incomingPeople = $incomingTestimonials
                         ->map(fn (array $testimonial): string => Str::lower(Str::squish($testimonial['person'] ?? '')))
                         ->filter()

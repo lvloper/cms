@@ -1,21 +1,26 @@
 <?php
 
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\PacoPageController;
 use App\Http\Controllers\RouteController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\SitemapController;
-use App\Http\Controllers\HomeController;
+use App\Models\Blog;
+use App\Models\Page;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::get('/hablemos', PacoPageController::class)->name('paco.show');
 
-Route::get('/search-block', function (\Illuminate\Http\Request $request) {
+Route::get('/search-block', function (Request $request) {
     $query = $request->get('q', $request->get('s', ''));
 
     if (! $query || strlen($query) < 3) {
         return response()->json(['results' => []]);
     }
 
-    $pages = \App\Models\Page::where('blocks', 'like', '%' . $query . '%')
+    $pages = Page::where('blocks', 'like', '%'.$query.'%')
         ->whereHas('route', function ($q) {
             $q->where('status', 'published');
         })
@@ -31,10 +36,10 @@ Route::get('/search-block', function (\Illuminate\Http\Request $request) {
         ];
     });
 
-    $blogs = \App\Models\Blog::where(function ($q) use ($query) {
-            $q->where('description', 'like', '%' . $query . '%')
-              ->orWhere('content', 'like', '%' . $query . '%');
-        })
+    $blogs = Blog::where(function ($q) use ($query) {
+        $q->where('description', 'like', '%'.$query.'%')
+            ->orWhere('content', 'like', '%'.$query.'%');
+    })
         ->whereHas('route', function ($q) {
             $q->where('status', 'published');
         })
@@ -59,12 +64,12 @@ Route::get('/search-block', function (\Illuminate\Http\Request $request) {
 Route::get('/preview-blocks', function () {
     return view('components.blockLayout', ['slot' => '', 'hideFooter' => true, 'hideHeader' => true]);
 })
-->name('preview.blocks');
+    ->name('preview.blocks');
 
 Route::get('/preview-blocks-minimal', function () {
     return view('components.blockLayout-minimal', ['slot' => '']);
 })
-->name('preview.blocks.minimal');
+    ->name('preview.blocks.minimal');
 
 Route::get('/home', function () {
     return redirect('/');

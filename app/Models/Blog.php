@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 use Spatie\Tags\HasTags;
 use Spatie\Tags\Tag;
@@ -156,9 +157,15 @@ class Blog extends Model
             // Si aún no hay suficientes posts, buscar en otros años
             if ($posts->count() < 3) {
                 $remaining = 3 - $posts->count();
+                $dateDistanceExpression = match (DB::connection()->getDriverName()) {
+                    'pgsql' => 'ABS(EXTRACT(EPOCH FROM (published_at - ?::timestamp)))',
+                    'mysql', 'mariadb' => 'ABS(DATEDIFF(published_at, ?))',
+                    default => 'ABS(strftime("%s", published_at) - strftime("%s", ?))',
+                };
+
                 $additionalPosts = Blog::where('id', '!=', $this->id)
                     ->isPublished()
-                    ->orderByRaw('ABS(DATEDIFF(published_at, ?))', [$this->published_at])
+                    ->orderByRaw($dateDistanceExpression, [$this->published_at])
                     ->limit($remaining)
                     ->get();
 

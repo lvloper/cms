@@ -25,6 +25,33 @@ Esta base nace con un objetivo claro: acelerar entregas sin sacrificar calidad. 
 - **SEO**: metadata SEO incorporada por ruta.
 - **Activity log**: trazabilidad de acciones con Spatie Activity Log.
 - **Sitemap**: generacion automatica de `sitemap.xml`.
+- **Conversación Socies**: captación breve de consultas en home y `/hablemos`, con campañas, precarga privada, playbooks y reglas de alcance editables desde Filament.
+
+## Conversación Socies
+
+El bootstrap crea 14 intenciones, 18 preguntas, 15 respuestas aprobadas, 7 playbooks, 14 reglas de servicio y 5 campañas. Los seeds son idempotentes y no pisan textos editados desde el CMS.
+
+```bash
+php artisan db:seed --class=PacoBootstrapSeeder
+php artisan paco:prefill-link direct_default \
+  --name="Ana" \
+  --email="ana@ejemplo.com" \
+  --query="Necesitamos automatizar una aprobación" \
+  --source=email \
+  --medium=newsletter
+```
+
+Los enlaces precargados vencen según `PACO_PREFILL_TTL_MINUTES`, se consumen una sola vez y nunca exponen nombre, contacto o consulta en la URL. Campañas, playbooks, respuestas, reglas y consultas recibidas se administran en `/admin`, grupo **Conversaciones**.
+
+### Proveedor de IA
+
+OpenCode Go queda seleccionado con `mimo-v2.5` en `opencode.json`. Completá `OPENCODE_API_KEY` en `.env` para activarlo. `OPENCODE_MAX_TOKENS` queda en 1600 para permitir que modelos con razonamiento interno completen la salida JSON. Si la clave falta, OpenCode Go devuelve un error de cuota o el resultado no cumple el JSON esperado, Paco usa automáticamente el gateway determinista durante el cooldown configurado en `PACO_AI_FALLBACK_COOLDOWN_MINUTES`.
+
+Para reintentar el proveedor después de un límite, limpiá el circuito desde Tinker:
+
+```bash
+php artisan tinker --execute="Cache::forget('paco:opencode-go:circuit-open');"
+```
 
 ## Stack tecnologico
 
@@ -45,7 +72,7 @@ Esta base nace con un objetivo claro: acelerar entregas sin sacrificar calidad. 
 - Composer 2+
 - Node.js 20+
 - npm 10+
-- MySQL / MariaDB / PostgreSQL (o SQLite)
+- PostgreSQL
 
 ```bash
 cp .env.example .env

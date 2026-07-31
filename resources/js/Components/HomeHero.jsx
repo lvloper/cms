@@ -8,12 +8,11 @@ import SociesLogo from '@/Components/SociesLogo'
 gsap.registerPlugin(ScrollTrigger)
 
 const SCROLL_TRIGGER_ID = 'socies-home-logo-handoff'
-const TITLE_ROTATION_DELAYS = [1, 0.85, 0.7, 0.55, 0.4, 0.3]
 let primaryIntroPlayedInRuntime = false
 
 export const HOME_HERO = {
     title: 'Convertimos problemas complejos en sistemas que impulsan negocio',
-    rotatingWords: ['sistemas', 'soluciones', 'diseños', 'experiencias', 'productos'],
+    highlightWord: 'sistemas',
     durationScale: 1,
     logoSettleDuration: 0.72,
     logoBottomOffset: 30,
@@ -125,9 +124,6 @@ export default function HomeHero() {
         let scrollCueDismissed = false
         let titleArrowPulse
         let titleDotPulse
-        let titleRotationTimer
-        let titleRotationTween
-        let titleRotationStarted = false
         let rebuildScrollHandoff
         const initialScrollY = window.scrollY
         let userScrolledBeforeCue = initialScrollY > 1
@@ -229,59 +225,6 @@ export default function HomeHero() {
                         yoyo: true,
                     },
                 )
-            }
-
-            const startTitleRotation = () => {
-                const rotatingWord = title.querySelector('[data-rotating-word]')
-                const options = [...title.querySelectorAll('[data-rotating-option]')]
-
-                if (titleRotationStarted || reduceMotion || !rotatingWord || options.length < 2) return
-
-                titleRotationStarted = true
-                let activeIndex = 0
-                let delayIndex = 0
-                const getOptionWidth = (option) => option.getBoundingClientRect().width
-
-                gsap.set(options.slice(1), { autoAlpha: 0, yPercent: 0 })
-                gsap.set(rotatingWord, { width: getOptionWidth(options[activeIndex]) })
-
-                const rotate = () => {
-                    const current = options[activeIndex]
-                    const nextIndex = (activeIndex + 1) % options.length
-                    const next = options[nextIndex]
-
-                    delayIndex = (delayIndex + 1) % TITLE_ROTATION_DELAYS.length
-                    titleRotationTimer = gsap.delayedCall(TITLE_ROTATION_DELAYS[delayIndex], rotate)
-                    gsap.set(next, { autoAlpha: 1, yPercent: 100 })
-
-                    titleRotationTween?.kill()
-                    titleRotationTween = gsap.timeline({
-                        onComplete: () => {
-                            gsap.set(current, { autoAlpha: 0, yPercent: 0 })
-                        },
-                    })
-                        .to(rotatingWord, {
-                            width: getOptionWidth(next),
-                            duration: 0.2,
-                            ease: 'power2.inOut',
-                        }, 0)
-                        .to(current, {
-                            autoAlpha: 0,
-                            yPercent: -100,
-                            duration: 0.16,
-                            ease: 'power2.in',
-                        }, 0)
-                        .to(next, {
-                            autoAlpha: 1,
-                            yPercent: 0,
-                            duration: 0.2,
-                            ease: 'power3.out',
-                        }, 0.05)
-
-                    activeIndex = nextIndex
-                }
-
-                titleRotationTimer = gsap.delayedCall(TITLE_ROTATION_DELAYS[delayIndex], rotate)
             }
 
             const getBottomOffset = () => (
@@ -461,7 +404,6 @@ export default function HomeHero() {
                     onDotPulse: startTitleDotPulse,
                 })
                 titleTimeline.eventCallback('onComplete', () => {
-                    startTitleRotation()
                     scheduleScrollCue()
                 })
                 requestAnimationFrame(setupScrollHandoff)
@@ -498,7 +440,6 @@ export default function HomeHero() {
                     document.documentElement.classList.remove('hero-scroll-lock')
                     root.classList.remove('is-intro')
                     requestAnimationFrame(setupScrollHandoff)
-                    startTitleRotation()
                     scheduleScrollCue()
                 },
             })
@@ -594,8 +535,6 @@ export default function HomeHero() {
             scrollCueTransition?.kill()
             titleArrowPulse?.kill()
             titleDotPulse?.kill()
-            titleRotationTimer?.kill()
-            titleRotationTween?.kill()
             scrollTimeline?.kill()
             ScrollTrigger.getById(SCROLL_TRIGGER_ID)?.kill()
             handoffRunway?.style.removeProperty('--home-handoff-runway-height')
@@ -629,7 +568,7 @@ export default function HomeHero() {
                     <AnimatedHeroTitle
                         ref={titleRef}
                         title={HOME_HERO.title}
-                        rotatingWords={HOME_HERO.rotatingWords}
+                        highlightWord={HOME_HERO.highlightWord}
                     />
                     <div className="home-hero__scroll-cue-anchor">
                         <ScrollCue ref={scrollCueRef} />

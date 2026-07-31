@@ -1,14 +1,17 @@
 <?php
 
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
 class CreateActivityLogTable extends Migration
 {
     public function up()
     {
-        Schema::connection(config('activitylog.database_connection'))->create(config('activitylog.table_name'), function (Blueprint $table) {
+        $connection = config('activitylog.database_connection') ?: config('database.default');
+        $tableName = config('activitylog.table_name', 'activity_log');
+
+        Schema::connection($connection)->create($tableName, function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('log_name')->nullable();
             $table->text('description');
@@ -22,6 +25,9 @@ class CreateActivityLogTable extends Migration
 
     public function down()
     {
-        Schema::connection(config('activitylog.database_connection'))->dropIfExists(config('activitylog.table_name'));
+        $connection = config('activitylog.database_connection') ?: config('database.default');
+        $tableName = config('activitylog.table_name', 'activity_log');
+
+        Schema::connection($connection)->dropIfExists($tableName);
     }
 }

@@ -2,14 +2,14 @@
 
 namespace App\Console\Commands;
 
-use Illuminate\Console\Command;
-use App\Models\BlogOldData;
+use App\Enums\Status;
 use App\Models\Blog;
+use App\Models\BlogOldData;
 use App\Models\Route;
 use Carbon\Carbon;
-
+use Illuminate\Console\Command;
+use Illuminate\Support\Facades\Schema;
 use SimpleXMLElement;
-
 
 class ScrapeFeedCommand extends Command
 {
@@ -53,8 +53,9 @@ class ScrapeFeedCommand extends Command
      */
     public function handle()
     {
-        if (env('APP_ENV') == 'production' && !$this->option('force')) {
+        if (env('APP_ENV') == 'production' && ! $this->option('force')) {
             $this->error('No se puede ejecutar en producción. Use --force para forzar la ejecución.');
+
             return 1;
         }
 
@@ -64,6 +65,7 @@ class ScrapeFeedCommand extends Command
                 $this->cleanExistingNotes();
             } else {
                 $this->info('Operación cancelada.');
+
                 return 0;
             }
         }
@@ -83,10 +85,12 @@ class ScrapeFeedCommand extends Command
                 $this->scrapeFeed($page);
             } else {
                 $this->error('Debe especificar una opción: --all, --page=N o --test');
+
                 return 1;
             }
         } catch (\Exception $e) {
-            $this->error("Error durante el scraping: " . $e->getMessage());
+            $this->error('Error durante el scraping: '.$e->getMessage());
+
             return 1;
         }
 
@@ -96,29 +100,29 @@ class ScrapeFeedCommand extends Command
     protected function cleanExistingNotes()
     {
         $this->info('Limpiando notas existentes...');
-        
+
         // Deshabilitar temporalmente las restricciones de clave foránea
-        \DB::statement('SET FOREIGN_KEY_CHECKS=0;');
-        
+        Schema::disableForeignKeyConstraints();
+
         try {
             // Obtener todos los blogs antes de eliminar
             $blogCount = Blog::count();
             $oldDataCount = BlogOldData::count();
-            
+
             // Eliminar las rutas asociadas a los blogs
-            $routes = Route::whereHas('routable', function($query) {
+            $routes = Route::whereHas('routable', function ($query) {
                 $query->where('routable_type', 'App\\Models\\Blog');
             })->delete();
-            
+
             // Truncar las tablas
             Blog::truncate();
             BlogOldData::truncate();
-            
+
             $this->info("Se eliminaron {$blogCount} notas y {$oldDataCount} registros de datos antiguos.");
-            
+
         } finally {
             // Volver a habilitar las restricciones de clave foránea
-            \DB::statement('SET FOREIGN_KEY_CHECKS=1;');
+            Schema::enableForeignKeyConstraints();
         }
     }
 
@@ -127,18 +131,20 @@ class ScrapeFeedCommand extends Command
         // Obtener solo las primeras 5 notas de la primera página
         $feedContent = file_get_contents('https://huesped.org.ar/feed/?paged=1');
         $xml = new SimpleXMLElement($feedContent);
-        
+
         $count = 0;
         $limit = 5;
-        
+
         foreach ($xml->channel->item as $item) {
-            if ($count >= $limit) break;
-            
+            if ($count >= $limit) {
+                break;
+            }
+
             $this->processItem($item);
             $count++;
             sleep(1); // Esperar entre requests para no sobrecargar
         }
-        
+
         $this->info("Modo test completado. Se procesaron {$count} artículos.");
     }
 
@@ -152,18 +158,18 @@ class ScrapeFeedCommand extends Command
             $this->info("Procesando página {$page} de {$totalPages}...");
             $processed = $this->scrapeFeed($page);
             $totalProcessed += $processed;
-            
+
             if ($page < $totalPages) {
                 sleep(3); // Pausa entre páginas
             }
         }
-        
+
         $this->info("Migración completa. Se procesaron {$totalProcessed} artículos en total.");
     }
 
     protected function scrapeFeed($page)
     {
-        $feedContent = file_get_contents('https://huesped.org.ar/feed/?paged=' . $page);
+        $feedContent = file_get_contents('https://huesped.org.ar/feed/?paged='.$page);
         $xml = new SimpleXMLElement($feedContent);
 
         $count = 0;
@@ -175,19 +181,20 @@ class ScrapeFeedCommand extends Command
         }
 
         $this->line("Página {$page} completada. Se procesaron {$count} artículos.");
+
         return $count;
     }
 
     protected function processItem($item)
     {
         // Extraer datos del item
-        $title = (string)$item->title;
-        $description = (string)$item->description;
-        $content = (string)$item->children('content', true);
-        $pubDate = Carbon::parse((string)$item->pubDate);
-        $oldLink = (string)$item->link;
+        $title = (string) $item->title;
+        $description = (string) $item->description;
+        $content = (string) $item->children('content', true);
+        $pubDate = Carbon::parse((string) $item->pubDate);
+        $oldLink = (string) $item->link;
 
-        $oldId = preg_replace('/[^0-9]/', '', (string)$item->guid);
+        $oldId = preg_replace('/[^0-9]/', '', (string) $item->guid);
 
         // Buscar imagen destacada
         $image = null;
@@ -212,18 +219,19 @@ class ScrapeFeedCommand extends Command
             $context = stream_context_create([
                 'http' => [
                     'timeout' => 10,
-                    'user_agent' => 'Mozilla/5.0 (compatible; ScrapeFeedCommand/1.0)'
-                ]
+                    'user_agent' => 'Mozilla/5.0 (compatible; ScrapeFeedCommand/1.0)',
+                ],
             ]);
-            
+
             $html = @file_get_contents($url, false, $context);
 
-            if (!$html) {
+            if (! $html) {
                 $this->warn("No se pudo obtener contenido de: {$url}");
+
                 return null;
             }
 
-            $dom = new \DOMDocument();
+            $dom = new \DOMDocument;
             @$dom->loadHTML($html, LIBXML_NOERROR);
             $xpath = new \DOMXPath($dom);
 
@@ -236,7 +244,7 @@ class ScrapeFeedCommand extends Command
 
             // Si no hay og:image, buscar imagen en el contenido
             $contentImage = null;
-            if (!$ogImage) {
+            if (! $ogImage) {
                 $imageNode = $xpath->query('//*[@id="the-post"]//img')->item(0);
                 $contentImage = $imageNode ? $imageNode->getAttribute('src') : null;
             }
@@ -251,10 +259,11 @@ class ScrapeFeedCommand extends Command
             return [
                 'og_image' => $ogImage,
                 'content_image' => $contentImage,
-                'tags' => $tags
+                'tags' => $tags,
             ];
         } catch (\Exception $e) {
-            $this->warn("Error al obtener datos extra de {$url}: " . $e->getMessage());
+            $this->warn("Error al obtener datos extra de {$url}: ".$e->getMessage());
+
             return null;
         }
     }
@@ -266,6 +275,7 @@ class ScrapeFeedCommand extends Command
         // Verificar si ya existe
         if (BlogOldData::where('old_id', $oldId)->exists()) {
             $this->line("El artículo '{$title}' (ID: {$oldId}) ya existe. Omitiendo...");
+
             return;
         }
 
@@ -274,7 +284,7 @@ class ScrapeFeedCommand extends Command
             $originalSlug = $slug;
             $counter = 1;
             while (Route::where('slug', $slug)->exists()) {
-                $slug = $originalSlug . '-' . $counter;
+                $slug = $originalSlug.'-'.$counter;
                 $counter++;
             }
             $this->warn("Slug duplicado detectado. Usando: {$slug}");
@@ -306,11 +316,11 @@ class ScrapeFeedCommand extends Command
         // Crear la ruta
         $blog->route()->create([
             'title' => $title,
-            'status' => \App\Enums\Status::Published,
+            'status' => Status::Published,
             'slug' => $slug,
             'parent_id' => $this->idPageNews,
             'published_at' => $pubDate,
-            'full_slug' => 'novedades/' . $slug,
+            'full_slug' => 'novedades/'.$slug,
         ]);
 
         // Guardar datos antiguos

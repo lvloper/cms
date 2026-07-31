@@ -33,6 +33,12 @@ class Client extends Model
         'works',
         'testimonials',
         'preview_items',
+        'public_name',
+        'industry',
+        'paco_summary',
+        'paco_chat_text',
+        'paco_use_authorized',
+        'paco_chat_enabled',
     ];
 
     protected $casts = [
@@ -44,5 +50,7 @@ class Client extends Model
         'works' => 'collection',
         'testimonials' => 'collection',
         'preview_items' => 'collection',
+        'paco_use_authorized' => 'boolean',
+        'paco_chat_enabled' => 'boolean',
     ];
 }

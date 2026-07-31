@@ -1,41 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&display=swap');
 
-@font-face {
-    font-family: 'Futura Std';
-    src: url('/public/fonts/FuturaStd/FuturaStd-Medium.woff2') format('woff2'),
-        url('/public/fonts/FuturaStd/FuturaStd-Medium.woff') format('woff');
-    font-weight: 500;
-    font-style: normal;
-    font-display: swap;
-}
-
-@font-face {
-    font-family: 'Futura Std';
-    src: url('/public/fonts/FuturaStd/FuturaStd-Heavy.woff2') format('woff2'),
-        url('/public/fonts/FuturaStd/FuturaStd-Heavy.woff') format('woff');
-    font-weight: 900;
-    font-style: normal;
-    font-display: swap;
-}
-
-@font-face {
-    font-family: 'Futura Std';
-    src: url('/public/fonts/FuturaStd/FuturaStd-Light.woff2') format('woff2'),
-        url('/public/fonts/FuturaStd/FuturaStd-Light.woff') format('woff');
-    font-weight: 300;
-    font-style: normal;
-    font-display: swap;
-}
-
-@font-face {
-    font-family: 'Futura Std';
-    src: url('/public/fonts/FuturaStd/FuturaStd-Bold.woff2') format('woff2'),
-        url('/public/fonts/FuturaStd/FuturaStd-Bold.woff') format('woff');
-    font-weight: bold;
-    font-style: normal;
-    font-display: swap;
-}
-
 .futura-bold {
     font-family: "Manrope", sans-serif;
     font-weight: bold;

@@ -4,6 +4,8 @@ export default {
         './app/Livewire/**/*.php',
         './resources/views/**/*.blade.php',
         './resources/js/**/*.jsx',
+        './resources/js/**/*.tsx',
+        './resources/js/**/*.ts',
         './vendor/filament/**/*.blade.php',
     ],
   safelist: [
