@@ -63,7 +63,7 @@ export default function SociesConversation({ mode = 'inline', entry = {}, readOn
             <div className="paco-shell">
                 <header className="paco-intro">
                     <span>HABLEMOS</span>
-                    <Title id={`paco-title-${mode}`}>{mode === 'page' ? 'Contanos qué necesitan resolver' : '¿Qué necesitan resolver?'}</Title>
+                    <Title id={`paco-title-${mode}`}>{mode === 'page' ? 'Contanos qué necesitas resolver' : '¿Qué necesitas resolver?'}</Title>
                     <p>Una conversación breve para entender el problema y darle contexto a nuestro equipo.</p>
                 </header>
 

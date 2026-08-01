@@ -96,12 +96,13 @@ export default function HomeHero() {
         const title = titleRef.current
         const scrollCue = scrollCueRef.current
         const message = root.querySelector('.home-hero__message')
+        const header = document.querySelector('[data-site-header]')
         const headerLogo = document.querySelector('[data-header-logo-target]')
         const headerLine = document.querySelector('[data-header-line]')
         const clientLogos = document.querySelector('[data-client-logos]')
         const handoffRunway = document.querySelector('[data-home-handoff-runway]')
 
-        if (!root || !line || !logoMotion || !logoSvg || !title || !scrollCue || !message || !headerLogo || !headerLine) {
+        if (!root || !line || !logoMotion || !logoSvg || !title || !scrollCue || !message || !header || !headerLogo || !headerLine) {
             return undefined
         }
 
@@ -259,6 +260,7 @@ export default function HomeHero() {
                 if (handoffActive === active) return
 
                 handoffActive = active
+                header.classList.toggle('site-header--visible', active)
                 root.classList.toggle('is-logo-transfer', !active)
                 root.classList.toggle('is-handoff-complete', active)
                 logoMotion.style.visibility = active ? 'hidden' : 'visible'
@@ -541,6 +543,7 @@ export default function HomeHero() {
             context.revert()
             root.classList.remove('is-logo-transfer')
             root.classList.remove('is-handoff-complete')
+            header.classList.remove('site-header--visible')
             document.documentElement.classList.remove('hero-scroll-lock')
             headerLogo.style.visibility = ''
             headerLine.style.visibility = ''

@@ -1,9 +1,14 @@
 .site-header {
+  --site-header-height: 3.5rem;
   position: fixed;
   inset: 0 0 auto;
   z-index: 80;
-  height: var(--header-height);
-  background: var(--color-black);
+  height: var(--site-header-height);
+  background: linear-gradient(
+    to bottom,
+    var(--color-black) 0 50%,
+    transparent 50% 100%
+  );
   color: var(--color-white);
 }
 
@@ -21,20 +26,84 @@
 .site-header__brand {
   display: block;
   width: clamp(7.25rem, 12vw, 9.5rem);
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: inherit;
   line-height: 0;
   visibility: hidden;
+  cursor: pointer;
+}
+
+.site-header__brand:focus-visible {
+  outline: 2px solid var(--color-focus);
+  outline-offset: .4rem;
 }
 
 .site-header__line {
   position: absolute;
   z-index: 1;
-  top: calc(50% + 1.5rem);
+  top: 50%;
   left: 0;
   width: 100%;
   height: 1px;
   background: var(--color-white);
   visibility: hidden;
   pointer-events: none;
+}
+
+.site-header--visible .site-header__brand,
+.site-header--visible .site-header__line {
+  visibility: visible;
+}
+
+.tippy-box[data-theme~="site-navigation"] {
+  border: 1px solid var(--color-white);
+  border-radius: var(--paco-radius-control);
+  background: var(--color-black);
+  box-shadow: none;
+  color: var(--color-white);
+}
+
+.tippy-box[data-theme~="site-navigation"] > .tippy-content {
+  padding: 0;
+}
+
+.site-navigation {
+  width: min(15rem, calc(100vw - 2.5rem));
+  padding: 1rem;
+  font-family: "Manrope", sans-serif;
+  text-align: center;
+}
+
+.site-navigation__list {
+  display: grid;
+  gap: .25rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.site-navigation__link {
+  display: block;
+  padding: .5rem .75rem;
+  color: inherit;
+  font-size: .9rem;
+  font-weight: 300;
+  line-height: 1.4;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: color 140ms ease;
+}
+
+.site-navigation__link:hover,
+.site-navigation__link:focus-visible {
+  color: var(--color-socies-green);
+}
+
+.site-navigation__link:focus-visible {
+  outline: 2px solid var(--color-focus);
+  outline-offset: -.15rem;
 }
 
 .socies-logo {

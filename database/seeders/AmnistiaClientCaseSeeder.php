@@ -97,6 +97,18 @@ class AmnistiaClientCaseSeeder extends Seeder
                     $this->media('Experiencia mobile', 'portrait', 'Reemplazar por imagen/video del sitio navegando en mobile'),
                 ],
             ]),
+            $this->block('ClientTestimonial', [
+                'blockTitle' => 'Testimonio de Laura Durán',
+                'eyebrow' => 'Trabajar en continuidad',
+                'title' => 'La experiencia del equipo',
+                'testimonials' => [
+                    [
+                        'quote' => 'El equipo lideró con gran profesionalismo el proceso de migración y modernización de nuestra web. Cada vez que surgió una necesidad urgente, respondieron con rapidez y priorizando nuestras solicitudes. Cuando enfrentamos dudas o cuestiones técnicas complejas, nos brindaron explicaciones claras y dinámicas sobre el diagnóstico y las soluciones posibles. En conclusión, el cambio hacia la nueva plataforma fue muy fructífero y la experiencia de trabajo general con ellos resultó y resulta sumamente positiva.',
+                        'person' => 'Laura Durán',
+                        'role' => 'Directora de Comunicación y Prensa',
+                    ],
+                ],
+            ]),
             $this->block('ClientProjects', [
                 'blockTitle' => 'Campañas y experiencias',
                 'eyebrow' => 'Campañas y experiencias',
@@ -116,6 +128,18 @@ class AmnistiaClientCaseSeeder extends Seeder
                         'summary' => 'Un espacio digital capaz de organizar información compleja y ofrecer recorridos claros para distintos públicos.',
                         'tags' => ['Guías', 'Recursos', 'Multimedia', 'Acciones'],
                         ...$this->mediaFields('Reemplazar por imagen/video del sitio Derecho al aborto'),
+                    ],
+                ],
+            ]),
+            $this->block('ClientTestimonial', [
+                'blockTitle' => 'Testimonio de Ambar Chacin',
+                'eyebrow' => null,
+                'title' => null,
+                'testimonials' => [
+                    [
+                        'quote' => "Desde Amnistía Internacional Argentina valoramos profundamente el trabajo conjunto que realizamos. Destacamos especialmente la capacidad del equipo para comprender nuestras necesidades, ofrecer soluciones efectivas y acompañarnos de manera cercana durante todo el proceso. Socies es una agencia que nos acompaña en el desarrollo de diversas plataformas y estrategias digitales desde hace más de 5 años.\n\nRecientemente trabajamos en conjunto para la actualización completa de nuestra web y siendo un gran desafío logramos el resultado esperado. El desarrollo de esta nueva plataforma fue un paso importante para fortalecer nuestra misión de promover los derechos humanos, y el soporte recibido en cada etapa marcó una gran diferencia.\n\nNos alegra haber contado con un equipo tan comprometido y profesional.",
+                        'person' => 'Ambar Chacin',
+                        'role' => 'Deputy Director of Growth and Fundraising',
                     ],
                 ],
             ]),
@@ -169,23 +193,6 @@ class AmnistiaClientCaseSeeder extends Seeder
                     ['value' => '24/7', 'label' => 'Monitoreo y operación', 'note' => null],
                 ],
                 ...$this->mediaFields('Reemplazar por imagen/video de métricas agregadas, monitoreo e infraestructura'),
-            ]),
-            $this->block('ClientTestimonial', [
-                'blockTitle' => 'Testimonios',
-                'eyebrow' => 'Trabajar en continuidad',
-                'title' => 'La experiencia del equipo',
-                'testimonials' => [
-                    [
-                        'quote' => 'El equipo lideró con gran profesionalismo el proceso de migración y modernización de nuestra web. Cada vez que surgió una necesidad urgente, respondieron con rapidez y priorizando nuestras solicitudes. Cuando enfrentamos dudas o cuestiones técnicas complejas, nos brindaron explicaciones claras y dinámicas sobre el diagnóstico y las soluciones posibles. En conclusión, el cambio hacia la nueva plataforma fue muy fructífero y la experiencia de trabajo general con ellos resultó y resulta sumamente positiva.',
-                        'person' => 'Laura Durán',
-                        'role' => 'Directora de Comunicación y Prensa',
-                    ],
-                    [
-                        'quote' => "Desde Amnistía Internacional Argentina valoramos profundamente el trabajo conjunto que realizamos. Destacamos especialmente la capacidad del equipo para comprender nuestras necesidades, ofrecer soluciones efectivas y acompañarnos de manera cercana durante todo el proceso. Socies es una agencia que nos acompaña en el desarrollo de diversas plataformas y estrategias digitales desde hace más de 5 años.\n\nRecientemente trabajamos en conjunto para la actualización completa de nuestra web y siendo un gran desafío logramos el resultado esperado. El desarrollo de esta nueva plataforma fue un paso importante para fortalecer nuestra misión de promover los derechos humanos, y el soporte recibido en cada etapa marcó una gran diferencia.\n\nNos alegra haber contado con un equipo tan comprometido y profesional.",
-                        'person' => 'Ambar Chacin',
-                        'role' => 'Deputy Director of Growth and Fundraising',
-                    ],
-                ],
             ]),
             $this->block('ClientClosing', [
                 'blockTitle' => 'Cierre',

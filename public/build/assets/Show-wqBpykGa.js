@@ -1,0 +1,1 @@
+import{t as e}from"./jsx-runtime-CQqLScDf.js";import{t}from"./SociesConversation-BloM6YBZ.js";import{t as n}from"./app-plFkRQ9Y.js";import{t as r}from"./Home-DMz2cQ_p.js";var i=e();function a({entry:e}){return(0,i.jsxs)(i.Fragment,{children:[(0,i.jsx)(n,{title:`Hablemos`}),(0,i.jsx)(r,{route:{title:`Hablemos`},children:(0,i.jsx)(t,{mode:`page`,entry:e})})]})}export{a as default};

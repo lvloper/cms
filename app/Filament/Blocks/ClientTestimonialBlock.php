@@ -19,17 +19,15 @@ class ClientTestimonialBlock extends PageBlock
             Field::text('eyebrow', 'Volanta')->maxLength(100),
             Field::text('title', 'Título')->maxLength(180),
             Repeater::make('testimonials')
-                ->label('Testimonios')
+                ->label('Testimonio')
                 ->schema([
                     Field::textarea('quote', 'Cita')->required()->rows(5)->maxLength(1200),
                     Field::text('person', 'Nombre')->required()->maxLength(120),
                     Field::text('role', 'Cargo')->required()->maxLength(180),
                 ])
                 ->minItems(1)
-                ->maxItems(2)
+                ->maxItems(1)
                 ->columns(2)
-                ->reorderableWithButtons()
-                ->cloneable()
                 ->itemLabel(fn (array $state): string => $state['person'] ?? 'Nuevo testimonio')
                 ->columnSpanFull(),
         ];

@@ -1,10 +1,6 @@
 import { Link, usePage } from '@inertiajs/react'
 import SociesLogo from '@/Components/SociesLogo'
-
-const footerLinks = [
-    { label: 'Clientes', href: '/#clientes' },
-    { label: 'Qué hacemos', href: '/#hablemos' },
-]
+import { siteNavigationItems } from '@/Components/siteNavigation'
 
 export default function SiteFooter() {
     const { shared } = usePage().props
@@ -24,7 +20,7 @@ export default function SiteFooter() {
 
                     <nav aria-label="Navegación del pie" className="md:col-span-4">
                         <ul className="flex flex-wrap gap-x-8 gap-y-3 text-sm font-medium">
-                            {footerLinks.map((link) => (
+                            {siteNavigationItems.map((link) => (
                                 <li key={link.href}>
                                     <Link
                                         href={link.href}

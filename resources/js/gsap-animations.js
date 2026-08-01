@@ -42,7 +42,7 @@ function animateMetric(element, section) {
         scrollTrigger: {
             trigger: section,
             start: 'top 78%',
-            once: true,
+            toggleActions: 'play reverse play reverse',
         },
     })
 }
@@ -101,7 +101,7 @@ export function initClientCaseAnimations(root) {
                         scrollTrigger: {
                             trigger: section,
                             start: 'top 82%',
-                            once: true,
+                            toggleActions: 'play reverse play reverse',
                         },
                     })
                 }

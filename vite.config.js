@@ -39,7 +39,16 @@ export default defineConfig({
     },
     server: {
         watch: {
-            ignored: ['**/vendor/**']
+            // Laravel/Filament publishes a large static tree under public/;
+            // it is served as-is and does not need to participate in HMR.
+            usePolling: true,
+            interval: 300,
+            ignored: [
+                '**/public/**',
+                '**/storage/framework/**',
+                '**/storage/logs/**',
+                '**/vendor/**',
+            ]
         }
     }
 });

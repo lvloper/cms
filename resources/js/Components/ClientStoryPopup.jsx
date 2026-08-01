@@ -39,6 +39,13 @@ function useChannelTimeline(channels, isActive, resolvedDurations) {
     }, [channels])
 
     useEffect(() => {
+        if (!isActive) {
+            setActiveIndex(0)
+            setTransition(null)
+        }
+    }, [isActive])
+
+    useEffect(() => {
         const activeChannel = channels[activeIndex]
         const duration = activeChannel?.duration
             ?? resolvedDurations[activeChannel?.id]
@@ -139,7 +146,7 @@ function VideoChannel({ channel, isActive, onDurationResolved }) {
             ref={videoRef}
             className="client-story-card__media"
             src={channel.url}
-            autoPlay
+            autoPlay={isActive}
             muted
             playsInline
             preload="metadata"
@@ -236,6 +243,7 @@ export function ClientStoryCard({
     isActive = true,
     onClose,
     titleId,
+    showLink = true,
 }) {
     const channels = useMemo(() => buildChannels(client), [client])
     const [resolvedDurations, setResolvedDurations] = useState({})
@@ -299,7 +307,7 @@ export function ClientStoryCard({
                 </div>
                 <TvStaticTransition transition={transition} />
             </div>
-            {client.url && (
+            {showLink && client.url && (
                 <a className="client-story-card__link" href={client.url}>
                     Ver cliente <span aria-hidden="true">↗</span>
                 </a>

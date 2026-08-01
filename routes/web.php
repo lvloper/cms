@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ClientsController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PacoPageController;
 use App\Http\Controllers\RouteController;
@@ -11,6 +12,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::get('/clientes', ClientsController::class)->name('clients.index');
 Route::get('/hablemos', PacoPageController::class)->name('paco.show');
 
 Route::get('/search-block', function (Request $request) {

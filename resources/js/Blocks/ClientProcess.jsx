@@ -8,6 +8,7 @@ export default function ClientProcess({ eyebrow, title, body, nodes = [] }) {
                 <ol className="client-process__grid md:col-span-8" role="list">
                     {nodes.map((node, index) => (
                         <li key={`${node.label}-${index}`} className="client-process__node" data-process-node>
+                            <span className="client-process__marker" aria-hidden="true" />
                             <span className="client-process__index" aria-hidden="true">{String(index + 1).padStart(2, '0')}</span>
                             <h3 className="text-lg font-bold md:text-xl">{node.label}</h3>
                             {node.detail && <p className="mt-2 text-sm leading-relaxed text-gray-2">{node.detail}</p>}

@@ -10,6 +10,7 @@
         <ol class="client-process__grid md:col-span-8">
             @foreach($nodes as $node)
                 <li class="client-process__node">
+                    <span class="client-process__marker" aria-hidden="true"></span>
                     <span class="client-process__index">{{ str_pad($loop->iteration, 2, '0', STR_PAD_LEFT) }}</span>
                     <h3 class="text-lg font-bold md:text-xl">{{ $node['label'] ?? '' }}</h3>
                     @if($node['detail'] ?? false)<p class="mt-2 text-sm text-gray-2">{{ $node['detail'] }}</p>@endif
